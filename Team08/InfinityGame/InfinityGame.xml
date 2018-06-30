@@ -69,6 +69,49 @@
             プレーヤー移動のキー
             </summary>
         </member>
+        <member name="T:InfinityGame.Device.IGGamePad">
+            <summary>
+            ゲームパッド
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Device.IGGamePad.GetLeftVelocity(Microsoft.Xna.Framework.PlayerIndex)">
+            <summary>
+            左のスティックの量
+            </summary>
+            <param name="player"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.IGGamePad.GetRightVelocity(Microsoft.Xna.Framework.PlayerIndex)">
+            <summary>
+            右のスティックの量
+            </summary>
+            <param name="player"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.IGGamePad.GetKeyTrigger(Microsoft.Xna.Framework.PlayerIndex,Microsoft.Xna.Framework.Input.Buttons)">
+            <summary>
+            キーが押された瞬間
+            </summary>
+            <param name="player"></param>
+            <param name="button"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.IGGamePad.GetKeyState(Microsoft.Xna.Framework.PlayerIndex,Microsoft.Xna.Framework.Input.Buttons)">
+            <summary>
+            Key状態を取得
+            </summary>
+            <param name="player"></param>
+            <param name="button"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.IGGamePad.GetKeyUpTrigger(Microsoft.Xna.Framework.PlayerIndex,Microsoft.Xna.Framework.Input.Buttons)">
+            <summary>
+            キーが離された瞬間
+            </summary>
+            <param name="player"></param>
+            <param name="button"></param>
+            <returns></returns>
+        </member>
         <member name="T:InfinityGame.Device.ImageManage">
             <summary>
             Imageの管理クラス
@@ -90,6 +133,13 @@
         <member name="M:InfinityGame.Device.KeyboardManage.GameKeyboard.GetKeyTrigger(Microsoft.Xna.Framework.Input.Keys)">
             <summary>
             キーが押された瞬間
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.KeyboardManage.GameKeyboard.GetKeyUpTrigger(Microsoft.Xna.Framework.Input.Keys)">
+            <summary>
+            キーが離された瞬間
             </summary>
             <param name="key"></param>
             <returns></returns>
@@ -837,13 +887,6 @@
             overrideしてください
             </summary>
             <param name="tempbsc"></param>
-        </member>
-        <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.GetStage(System.Object)">
-            <summary>
-            所在ステージを取得する
-            </summary>
-            <param name="obj"></param>
-            <returns></returns>
         </member>
         <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.ChangeStage(InfinityGame.Stage.BaseStage,Microsoft.Xna.Framework.Vector2)">
             <summary>
