@@ -1,0 +1,1000 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InfinityGame</name>
+    </assembly>
+    <members>
+        <member name="T:InfinityGame.Def.IGConfig">
+            <summary>
+            システム設定
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Def.IGConfig.screen">
+            <summary>
+            画面サイズ
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Def.IGConfig.isFullScreen">
+            <summary>
+            全画面表示
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Def.IGConfig.gameLanguage">
+            <summary>
+            ゲーム言語
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Def.IGConfig.frequency">
+            <summary>
+            別スレッド処理するとき毎秒の頻度
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Def.IGConfig.tstime">
+            <summary>
+            スレッド待ち時間
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Def.IGConfig.textCursorTime">
+            <summary>
+            textCursorの変化時間1/60秒単位
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Def.IGConfig.maxTextLength">
+            <summary>
+            TextBox最大Text容量
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Def.IGConfig.tsz01">
+            <summary>
+            textsize主にコンテンツの標示文字用
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Def.IGConfig.tsz02">
+            <summary>
+            textsize主に本文用
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Def.IGConfig.MNCT">
+            <summary>
+            MonoGameのコンテンツ
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Def.IGConfig.CameraKeys">
+            <summary>
+            カメラ移動のキー
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Def.IGConfig.PlayerKeys">
+            <summary>
+            プレーヤー移動のキー
+            </summary>
+        </member>
+        <member name="T:InfinityGame.Device.ImageManage">
+            <summary>
+            Imageの管理クラス
+            全てのImageはここに管理されている
+            </summary>
+        </member>
+        <member name="T:InfinityGame.Device.KeyboardManage.GameKeyboard">
+            <summary>
+            キーボードクラス
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Device.KeyboardManage.GameKeyboard.GetVelocity(Microsoft.Xna.Framework.Input.Keys[])">
+            <summary>
+            Velocityを取得、順番はLeft、Right、Up、Down
+            </summary>
+            <param name="JudKeys">判定するキー、順番はLeft、Right、Up、Down</param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.KeyboardManage.GameKeyboard.GetKeyTrigger(Microsoft.Xna.Framework.Input.Keys)">
+            <summary>
+            キーが押された瞬間
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.KeyboardManage.GameKeyboard.GetKeyState(Microsoft.Xna.Framework.Input.Keys)">
+            <summary>
+            Key状態を取得
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.KeyboardManage.GameKeyboard.TranslateChar(Microsoft.Xna.Framework.Input.Keys,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            英文字入力関連
+            </summary>
+            <param name="key"></param>
+            <param name="shift"></param>
+            <param name="capsLock"></param>
+            <param name="numLock"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.KeyboardManage.GameKeyboard.TranslateAlphabetic(System.Char,System.Boolean,System.Boolean)">
+            <summary>
+            英文字入力関連
+            </summary>
+            <param name="baseChar"></param>
+            <param name="shift"></param>
+            <param name="capsLock"></param>
+            <returns></returns>
+        </member>
+        <member name="T:InfinityGame.Device.MonoRenderer">
+            <summary>
+            描画管理クラス
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Device.MonoRenderer.#ctor(Microsoft.Xna.Framework.Content.ContentManager,Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>
+            コンストラクタ
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Device.MonoRenderer.Unload">
+            <summary>
+            画像の解放
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Device.MonoRenderer.Begin">
+            <summary>
+            描画開始
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Device.MonoRenderer.End">
+            <summary>
+            描画終了
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Device.MonoRenderer.ErrorAssetNameMessage">
+            <summary>
+            登録されていないアセットのエラー表示用
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.MonoRenderer.PrintDuplicationMessage(System.String)">
+            <summary>
+            重複登録エラー表示用
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Device.MonoRenderer.LoadTexture(System.String,System.String)">
+            <summary>
+            画像の読み込み（コンテンツから）
+            </summary>
+            <param name="name">アセット名</param>
+            <param name="filePath">ファイルパス</param>
+        </member>
+        <member name="M:InfinityGame.Device.MonoRenderer.LoadTexture(System.String,Microsoft.Xna.Framework.Graphics.Texture2D)">
+            <summary>
+            画像の読み込み（テクスチャから）
+            </summary>
+            <param name="name"></param>
+            <param name="texture"></param>
+        </member>
+        <member name="M:InfinityGame.Device.MonoRenderer.DrawTexture(System.String,Microsoft.Xna.Framework.Vector2,System.Single)">
+            <summary>
+            画像の描画
+            </summary>
+            <param name="name">アセット名</param>
+            <param name="position">位置</param>
+            <param name="alpha">透過率</param>
+        </member>
+        <member name="M:InfinityGame.Device.MonoRenderer.DrawTexture(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Rectangle,System.Single)">
+            <summary>
+            画像の描画（範囲指定）
+            </summary>
+            <param name="name">アセット名</param>
+            <param name="position">位置</param>
+            <param name="rect">矩形の範囲指定</param>
+            <param name="alpha">透過率</param>
+        </member>
+        <member name="M:InfinityGame.Device.MonoRenderer.DrawTexture(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)">
+            <summary>
+            画像の描画（拡大縮小対応）
+            </summary>
+            <param name="name"></param>
+            <param name="position"></param>
+            <param name="scale"></param>
+            <param name="alpha"></param>
+        </member>
+        <member name="M:InfinityGame.Device.MonoRenderer.DrawNumber(System.String,Microsoft.Xna.Framework.Vector2,System.Int32,System.Single)">
+            <summary>
+            数字の描画（簡易版）
+            </summary>
+            <param name="name">アセット名</param>
+            <param name="position">位置</param>
+            <param name="number">表示する数字</param>
+            <param name="alpha">透過率</param>
+        </member>
+        <member name="M:InfinityGame.Device.MonoRenderer.DrawNumber(System.String,Microsoft.Xna.Framework.Vector2,System.String,System.Int32,System.Single)">
+            <summary>
+            数字の描画（詳細版）
+            </summary>
+            <param name="name">アセット名</param>
+            <param name="position">位置</param>
+            <param name="number">表示する数字</param>
+            <param name="digit">桁数</param>
+            <param name="alpha">透過率</param>
+        </member>
+        <member name="T:InfinityGame.Device.MouseManage.GameMouse">
+            <summary>
+            マウス処理
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Device.MouseManage.GameMouse.stateOnFre">
+            <summary>
+            持続状態判定フレーム数
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Device.MouseManage.GameMouse.MouseState">
+            <summary>
+            現在の状態
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Device.MouseManage.GameMouse.LastMState">
+            <summary>
+            直前の状態、IGConfigのfrequencyによって直前の時間が違う
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Device.MouseManage.GameMouse.Velocity">
+            <summary>
+            移動量
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Device.MouseManage.GameMouse.LimitMouse">
+            <summary>
+            制限最大移動
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Device.MouseManage.GameMouse.MaxMouseMove">
+            <summary>
+            制限最大移動量
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Device.MouseManage.GameMouse.SetMousePosition(System.Int32,System.Int32)">
+            <summary>
+            マウス座標を設定
+            </summary>
+            <param name="X"></param>
+            <param name="Y"></param>
+        </member>
+        <member name="M:InfinityGame.Device.MouseManage.GameMouse.SetLimitMouse(System.Single,System.Boolean)">
+            <summary>
+            最大移動量を設定
+            </summary>
+            <param name="value"></param>
+            <param name="limit"></param>
+        </member>
+        <member name="M:InfinityGame.Device.MouseManage.GameMouse.ReFresh">
+            <summary>
+            情報更新
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Device.MouseManage.GameMouse.GetMouseWheel">
+            <summary>
+            ホイールの変化を取得
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:InfinityGame.Device.MouseManage.IMouseEvent">
+            <summary>
+            マウス関連処理
+            </summary>
+        </member>
+        <member name="T:InfinityGame.Device.ResourceLoader">
+            <summary>
+            リソースロード用クラス
+            </summary>
+        </member>
+        <member name="T:InfinityGame.Device.ResourceManager">
+            <summary>
+            リソース整理するクラス
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Device.ResourceManager.#ctor(System.String,System.String)">
+            <summary>
+            リソース管理「aLTID」はLangTextを検索するための検索IDこのクラスでは作用しない
+            </summary>
+            <param name="aLTID">LangTextを検索するための検索IDこのクラスでは作用しない</param>
+            <param name="aStrID"></param>
+            <param name="aFilePath"></param>
+            <param name="aResource"></param>
+        </member>
+        <member name="T:InfinityGame.Device.Resources">
+            <summary>
+            リソース
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Device.Resources.SetGD(Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>
+            SetGraphicsDevice
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Device.Resources.SelectResource(System.String,System.Int32)">
+            <summary>
+            strIDによってリソースを取得
+            </summary>
+            <param name="strID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.Resources.SelectResource``1(``0,System.Int32)">
+            <summary>
+            strIDListによってリソースを取得
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.Resources.GetTexture2D(System.String,System.Int32)">
+            <summary>
+            Texture2Dに変換したリソースを取得する
+            </summary>
+            <param name="strID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.Resources.GetTexture2D``1(``0,System.Int32)">
+            <summary>
+            Texture2Dに変換したリソースを取得する
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.Resources.GetImage(System.String)">
+            <summary>
+            Imageに変換したリソースを取得する
+            </summary>
+            <param name="strID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.Resources.GetImage``1(``0)">
+            <summary>
+            Imageに変換したリソースを取得する
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="T:InfinityGame.Device.SoundManage">
+            <summary>
+            サウンド管理クラス
+            全てのSoundはここに管理されている
+            </summary>
+        </member>
+        <member name="T:InfinityGame.Device.TextFileIO">
+            <summary>
+            外部文字列ファイルを処理するクラス
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Device.TextFileIO.Read(System.String)">
+            <summary>
+            ファイルを読み込む
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.TextFileIO.Read(System.String[])">
+            <summary>
+            多数のファイルを同時に読み込む
+            </summary>
+            <param name="filePaths"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Device.TextFileIO.SaveFile(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            ファイルの保存
+            </summary>
+            <param name="texts"></param>
+            <param name="filePath"></param>
+        </member>
+        <member name="T:InfinityGame.Element.ContentAlignment">
+            <summary>
+            相対位置
+            </summary>
+        </member>
+        <member name="T:InfinityGame.Element.Alignment">
+            <summary>
+            相対位置
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Element.Alignment.GetAlignment(InfinityGame.Element.ContentAlignment,InfinityGame.Element.Size,InfinityGame.Element.Size)">
+            <summary>
+            コンテンツが母体に対する位置を取得する
+            </summary>
+            <param name="contentAlignment">位置</param>
+            <param name="ps">母体のサイズ</param>
+            <param name="s">自身のサイズ</param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Alignment.GetMXFAlignment(InfinityGame.Element.ContentAlignment,InfinityGame.Element.Size,InfinityGame.Element.Size)">
+            <summary>
+            getMicrosoft.Xna.Framework.Point
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:InfinityGame.Element.SImage">
+            <summary>
+            各クラスでSImageを新規すべき
+            System.Drawing.Imageは新規しないこと。
+            必要の場合はSImageからImageを取得する形で。
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Element.SImage.SetFreams(System.Int32,System.Int32)">
+            <summary>
+            フレームを設定
+            </summary>
+            <param name="count"></param>
+            <param name="freams"></param>
+        </member>
+        <member name="M:InfinityGame.Element.SImage.SetMainImage(System.Drawing.Image)">
+            <summary>
+            主要Imageを設定
+            </summary>
+            <param name="aImage"></param>
+            <returns></returns>
+        </member>
+        <member name="T:InfinityGame.Element.Size">
+            <summary>
+            サイズ
+            </summary>
+        </member>
+        <member name="T:InfinityGame.Element.Sound">
+            <summary>
+            サウンド
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Element.Sound.Play">
+            <summary>
+            SEインスタンスを再生
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:InfinityGame.Element.Sound.Stop">
+            <summary>
+            SEの停止
+            </summary>
+            <param name="name">アセット名</param>
+        </member>
+        <member name="M:InfinityGame.Element.Sound.SetSELoopPlay(System.Boolean)">
+            <summary>
+            SEのループ再生を設定
+            </summary>
+            <param name="name">アセット名</param>
+            <param name="loopFlag">ループフラグ。リピート再生ならtrue</param>
+        </member>
+        <member name="T:InfinityGame.Element.UImage">
+            <summary>
+            単画像のみ
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Element.UImage.CalLocation">
+            <summary>
+            locationを計算
+            </summary>
+        </member>
+        <member name="T:InfinityGame.GameGraphics.API.IImageEntity">
+            <summary>
+            実体のImageを参照とし
+            もしある場所でピクセルの透明度によって判定し
+            そのポイントに実体が存在するかどうかを判定し処理する。
+            </summary>
+        </member>
+        <member name="M:InfinityGame.GameGraphics.API.IImageEntity.IsExistence(Microsoft.Xna.Framework.Point)">
+            <summary>
+            Imageを相対とするpointの位置に実体存在するか
+            透明度が0以上であれば実体の存在を認め。
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="T:InfinityGame.GameGraphics.BaseDisplay">
+            <summary>
+            全てのゲームオブジェクトの基本となる
+            </summary>
+        </member>
+        <member name="F:InfinityGame.GameGraphics.BaseDisplay.iTIndex">
+            <summary>
+            imageTIndex
+            </summary>
+        </member>
+        <member name="F:InfinityGame.GameGraphics.BaseDisplay.contents">
+            <summary>
+            UIコンテンツ
+            </summary>
+        </member>
+        <member name="F:InfinityGame.GameGraphics.BaseDisplay.ImageRunState">
+            <summary>
+            0:リセット,
+            1:連続作動,
+            2:一回だけ作動,
+            3:一時的中断,
+            </summary>
+        </member>
+        <member name="M:InfinityGame.GameGraphics.BaseDisplay.GetText(System.String)">
+            <summary>
+            text取得method
+            </summary>
+            <param name="strID">Langの指示ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.GameGraphics.BaseDisplay.GetText``1(``0)">
+            <summary>
+            text取得method
+            </summary>
+            <param name="strID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.GameGraphics.BaseDisplay.GetParent(System.Object)">
+            <summary>
+            特定のクラスしかparentを取得できない
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:InfinityGame.GameGraphics.ImageEntity">
+            <summary>
+            Imageの透明度によって、実体が存在するかどうかを判断する
+            </summary>
+        </member>
+        <member name="F:InfinityGame.GameGraphics.ImageEntity.Enable">
+            <summary>
+            これをfalseに設定すると、判断せず、そのまま実体は存在と見なす。
+            </summary>
+        </member>
+        <member name="M:InfinityGame.GameGraphics.ImageEntity.IsExistence(Microsoft.Xna.Framework.Point)">
+            <summary>
+            Imageの透明度によって、実体が存在するかどうかを判断する
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="T:InfinityGame.GameRun">
+            <summary>
+            InfinityGameの入口
+            </summary>
+        </member>
+        <member name="P:InfinityGame.GameRun.IsGameRun">
+            <summary>
+            ゲームは作動中か
+            </summary>
+        </member>
+        <member name="F:InfinityGame.GameRun.firstScene">
+            <summary>
+            必ず一番のシーンの名前をここに記入すること
+            </summary>
+        </member>
+        <member name="P:InfinityGame.GameRun.ActiveScene">
+            <summary>
+            今活動しているシーン
+            </summary>
+        </member>
+        <member name="M:InfinityGame.GameRun.EndTheGame">
+            <summary>
+            全てのThreadをAbortする
+            </summary>
+        </member>
+        <member name="M:InfinityGame.GameRun.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Update
+            </summary>
+            <param name="gameTime"></param>
+        </member>
+        <member name="M:InfinityGame.GameRun.LoadResources(InfinityGame.GameRun)">
+            <summary>
+            別Threadでリソースを読み込む
+            </summary>
+            <param name="gameRun">GameRun身分とIsGameRunの確認</param>
+        </member>
+        <member name="T:InfinityGame.Lang.GameTexts">
+            <summary>
+            ゲームの言語管理すラス
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Lang.GameTexts.GetTextPRC(System.String)">
+            <summary>
+            textを取得,PRC>PRoCessing
+            </summary>
+            <param name="strIDManage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Lang.GameTexts.GetText(System.String)">
+            <summary>
+            text取得method
+            </summary>
+            <param name="strID">Langの指示ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Lang.GameTexts.GetText``1(``0)">
+            <summary>
+            text取得method
+            </summary>
+            <param name="strIDList"></param>
+            <returns></returns>
+        </member>
+        <member name="T:InfinityGame.Scene.BaseScene">
+            <summary>
+            ベースとなるシーン
+            </summary>
+        </member>
+        <member name="T:InfinityGame.Scene.LoadScene">
+            <summary>
+            ロードシーン
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Scene.LoadScene.minLogoFrames">
+            <summary>
+            logo表示開始から消え始めるまで最小Frames
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Scene.LoadScene.mTASpeed">
+            <summary>
+            mainTextureAlphaの変化速度(1/60秒内)
+            </summary>
+        </member>
+        <member name="T:InfinityGame.Scene.StageScene">
+            <summary>
+            ステージシーン
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Scene.StageScene.ShowStage">
+            <summary>
+            描画するステージ
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Scene.StageScene.stages">
+            <summary>
+            すべてのステージ
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Scene.StageScene.StageDraw(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            描画するステージ
+            </summary>
+            <param name="gameTime"></param>
+        </member>
+        <member name="T:InfinityGame.Stage.BaseStage">
+            <summary>
+            基本となるステージ
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.BaseStage.stageContents">
+            <summary>
+            ステージコンテンツ
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.BaseStage.EndOfLeftUp">
+            <summary>
+            XNAのRectangleのlocationがマイナスの場合がバグったり、クラッシュしたりするため、
+            常にこの変数を正の数にすること
+            左上の限界
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.BaseStage.EndOfRightDown">
+            <summary>
+            右下の限界
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.BaseStage.SubVelocity0">
+            <summary>
+            マウスによって移動用
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Stage.BaseStage.PreLoadContent">
+            <summary>
+            先にインスタンス化したオブジェクトが先に描画するため、
+            基本的にステージ背景を先にインスタンス化させてください。
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Stage.BaseStage.SetFocusLocation">
+            <summary>
+            FocusStageContentがあるときにcameraLocationを設定する
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Stage.BaseStage.ChangeStageScene(InfinityGame.Scene.StageScene)">
+            <summary>
+            ステージシーンを移動
+            </summary>
+            <param name="newStageScene"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.SCIDBuilder.ResetFocusSCID">
+            <summary>
+            FocusSCIDを初期化する
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Stage.SCIDBuilder.SCClear(InfinityGame.Stage.StageContent.BaseStageContent)">
+            <summary>
+            SCIDを回収し、該当するbaseStageContentのUIIDが回収された為、インスタンスをメモリ上からクリアする。
+            インスタンスをクリアしたくないとき、baseUIのVisibleとEnable両方をFalseに設定すると良い。
+            </summary>
+            <param name="baseStageContent"></param>
+        </member>
+        <member name="T:InfinityGame.Stage.StageContent.Actor.Character">
+            <summary>
+            キャラクター
+            </summary>
+        </member>
+        <member name="T:InfinityGame.Stage.StageContent.BaseStageContent">
+            <summary>
+            ステージコンテンツでベースとなるクラス
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.StageContent.BaseStageContent.imageEntity">
+            <summary>
+            Image実体
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.StageContent.BaseStageContent.MaxMouseMove">
+            <summary>
+            マウス制限するときの最大移動量
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.StageContent.BaseStageContent.IsCrimp">
+            <summary>
+            障害物かどうか
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.StageContent.BaseStageContent.CanCollision">
+            <summary>
+            他の物体に衝突されるかどうか
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.StageContent.BaseStageContent.EnableColl">
+            <summary>
+            他の物体を衝突することができるかどうか
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.StageContent.BaseStageContent.BeAffect">
+            <summary>
+            力場に影響されるかどうか
+            重力などの計算に使用される
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageContent.BaseStageContent.Stage">
+            <summary>
+            自身がどのステージに存在するか
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageContent.BaseStageContent.Coordinate">
+            <summary>
+            ステージに相対する座標
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageContent.BaseStageContent.LastCoordinate">
+            <summary>
+            前の座標
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageContent.BaseStageContent.Location">
+            <summary>
+            ステージに相対する座標（Point）
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageContent.BaseStageContent.Team">
+            <summary>
+            チーム。PS：現在機能なし
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageContent.BaseStageContent.NewSpace">
+            <summary>
+            現在はステージのどこを占めている。
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageContent.BaseStageContent.BeMove">
+            <summary>
+            取得するにはGetBeMoveを使ってください
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,InfinityGame.GameGraphics.BaseDisplay,System.String)">
+            <summary>
+            nameを"Null"に指定すると、SCIDをnameとする。
+            </summary>
+            <param name="aGraphicsDevice"></param>
+            <param name="aParent"></param>
+            <param name="aName"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.GetBeMove">
+            <summary>
+            状態によって取得する
+            予備メソッド
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.AddVelocity(Microsoft.Xna.Framework.Vector2,InfinityGame.Stage.VeloParam,InfinityGame.Stage.StageContent.BaseStageContent)">
+            <summary>
+            appVelocity申し込む移動量
+            veloParamどのように申し込まれた、衝突か、自主移動か。
+            cooContent衝突の場合はどれが衝突してくれた。
+            </summary>
+            <param name="appVelocity"></param>
+            <param name="veloParam"></param>
+            <param name="stageContent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.CalCooXColl(System.Single)">
+            <summary>
+            X方向からの衝突
+            </summary>
+            <param name="velocityX"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.CalCooYColl(System.Single)">
+            <summary>
+            Y方向からの衝突
+            </summary>
+            <param name="velocityY"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.CalNotCrimpColl(System.Collections.Generic.List{InfinityGame.Stage.StageContent.BaseStageContent})">
+            <summary>
+            非障害物衝突した後の判定
+            tempbscは衝突した物体LIST
+            overrideしてください
+            </summary>
+            <param name="tempbsc"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.CalCrimpColl(System.Collections.Generic.List{InfinityGame.Stage.StageContent.BaseStageContent})">
+            <summary>
+            障害物衝突した後の判定
+            tempbscは衝突した物体LIST
+            overrideしてください
+            </summary>
+            <param name="tempbsc"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.GetStage(System.Object)">
+            <summary>
+            所在ステージを取得する
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.ChangeStage(InfinityGame.Stage.BaseStage,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            ステージを移動する。座標指定
+            </summary>
+            <param name="newStage"></param>
+            <param name="newCoordinate"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.ChangeStage(InfinityGame.Stage.BaseStage)">
+            <summary>
+            ステージを移動する。座標変えず
+            </summary>
+            <param name="newStage"></param>
+        </member>
+        <member name="T:InfinityGame.Stage.StageContent.Block.Block">
+            <summary>
+            基本となるブロッククラス
+            </summary>
+        </member>
+        <member name="T:InfinityGame.Stage.StageContent.Block.Crimp">
+            <summary>
+            障害物
+            </summary>
+        </member>
+        <member name="T:InfinityGame.Stage.StageContent.Collision">
+            <summary>
+            あたり判定クラス
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.Collision.IsCollRect(Microsoft.Xna.Framework.Rectangle,InfinityGame.Stage.StageContent.BaseStageContent)">
+            <summary>
+            二つの物体の当たり判定
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.Collision.CollisionCheck(Microsoft.Xna.Framework.Rectangle,System.Collections.Generic.List{InfinityGame.Stage.StageContent.BaseStageContent},System.Collections.Generic.List{InfinityGame.Stage.StageContent.BaseStageContent},System.Int32)">
+            <summary>
+            大量チェック
+            param
+            0:全部取得
+            1:障害物を取得
+            2:非障害物を取得
+            </summary>
+            <param name="bsc">基準</param>
+            <param name="checkList">チェックリスト</param>
+            <param name="collList">リターンリスト</param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="T:InfinityGame.Stage.StageContent.StageField">
+            <summary>
+            ステージのフィールドとなるクラス
+            当たり判定しない。
+            背景やマップなどに使うとよい
+            必要の場合当たり当たり判定ONに設定すればよい
+            </summary>
+        </member>
+        <member name="T:InfinityGame.Stage.VeloParam">
+            <summary>
+            移動請求が発生する種類
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.VeloParam.Collision">
+            <summary>
+            衝突
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.VeloParam.Run">
+            <summary>
+            自主移動
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.VeloParam.MouseRun">
+            <summary>
+            マウスによる自主移動
+            </summary>
+        </member>
+        <member name="F:InfinityGame.UI.BaseUI.bDText">
+            <summary>
+            text-Texture
+            </summary>
+        </member>
+        <member name="F:InfinityGame.UI.BaseUI.imageEntity">
+            <summary>
+            BaseUIのImageEntity判定はデフォルトでしない。
+            必要の場合imageEntityのEnableをtrueに設定するとよい。
+            </summary>
+        </member>
+        <member name="M:InfinityGame.UI.BaseUI.ObjUpdate">
+            <summary>
+            プログラミングで変数を変更した後、すべてのコンテンツを更新
+            </summary>
+        </member>
+        <member name="M:InfinityGame.UI.BDText.CalLocation">
+            <summary>
+            locationを計算
+            </summary>
+        </member>
+        <member name="T:InfinityGame.UI.UIContent.BaseUIContent">
+            <summary>
+            UIのベースとなるコンテンツ
+            </summary>
+        </member>
+        <member name="M:InfinityGame.UI.UIContent.BaseUIContent.Draw2(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            RequestDraw前に処理する、「base.Draw(gameTime);」消すな
+            </summary>
+            <param name="gameTime"></param>
+        </member>
+        <member name="T:InfinityGame.UI.UIContent.TextBox">
+            <summary>
+            入力用TextBox,表示機能にBUGあるが、本来の機能として正常に作動できる。
+            英文字限定。
+            </summary>
+        </member>
+        <member name="M:InfinityGame.UI.UIContent.TextBox.SetSize(InfinityGame.Element.Size,System.Boolean)">
+            <summary>
+            Sizeを設定する
+            </summary>
+            <param name="size">size</param>
+            <param name="sts">「SetTextSize」TitleTextのsizeを自動で設定するかどうか</param>
+        </member>
+        <member name="M:InfinityGame.UI.UIIDBuilder.ResetFocusUIID">
+            <summary>
+            FocusUIIDを初期化する
+            </summary>
+        </member>
+        <member name="M:InfinityGame.UI.UIIDBuilder.UIClear(InfinityGame.UI.BaseUI)">
+            <summary>
+            UIIDを回収し、該当するbaseUIのUIIDが回収された為、インスタンスをメモリ上からクリアする。
+            インスタンスをクリアしたくないとき、baseUIのVisibleとEnable両方をFalseに設定すると良い。
+            </summary>
+            <param name="baseUI"></param>
+        </member>
+        <member name="T:InfinityGame.UI.UIWindow">
+            <summary>
+            ベースとなるWindow
+            </summary>
+        </member>
+        <member name="M:InfinityGame.UI.UIWindow.SetTitleSize(System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            TitleSizeを設定する
+            </summary>
+            <param name="size">Titleコンテンツのheight</param>
+            <param name="stts">「SetTitleTextSize」TitleTextのsizeを自動で設定するかどうか</param>
+            <param name="scbts">「SetCloseButtonTextSize」CloseButtonTextのsizeを自動で設定するかどうか</param>
+        </member>
+        <member name="M:InfinityGame.UI.UIWindow.Clear">
+            <summary>
+            メモリ上からクリア
+            </summary>
+        </member>
+    </members>
+</doc>
