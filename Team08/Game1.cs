@@ -2,6 +2,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using InfinityGame.Lang;
+using InfinityGame.Scene;
+using InfinityGame.Device;
+using InfinityGame.Def;
+using InfinityGame;
+using System;
+using System.Threading;
+using InfinityGame.Device.WindowsScreen;
 
 /// <summary>
 /// プロジェクト名がnamespaceとなります
@@ -16,7 +24,11 @@ namespace Team08
     {
         // フィールド（このクラスの情報を記述）
         private GraphicsDeviceManager graphicsDeviceManager;//グラフィックスデバイスを管理するオブジェクト
-        private SpriteBatch spriteBatch;//画像をスクリーン上に描画するためのオブジェクト
+        //private SpriteBatch spriteBatch;//画像をスクリーン上に描画するためのオブジェクト  //このクラスで描画しない
+        private string title = "Team08";
+        private GameRun gameRun;
+        private InfinityGame.Element.Size tempScreen;
+
 
         /// <summary>
         /// コンストラクタ
@@ -24,10 +36,35 @@ namespace Team08
         /// </summary>
         public Game1()
         {
+            IGConfig.IGConfigLoad();
             //グラフィックスデバイス管理者の実体生成
             graphicsDeviceManager = new GraphicsDeviceManager(this);
+            if (IGConfig.isFullScreen)
+            {
+                System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.PrimaryScreen;
+                int tempsWidth = screen.Bounds.Width;
+                int tempsHeight = screen.Bounds.Height;
+                tempScreen = new InfinityGame.Element.Size(tempsWidth, tempsHeight);
+
+                if (IGConfig.screen.Width > tempsWidth)
+                {
+                    IGConfig.screen.Width = tempsWidth;
+                }
+                if (IGConfig.screen.Height > tempsHeight)
+                {
+                    IGConfig.screen.Height = tempsHeight;
+                }
+                ChangeScreen.ChangeResolution(IGConfig.screen.Width, IGConfig.screen.Height);
+            }
+            graphicsDeviceManager.PreferredBackBufferWidth = IGConfig.screen.Width;
+            graphicsDeviceManager.PreferredBackBufferHeight = IGConfig.screen.Height;
+            graphicsDeviceManager.IsFullScreen = IGConfig.isFullScreen;
             //コンテンツデータ（リソースデータ）のルートフォルダは"Contentに設定
             Content.RootDirectory = "Content";
+            IGConfig.MNCT = Content;
+            IsMouseVisible = true;
+
+
         }
 
         /// <summary>
@@ -36,26 +73,46 @@ namespace Team08
         protected override void Initialize()
         {
             // この下にロジックを記述
-
-
-
+            FirstInitialize();
+            AfterInitialize();
+            LastInitialize();
             // この上にロジックを記述
             base.Initialize();// 親クラスの初期化処理呼び出し。絶対に消すな！！
         }
+        public void FirstInitialize()
+        {
+            Resources.SetGD(GraphicsDevice);
+            GameTexts.Initialize(IGConfig.gameLanguage);
+            gameRun = new GameRun(GraphicsDevice);
+            Window.Title = GameTexts.GetText(title);
+        }
 
+        public void AfterInitialize()
+        {
+
+        }
+
+        public void LastInitialize()
+        {
+            gameRun.Initialize();
+            gameRun.PreLoad();
+        }
+
+        #region 「LoadContent」「UnloadContent」はgameRunの中で自動で処理するため、必要でなくなった。
+        //gameRunの中で自動で処理するため、必要じゃなくなった。
         /// <summary>
         /// コンテンツデータ（リソースデータ）の読み込み処理
         /// （起動時、１度だけ呼ばれる）
         /// </summary>
-        protected override void LoadContent()
+        /*protected override void LoadContent()
         {
             // 画像を描画するために、スプライトバッチオブジェクトの実体生成
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            //spriteBatch = new SpriteBatch(GraphicsDevice);  //このクラスで描画しない
 
             // この下にロジックを記述
 
-
             // この上にロジックを記述
+            base.LoadContent();
         }
 
         /// <summary>
@@ -68,8 +125,8 @@ namespace Team08
 
 
             // この上にロジックを記述
-        }
-
+        }*/
+        #endregion
         /// <summary>
         /// 更新処理
         /// （1/60秒の１フレーム分の更新内容を記述。音再生はここで行う）
@@ -78,13 +135,13 @@ namespace Team08
         protected override void Update(GameTime gameTime)
         {
             // ゲーム終了処理（ゲームパッドのBackボタンかキーボードのエスケープボタンが押されたら終了）
-            if((GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed) ||
-                 (Keyboard.GetState().IsKeyDown(Keys.Escape)))
-            {
-                Exit();
-            }
+            //if ((GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed) ||
+            //     (Keyboard.GetState().IsKeyDown(Keys.Escape)))
+            //{
+            //}
 
             // この下に更新ロジックを記述
+            gameRun.Update(gameTime);
 
             // この上にロジックを記述
             base.Update(gameTime); // 親クラスの更新処理呼び出し。絶対に消すな！！
@@ -97,13 +154,35 @@ namespace Team08
         protected override void Draw(GameTime gameTime)
         {
             // 画面クリア時の色を設定
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // この下に描画ロジックを記述
-
+            gameRun.Draw(gameTime);
 
             //この上にロジックを記述
             base.Draw(gameTime); // 親クラスの更新処理呼び出し。絶対に消すな！！
+        }
+
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+            ChangeScreen.ChangeResolution(tempScreen.Width, tempScreen.Height);
+            gameRun.IsGameRun = false;
+            Thread.Sleep(500);
+            base.OnExiting(sender, args);
+        }
+
+        protected override void OnActivated(object sender, EventArgs args)
+        {
+            if (gameRun != null && gameRun.GameMouse != null)
+                gameRun.GameMouse.Enable = true;
+            base.OnActivated(sender, args);
+        }
+
+        protected override void OnDeactivated(object sender, EventArgs args)
+        {
+            if (gameRun != null && gameRun.GameMouse != null)
+                gameRun.GameMouse.Enable = false;
+            base.OnDeactivated(sender, args);
         }
     }
 }
