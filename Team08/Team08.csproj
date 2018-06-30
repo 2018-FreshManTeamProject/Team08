@@ -60,9 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
-    <Content Include="InfinityGame\InfinityGame.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="InfinityGame\InfinityGame.dll" />
     <Content Include="Lang\ja_JP.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
