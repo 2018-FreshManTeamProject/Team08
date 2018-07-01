@@ -554,7 +554,8 @@
             0:リセット,
             1:連続作動,
             2:一回だけ作動,
-            3:一時的中断,
+            3:spriteIDを0に動的に戻す、2と組み合わせの使用が理想的,
+            4:一時的中断,
             </summary>
         </member>
         <member name="M:InfinityGame.GameGraphics.BaseDisplay.GetText(System.String)">
@@ -995,6 +996,11 @@
             RequestDraw前に処理する、「base.Draw(gameTime);」消すな
             </summary>
             <param name="gameTime"></param>
+        </member>
+        <member name="T:InfinityGame.UI.UIContent.AnimeButton">
+            <summary>
+            アニメーション付きボタン
+            </summary>
         </member>
         <member name="T:InfinityGame.UI.UIContent.TextBox">
             <summary>
