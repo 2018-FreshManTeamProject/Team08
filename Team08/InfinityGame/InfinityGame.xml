@@ -387,14 +387,14 @@
             <param name="t"></param>
             <returns></returns>
         </member>
-        <member name="M:InfinityGame.Device.Resources.GetImage(System.String)">
+        <member name="M:InfinityGame.Device.Resources.GetImage(System.String,System.Int32)">
             <summary>
             Imageに変換したリソースを取得する
             </summary>
             <param name="strID"></param>
             <returns></returns>
         </member>
-        <member name="M:InfinityGame.Device.Resources.GetImage``1(``0)">
+        <member name="M:InfinityGame.Device.Resources.GetImage``1(``0,System.Int32)">
             <summary>
             Imageに変換したリソースを取得する
             </summary>
@@ -609,6 +609,11 @@
         <member name="F:InfinityGame.GameRun.firstScene">
             <summary>
             必ず一番のシーンの名前をここに記入すること
+            </summary>
+        </member>
+        <member name="F:InfinityGame.GameRun.scenes">
+            <summary>
+            新しいシーンはこの中に入れてください
             </summary>
         </member>
         <member name="P:InfinityGame.GameRun.ActiveScene">
@@ -991,12 +996,6 @@
             UIのベースとなるコンテンツ
             </summary>
         </member>
-        <member name="M:InfinityGame.UI.UIContent.BaseUIContent.Draw2(Microsoft.Xna.Framework.GameTime)">
-            <summary>
-            RequestDraw前に処理する、「base.Draw(gameTime);」消すな
-            </summary>
-            <param name="gameTime"></param>
-        </member>
         <member name="T:InfinityGame.UI.UIContent.AnimeButton">
             <summary>
             アニメーション付きボタン
@@ -1014,6 +1013,12 @@
             </summary>
             <param name="size">size</param>
             <param name="sts">「SetTextSize」TitleTextのsizeを自動で設定するかどうか</param>
+        </member>
+        <member name="T:InfinityGame.UI.UIIDBuilder">
+            <summary>
+            UIIDを指定するクラス
+            UIクラスをクリアする場合、UIClearメソッドを使ってください
+            </summary>
         </member>
         <member name="M:InfinityGame.UI.UIIDBuilder.ResetFocusUIID">
             <summary>

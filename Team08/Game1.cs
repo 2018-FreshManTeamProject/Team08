@@ -158,11 +158,16 @@ namespace Team08
 
             // この下に描画ロジックを記述
             gameRun.Draw(gameTime);
-
+            
             //この上にロジックを記述
             base.Draw(gameTime); // 親クラスの更新処理呼び出し。絶対に消すな！！
         }
 
+        /// <summary>
+        /// ゲームが終了中
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         protected override void OnExiting(object sender, EventArgs args)
         {
             ChangeScreen.ChangeResolution(tempScreen.Width, tempScreen.Height);
@@ -171,6 +176,11 @@ namespace Team08
             base.OnExiting(sender, args);
         }
 
+        /// <summary>
+        /// ゲームが活動している状態
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         protected override void OnActivated(object sender, EventArgs args)
         {
             if (gameRun != null && gameRun.GameMouse != null)
@@ -178,6 +188,12 @@ namespace Team08
             base.OnActivated(sender, args);
         }
 
+        /// <summary>
+        /// ゲームが活動していない状態
+        /// 他のアプリなどを操作している状態。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         protected override void OnDeactivated(object sender, EventArgs args)
         {
             if (gameRun != null && gameRun.GameMouse != null)
