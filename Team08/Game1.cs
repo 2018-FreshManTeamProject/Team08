@@ -25,7 +25,7 @@ namespace Team08
         // フィールド（このクラスの情報を記述）
         private GraphicsDeviceManager graphicsDeviceManager;//グラフィックスデバイスを管理するオブジェクト
         //private SpriteBatch spriteBatch;//画像をスクリーン上に描画するためのオブジェクト  //このクラスで描画しない
-        private string title = "Team08";
+        private string title = "GameTitle";
         private GameRun gameRun;
         private InfinityGame.Element.Size tempScreen;
 
