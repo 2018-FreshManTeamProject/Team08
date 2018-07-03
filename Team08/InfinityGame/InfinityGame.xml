@@ -858,6 +858,12 @@
             appVelocity申し込む移動量
             veloParamどのように申し込まれた、衝突か、自主移動か。
             cooContent衝突の場合はどれが衝突してくれた。
+            障害物自動反発処理は矩形のみ。
+            円の障害物の反発処理では、
+            グラフィック上では不自然が生じるため、
+            自動処理しない、もし処理したい場合、
+            IsCrimpをFalseにし、ICircleインタフェースを引用し、CircleのCrimpメソッドを使用してください。
+            PS：IsCrimpは矩形専用。これをTrueに設定すると、矩形と認識されるので、注意してください。
             </summary>
             <param name="appVelocity"></param>
             <param name="veloParam"></param>
@@ -917,6 +923,45 @@
             障害物
             </summary>
         </member>
+        <member name="T:InfinityGame.Stage.StageContent.Circle">
+            <summary>
+            円
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageContent.Circle.Center">
+            <summary>
+            円心
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageContent.Circle.Radius">
+            <summary>
+            半径
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.Circle.#ctor(InfinityGame.Stage.StageContent.BaseStageContent)">
+            <summary>
+            自動生成
+            </summary>
+            <param name="aBsc"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.Circle.#ctor(InfinityGame.Stage.StageContent.BaseStageContent,Microsoft.Xna.Framework.Vector2,System.Single)">
+            <summary>
+            円心と半径を指定して生成
+            </summary>
+            <param name="aBsc"></param>
+            <param name="aCenter"></param>
+            <param name="aRadius"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.Circle.CreateCircle">
+            <summary>
+            矩形から円を生成
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.Circle.Crimp">
+            <summary>
+            未完成
+            </summary>
+        </member>
         <member name="T:InfinityGame.Stage.StageContent.Collision">
             <summary>
             あたり判定クラス
@@ -941,6 +986,16 @@
             <param name="collList">リターンリスト</param>
             <param name="param"></param>
             <returns></returns>
+        </member>
+        <member name="T:InfinityGame.Stage.StageContent.ICircle">
+            <summary>
+            円の障害物のインターフェース
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageContent.ICircle.Circle">
+            <summary>
+            円の障害物
+            </summary>
         </member>
         <member name="T:InfinityGame.Stage.StageContent.StageField">
             <summary>
