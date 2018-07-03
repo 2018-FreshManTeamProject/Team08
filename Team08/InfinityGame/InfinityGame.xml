@@ -593,7 +593,7 @@
             <summary>
             Imageの透明度によって、実体が存在するかどうかを判断する
             </summary>
-            <param name="point"></param>
+            <param name="oPoint"></param>
             <returns></returns>
         </member>
         <member name="T:InfinityGame.GameRun">
@@ -957,7 +957,7 @@
             矩形から円を生成
             </summary>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.Circle.Crimp">
+        <member name="M:InfinityGame.Stage.StageContent.Circle.Crimp(InfinityGame.Stage.StageContent.BaseStageContent)">
             <summary>
             未完成
             </summary>
