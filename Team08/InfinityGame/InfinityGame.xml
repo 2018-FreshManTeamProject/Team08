@@ -699,6 +699,17 @@
             すべてのステージ
             </summary>
         </member>
+        <member name="F:InfinityGame.Scene.StageScene.stageCameras">
+            <summary>
+            ステージカメラ
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Scene.StageScene.CameraDraw(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            カメラ描画
+            </summary>
+            <param name="gameTime"></param>
+        </member>
         <member name="M:InfinityGame.Scene.StageScene.StageDraw(Microsoft.Xna.Framework.GameTime)">
             <summary>
             描画するステージ
@@ -732,6 +743,11 @@
             マウスによって移動用
             </summary>
         </member>
+        <member name="F:InfinityGame.Stage.BaseStage.AotoRender">
+            <summary>
+            自動描画、多カメラ機能を使う時にこれをFalseに設定してください
+            </summary>
+        </member>
         <member name="M:InfinityGame.Stage.BaseStage.PreLoadContent">
             <summary>
             先にインスタンス化したオブジェクトが先に描画するため、
@@ -760,6 +776,52 @@
             インスタンスをクリアしたくないとき、baseUIのVisibleとEnable両方をFalseに設定すると良い。
             </summary>
             <param name="baseStageContent"></param>
+        </member>
+        <member name="T:InfinityGame.Stage.StageCamera">
+            <summary>
+            ステージカメラ
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.StageCamera.borderSize">
+            <summary>
+            境界線太さ
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.StageCamera.OnBorder">
+            <summary>
+            境界線
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageCamera.Name">
+            <summary>
+            カメラName
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageCamera.Stage">
+            <summary>
+            カメラに映すステージ
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageCamera.CameraLocation">
+            <summary>
+            カメラの座標
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageCamera.CameraCenter">
+            <summary>
+            カメラの中心の座標
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageCamera.FocusStageContent">
+            <summary>
+            カメラをステージコンテンツにロック
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Stage.StageCamera.Draw2(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            ステージを描画
+            </summary>
+            <param name="gameTime"></param>
         </member>
         <member name="T:InfinityGame.Stage.StageContent.Actor.Character">
             <summary>
@@ -837,6 +899,11 @@
             取得するにはGetBeMoveを使ってください
             </summary>
         </member>
+        <member name="P:InfinityGame.Stage.StageContent.BaseStageContent.Render">
+            <summary>
+            カメラモードでの描画オブジェクト
+            </summary>
+        </member>
         <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,InfinityGame.GameGraphics.BaseDisplay,System.String)">
             <summary>
             nameを"Null"に指定すると、SCIDをnameとする。
@@ -862,7 +929,7 @@
             円の障害物の反発処理では、
             グラフィック上では不自然が生じるため、
             自動処理しない、もし処理したい場合、
-            IsCrimpをFalseにし、ICircleインタフェースを引用し、CircleのCrimpメソッドを使用してください。
+            IsCrimpをFalseにし、ICircleインタフェースを引用し、CircleのCrimpメソッド（まだ仕上げでいない）を使用してください。
             PS：IsCrimpは矩形専用。これをTrueに設定すると、矩形と認識されるので、注意してください。
             </summary>
             <param name="appVelocity"></param>
@@ -899,6 +966,12 @@
             overrideしてください
             </summary>
             <param name="tempbsc"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.RenderDraw(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            基本はImageを描画するが、他の物を描画したい場合、これをオーバーロードしてください
+            </summary>
+            <param name="gameTime"></param>
         </member>
         <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.ChangeStage(InfinityGame.Stage.BaseStage,Microsoft.Xna.Framework.Vector2)">
             <summary>
@@ -944,9 +1017,9 @@
             </summary>
             <param name="aBsc"></param>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.Circle.#ctor(InfinityGame.Stage.StageContent.BaseStageContent,Microsoft.Xna.Framework.Vector2,System.Single)">
+        <member name="M:InfinityGame.Stage.StageContent.Circle.#ctor(InfinityGame.Stage.StageContent.BaseStageContent,System.Single)">
             <summary>
-            円心と半径を指定して生成
+            半径を指定して生成
             </summary>
             <param name="aBsc"></param>
             <param name="aCenter"></param>
