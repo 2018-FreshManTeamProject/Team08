@@ -934,7 +934,7 @@
             </summary>
             <param name="appVelocity"></param>
             <param name="veloParam"></param>
-            <param name="stageContent"></param>
+            <param name="cooContent"></param>
             <returns></returns>
         </member>
         <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.CalCooXColl(System.Single)">
