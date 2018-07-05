@@ -408,6 +408,72 @@
             全てのSoundはここに管理されている
             </summary>
         </member>
+        <member name="T:InfinityGame.Device.StageRender">
+            <summary>
+            カメラモードでのステー描画
+            MonoGameのSpriteBatchの欠陥のため、複数カメラ描画する場合、回転や反転すると、該当するカメラにはみ出るため。
+            複数カメラモードの回転や反転はMonoGameでの実現不可能であることが分かりました。
+            ご注意を。
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Device.StageRender.Texture2D">
+            <summary>
+            テクスチャ
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Device.StageRender.Refract">
+            <summary>
+            透明度
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Device.StageRender.Color">
+            <summary>
+            フィルター
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Device.StageRender.Scale">
+            <summary>
+            倍率
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Device.StageRender.Set(Microsoft.Xna.Framework.Graphics.Texture2D)">
+            <summary>
+            データセット
+            </summary>
+            <param name="aTexture2D">テクスチャ</param>
+        </member>
+        <member name="M:InfinityGame.Device.StageRender.Set(Microsoft.Xna.Framework.Graphics.Texture2D,System.Single)">
+            <summary>
+            データセット
+            </summary>
+            <param name="aTexture2D">テクスチャ</param>
+            <param name="aRefract">透明度</param>
+        </member>
+        <member name="M:InfinityGame.Device.StageRender.Set(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Color,System.Single)">
+            <summary>
+            データセット
+            </summary>
+            <param name="aTexture2D">テクスチャ</param>
+            <param name="aColor">フィルター</param>
+            <param name="aRefract">透明度</param>
+        </member>
+        <member name="M:InfinityGame.Device.StageRender.Set(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            データセット
+            </summary>
+            <param name="aTexture2D">テクスチャ</param>
+            <param name="aColor">フィルター</param>
+            <param name="aRefract">透明度</param>
+            <param name="aScale">倍率</param>
+        </member>
+        <member name="M:InfinityGame.Device.StageRender.Draw(InfinityGame.Stage.StageCamera,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Rectangle)">
+            <summary>
+            StageCamera専用描画メソッド
+            </summary>
+            <param name="stageCamera"></param>
+            <param name="position">描画する位置</param>
+            <param name="drawSourceRectangle">描画するTextureの範囲</param>
+        </member>
         <member name="T:InfinityGame.Device.TextFileIO">
             <summary>
             外部文字列ファイルを処理するクラス
@@ -556,6 +622,68 @@
             2:一回だけ作動,
             3:spriteIDを0に動的に戻す、2と組み合わせの使用が理想的,
             4:一時的中断,
+            </summary>
+        </member>
+        <member name="P:InfinityGame.GameGraphics.BaseDisplay.Refract">
+            <summary>
+            透明度
+            </summary>
+        </member>
+        <member name="P:InfinityGame.GameGraphics.BaseDisplay.Visible">
+            <summary>
+            描画するかどうか
+            </summary>
+        </member>
+        <member name="P:InfinityGame.GameGraphics.BaseDisplay.Location">
+            <summary>
+            位置
+            </summary>
+        </member>
+        <member name="P:InfinityGame.GameGraphics.BaseDisplay.Size">
+            <summary>
+            サイズ
+            </summary>
+        </member>
+        <member name="P:InfinityGame.GameGraphics.BaseDisplay.Space">
+            <summary>
+            UI層スーペース
+            </summary>
+        </member>
+        <member name="P:InfinityGame.GameGraphics.BaseDisplay.Enable">
+            <summary>
+            作動
+            </summary>
+        </member>
+        <member name="P:InfinityGame.GameGraphics.BaseDisplay.CanMove">
+            <summary>
+            マウスによる移動
+            ステージコンテンツについては、カメラモードを使用するときには無効
+            </summary>
+        </member>
+        <member name="P:InfinityGame.GameGraphics.BaseDisplay.IsLeftDowning">
+            <summary>
+            マウス左ボタンはこのオブジェクトでダンしている状態かどうか
+            </summary>
+        </member>
+        <member name="P:InfinityGame.GameGraphics.BaseDisplay.DrawLocation">
+            <summary>
+            GameWindowに描画する位置
+            </summary>
+        </member>
+        <member name="P:InfinityGame.GameGraphics.BaseDisplay.Image">
+            <summary>
+            画像
+            </summary>
+        </member>
+        <member name="P:InfinityGame.GameGraphics.BaseDisplay.Ready">
+            <summary>
+            インスタンスが準備完了かどうか
+            </summary>
+        </member>
+        <member name="P:InfinityGame.GameGraphics.BaseDisplay.ITIndex">
+            <summary>
+            マルチ画像においての表示画像ID
+            メソッドをオーバーライドするときに必ずこれを使用してください。
             </summary>
         </member>
         <member name="M:InfinityGame.GameGraphics.BaseDisplay.GetText(System.String)">
@@ -823,6 +951,13 @@
             </summary>
             <param name="gameTime"></param>
         </member>
+        <member name="M:InfinityGame.Stage.StageCamera.GetSpriteBatch(InfinityGame.Device.StageRender)">
+            <summary>
+            StageRender専用メソッド
+            </summary>
+            <param name="stageRender"></param>
+            <returns></returns>
+        </member>
         <member name="T:InfinityGame.Stage.StageContent.Actor.Character">
             <summary>
             キャラクター
@@ -920,6 +1055,13 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.GetBeMove(InfinityGame.Stage.StageContent.BaseStageContent)">
+            <summary>
+            衝突によって発生
+            </summary>
+            <param name="param">衝突した物体</param>
+            <returns></returns>
+        </member>
         <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.AddVelocity(Microsoft.Xna.Framework.Vector2,InfinityGame.Stage.VeloParam,InfinityGame.Stage.StageContent.BaseStageContent)">
             <summary>
             appVelocity申し込む移動量
@@ -967,9 +1109,20 @@
             </summary>
             <param name="tempbsc"></param>
         </member>
+        <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.CalAllColl(System.Collections.Generic.List{InfinityGame.Stage.StageContent.BaseStageContent})">
+            <summary>
+            衝突した後の判定
+            tempbscは衝突した物体LIST
+            overrideしてください
+            </summary>
+            <param name="tempbsc"></param>
+        </member>
         <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.RenderDraw(Microsoft.Xna.Framework.GameTime)">
             <summary>
-            基本はImageを描画するが、他の物を描画したい場合、これをオーバーロードしてください
+            基本はImageを描画するが、他の物を描画したい場合、これをオーバーライドしてください
+            また、詳しいく描画したい場合もオーバーライドしてください
+            あと、オーバーライドするときに
+            base.RenderDraw(gameTime);を削除してください
             </summary>
             <param name="gameTime"></param>
         </member>
