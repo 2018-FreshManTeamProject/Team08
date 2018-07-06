@@ -1073,7 +1073,13 @@
         </member>
         <member name="P:InfinityGame.Stage.StageContent.BaseStageContent.Team">
             <summary>
-            チーム。PS：現在機能なし
+            チーム
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageContent.BaseStageContent.CrimpGroup">
+            <summary>
+            障害物グループ
+            同じグループ同士は障害物として認識されない。
             </summary>
         </member>
         <member name="P:InfinityGame.Stage.StageContent.BaseStageContent.NewSpace">
