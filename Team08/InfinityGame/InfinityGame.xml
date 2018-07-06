@@ -1343,6 +1343,11 @@
             マウスによる自主移動
             </summary>
         </member>
+        <member name="F:InfinityGame.Stage.VeloParam.Gravity">
+            <summary>
+            重力
+            </summary>
+        </member>
         <member name="F:InfinityGame.UI.BaseUI.bDText">
             <summary>
             text-Texture
