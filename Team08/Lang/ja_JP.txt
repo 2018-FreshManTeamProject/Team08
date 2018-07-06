@@ -3,3 +3,8 @@
 <Font:MS UI Gothic>
 <Loading:読み込み中>
 <GameTitle:Team08>
+<BackMenu:バックメニュー>ゲームをタイトルに戻るとか、いつもEsc押したら出るメニューの名前はなに？日本語
+<Back:戻る>
+<ToTitle:タイトルへ戻る>
+<Exit:終了>
+<GameOver:ゲームオーバー>

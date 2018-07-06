@@ -876,7 +876,7 @@
             マウスによって移動用
             </summary>
         </member>
-        <member name="F:InfinityGame.Stage.BaseStage.AotoRender">
+        <member name="F:InfinityGame.Stage.BaseStage.AutoRender">
             <summary>
             自動描画、多カメラ機能を使う時にこれをFalseに設定してください
             </summary>
@@ -1049,6 +1049,14 @@
             <summary>
             力場に影響されるかどうか
             重力などの計算に使用される
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.StageContent.BaseStageContent.ForceMove">
+            <summary>
+            強制移動可能
+            どんな場合でも移動可能と認め。
+            基本はFalse、Trueにすると、たとえ障害物にあったとしても、移動可能とする
+            画像が想定外に重ねる恐れがあり、特別な場合に使ってください。
             </summary>
         </member>
         <member name="P:InfinityGame.Stage.StageContent.BaseStageContent.Stage">
@@ -1419,6 +1427,11 @@
         <member name="T:InfinityGame.UI.UIWindow">
             <summary>
             ベースとなるWindow
+            </summary>
+        </member>
+        <member name="F:InfinityGame.UI.UIWindow.BorderOn">
+            <summary>
+            境界線スイッチ
             </summary>
         </member>
         <member name="M:InfinityGame.UI.UIWindow.SetTitleSize(System.Int32,System.Boolean,System.Boolean)">

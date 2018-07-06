@@ -1,1 +1,12 @@
+シングル画像
 <IG.png:0>
+<title.png:0>
+<stagescene.png:0>
+<stagefield.png:0>
+<neko.png:0>
+<nezumi.png:0>
+<cheese.png:0>
+<wall.png:0>
+
+マルチ画像
+<button:1>サンプルとして使用

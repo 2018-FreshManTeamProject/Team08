@@ -7,9 +7,12 @@ using InfinityGame.Scene;
 using InfinityGame.Device;
 using InfinityGame.Def;
 using InfinityGame;
+using InfinityGame.Device.WindowsScreen;
 using System;
 using System.Threading;
-using InfinityGame.Device.WindowsScreen;
+
+using Team08.Scene.Title;
+using Team08.Scene.Stage;
 
 /// <summary>
 /// プロジェクト名がnamespaceとなります
@@ -79,6 +82,7 @@ namespace Team08
             // この上にロジックを記述
             base.Initialize();// 親クラスの初期化処理呼び出し。絶対に消すな！！
         }
+
         public void FirstInitialize()
         {
             Resources.SetGD(GraphicsDevice);
@@ -89,7 +93,11 @@ namespace Team08
 
         public void AfterInitialize()
         {
-
+            //基本はここでSceneなどの追加作業を行う
+            //他の処理は必要に応じてFirstInitialize()やLastInitialize()に書き込む
+            gameRun.scenes["title"] = new TitleScene("title", GraphicsDevice, null, gameRun);
+            gameRun.firstScene = "title";
+            gameRun.scenes["stagescene"] = new MainScene("stagescene", GraphicsDevice, null, gameRun);
         }
 
         public void LastInitialize()

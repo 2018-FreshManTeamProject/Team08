@@ -9,6 +9,7 @@ namespace Team08
     /// </summary>
     public static class Program
     {
+        private static Game1 game = new Game1();
         /// <summary>
         /// プロジェクトで一番最初に動くメソッド Main
         /// </summary>
@@ -16,8 +17,13 @@ namespace Team08
         static void Main()
         {
             // ゲームオブジェクトの実体生成
-            using (var game = new Game1())
-                game.Run(); //ゲームの実行
+            //using (var game = new Game1())
+            game.Run(); //ゲームの実行
+        }
+
+        public static void Exit()
+        {
+            game.Exit();
         }
     }
 #endif
