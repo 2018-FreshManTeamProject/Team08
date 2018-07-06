@@ -46,6 +46,7 @@ namespace Team08.Scene.Stage.Stages
             stageContents["player" + j.ToString()].CrimpGroup = "cat";
             stageContents["player" + j.ToString()].Team = "cat";
             stageContents["player" + j.ToString()].Image = ImageManage.GetSImage("neko.png");
+            stageContents["player" + j.ToString()].Size = Size.Parse(stageContents["player" + j.ToString()].Image.Image.Size);
             stageContents["player" + j.ToString()].MovePriority = 9;
 
             stageContents["player0"].Coordinate = new Vector2(100, 100);

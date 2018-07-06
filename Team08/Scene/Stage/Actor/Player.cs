@@ -69,7 +69,6 @@ namespace Team08.Scene.Stage.Actor
                     {
                         if (tempbsc[l] is Cheese)
                         {
-                            tempbsc[l].Render.Color = Color.Red;
                             Eat(tempbsc[l]);
                         }
                     }
@@ -102,8 +101,8 @@ namespace Team08.Scene.Stage.Actor
                 if (((Player)bsc).life)
                 {
                     ((Player)bsc).life = false;
-                    ((Player)bsc).Render.Color = Color.Red;
-                    ((Player)bsc).IsCrimp = false;
+                    bsc.Render.Color = Color.Red;
+                    bsc.IsCrimp = false;
                     ((GameStage)Stage).killmouse++;
                 }
             }
