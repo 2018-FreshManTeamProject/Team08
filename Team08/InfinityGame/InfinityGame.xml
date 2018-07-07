@@ -760,6 +760,12 @@
             </summary>
             <param name="gameTime"></param>
         </member>
+        <member name="M:InfinityGame.GameRun.GetGraphicsDeviceManager">
+            <summary>
+            GraphicsDeviceManagerを取得
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:InfinityGame.GameRun.LoadResources(InfinityGame.GameRun)">
             <summary>
             別Threadでリソースを読み込む
@@ -1381,6 +1387,44 @@
         <member name="M:InfinityGame.UI.BDText.CalLocation">
             <summary>
             locationを計算
+            </summary>
+        </member>
+        <member name="M:InfinityGame.UI.TextForm.ShowTextForm(InfinityGame.UI.BaseUI,Microsoft.Xna.Framework.Point,InfinityGame.Element.Size)">
+            <summary>
+            文字入力フォーム
+            </summary>
+            <param name="aBaseUI"></param>
+            <param name="location"></param>
+            <param name="size"></param>
+        </member>
+        <member name="M:InfinityGame.UI.TextForm.ShowTextForm(InfinityGame.UI.BaseUI,Microsoft.Xna.Framework.Point)">
+            <summary>
+            文字入力フォーム
+            </summary>
+            <param name="aBaseUI"></param>
+            <param name="location"></param>
+        </member>
+        <member name="M:InfinityGame.UI.TextForm.ShowTextForm(InfinityGame.UI.BaseUI)">
+            <summary>
+            文字入力フォーム
+            </summary>
+            <param name="aBaseUI"></param>
+        </member>
+        <member name="F:InfinityGame.UI.TextForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:InfinityGame.UI.TextForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:InfinityGame.UI.TextForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
             </summary>
         </member>
         <member name="T:InfinityGame.UI.UIContent.BaseUIContent">

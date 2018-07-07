@@ -9,3 +9,5 @@
 <Exit:終了>
 <GameOver:ゲームオーバー>
 <ReSet:リセット>
+<OK:確認>
+<Cancel:取消>

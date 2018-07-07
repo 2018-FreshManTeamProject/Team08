@@ -87,7 +87,7 @@ namespace Team08
         {
             Resources.SetGD(GraphicsDevice);
             GameTexts.Initialize(IGConfig.gameLanguage);
-            gameRun = new GameRun(GraphicsDevice);
+            gameRun = new GameRun(GraphicsDevice, graphicsDeviceManager);
             Window.Title = GameTexts.GetText(title);
         }
 
@@ -166,7 +166,7 @@ namespace Team08
 
             // この下に描画ロジックを記述
             gameRun.Draw(gameTime);
-            
+
             //この上にロジックを記述
             base.Draw(gameTime); // 親クラスの更新処理呼び出し。絶対に消すな！！
         }
