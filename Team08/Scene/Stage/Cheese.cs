@@ -31,7 +31,7 @@ namespace Team08.Scene.Stage
             Coordinate = new Vector2(rnd.Next(Stage.EndOfLeftUp.X, Stage.EndOfRightDown.X - size.Width), rnd.Next(Stage.EndOfLeftUp.Y, Stage.EndOfRightDown.Y - size.Height));
             if (eaten)
             {
-                ((GameStage)Stage).eatcheese--;
+                ((GameStage)Stage).eatedCheese--;
                 Initialize();
             }
             base.Initialize();

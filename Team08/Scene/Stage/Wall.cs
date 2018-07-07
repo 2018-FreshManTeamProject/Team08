@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using InfinityGame.GameGraphics;
 using InfinityGame.Stage.StageContent;
 using InfinityGame.Stage.StageContent.Block;
 using InfinityGame.Device;
 using InfinityGame.Element;
-using Microsoft.Xna.Framework;
+using Team08.Scene.Stage.Actor;
 
 namespace Team08.Scene.Stage
 {
@@ -46,6 +47,10 @@ namespace Team08.Scene.Stage
                     {
                         tempbsc[l].Initialize();
                     }
+                    //if (tempbsc[l] is Player)
+                    //{
+                    //    ((Player)tempbsc[l]).ClearSpeedv();
+                    //}
                 }
             }
             base.CalAllColl(tempbsc);

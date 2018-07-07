@@ -45,6 +45,7 @@ namespace Team08.Scene.Stage
         {
             DesignBackMenu();
             DesignGameOver();
+            stageCameras["C0"].Location = Point.Zero;
             stageCameras["C1"].Location = new Point(size.Width / 2, 0);
             stageCameras["C2"].Location = new Point(0, size.Height / 2);
             stageCameras["C3"].Location = (size / 2).ToPoint();
@@ -90,10 +91,6 @@ namespace Team08.Scene.Stage
             stageCameras["C1"].FocusStageContent = stageCameras["C1"].Stage.stageContents["player1"];
             stageCameras["C2"].FocusStageContent = stageCameras["C2"].Stage.stageContents["player2"];
             stageCameras["C3"].FocusStageContent = stageCameras["C3"].Stage.stageContents["player3"];
-            stageCameras["C0"].Image = ImageManage.GetSImage("stagescene.png");
-            stageCameras["C1"].Image = ImageManage.GetSImage("stagescene.png");
-            stageCameras["C2"].Image = ImageManage.GetSImage("stagescene.png");
-            stageCameras["C3"].Image = ImageManage.GetSImage("stagescene.png");
             base.LoadContent();
         }
 
@@ -107,27 +104,24 @@ namespace Team08.Scene.Stage
                     backMenu.SetFocus();
                 }
             }
-            if (runStage.mousewin || runStage.catwin)
+            if (runStage.mouseWin || runStage.catWin)
             {
                 Dictionary<string, string> result = new Dictionary<string, string>();
-                if (runStage.mousewin && runStage.catwin)
+                if (runStage.mouseWin && runStage.catWin)
                 {
                     result["winer"] = "引き分け";
-                    result["mouse"] = string.Format($"ネズミ残り：{runStage.mousenum - runStage.killmouse}匹");
-                    result["cheese"] = string.Format($"チーズ残り：{runStage.cheesenum - runStage.eatcheese}個");
+
                 }
-                else if (runStage.mousewin)
+                else if (runStage.mouseWin)
                 {
                     result["winer"] = "勝者ネズミたち";
-                    result["mouse"] = string.Format($"ネズミ残り：{runStage.mousenum - runStage.killmouse}匹");
-                    result["cheese"] = string.Format($"チーズ残り：{runStage.cheesenum - runStage.eatcheese}個");
                 }
-                else if (runStage.catwin)
+                else if (runStage.catWin)
                 {
                     result["winer"] = "勝者ネコ";
-                    result["mouse"] = string.Format($"ネズミ残り：{runStage.mousenum - runStage.killmouse}匹");
-                    result["cheese"] = string.Format($"チーズ残り：{runStage.cheesenum - runStage.eatcheese}個");
                 }
+                result["mouse"] = string.Format($"ネズミ残り：{runStage.mouseNum - runStage.killedMouse}/{runStage.mouseNum}");
+                result["cheese"] = string.Format($"チーズ残り：{runStage.cheeseNum - runStage.eatedCheese}/{runStage.cheeseNum}");
                 gameOver.ShowResult(result);
             }
             if (!backMenu.Visible && !gameOver.Visible)
@@ -139,6 +133,11 @@ namespace Team08.Scene.Stage
                 if (gameOver.Visible)
                     gameOver.Update(gameTime);
             }
+        }
+
+        public override void AfterDraw(GameTime gameTime)
+        {
+            base.AfterDraw(gameTime);
         }
     }
 }

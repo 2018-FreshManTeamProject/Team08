@@ -8,3 +8,4 @@
 <ToTitle:タイトルへ戻る>
 <Exit:終了>
 <GameOver:ゲームオーバー>
+<ReSet:リセット>

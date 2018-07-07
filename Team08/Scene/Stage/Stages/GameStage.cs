@@ -18,12 +18,14 @@ namespace Team08.Scene.Stage.Stages
     public class GameStage : BaseStage
     {
         protected Random rnd = new Random();
-        public int cheesenum = 7;
-        public int eatcheese = 0;
-        public int mousenum = 3;
-        public int killmouse = 0;
-        public bool mousewin = false;
-        public bool catwin = false;
+        public int cheeseNum = 20;
+        public int eatedCheese = 0;
+        public int mouseNum = 3;
+        public int killedMouse = 0;
+        public int mouseWinNum = 18;
+        public int catWinNum = 2;
+        public bool mouseWin = false;
+        public bool catWin = false;
         public GameStage(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
 
@@ -31,16 +33,17 @@ namespace Team08.Scene.Stage.Stages
 
         public override void Initialize()
         {
-            eatcheese = 0;
-            killmouse = 0;
-            mousewin = false;
-            catwin = false;
+            eatedCheese = 0;
+            killedMouse = 0;
+            mouseWin = false;
+            catWin = false;
             for (int i = 0; i < 4; i++)
             {
                 stageContents["player" + i.ToString()].CrimpGroup = "mouse";
                 stageContents["player" + i.ToString()].Team = "mouse";
                 stageContents["player" + i.ToString()].Image = ImageManage.GetSImage("nezumi.png");
                 stageContents["player" + i.ToString()].Size = Size.Parse(stageContents["player" + i.ToString()].Image.Image.Size);
+                stageContents["player" + i.ToString()].Coordinate = new Vector2(rnd.Next(EndOfLeftUp.X, EndOfRightDown.X), rnd.Next(EndOfLeftUp.Y, EndOfRightDown.Y));
             }
             int j = rnd.Next(4);
             stageContents["player" + j.ToString()].CrimpGroup = "cat";
@@ -49,12 +52,7 @@ namespace Team08.Scene.Stage.Stages
             stageContents["player" + j.ToString()].Size = Size.Parse(stageContents["player" + j.ToString()].Image.Image.Size);
             stageContents["player" + j.ToString()].MovePriority = 9;
 
-            stageContents["player0"].Coordinate = new Vector2(100, 100);
-            stageContents["player1"].Coordinate = new Vector2(450, 100);
-            stageContents["player2"].Coordinate = new Vector2(100, 400);
-            stageContents["player3"].Coordinate = new Vector2(450, 400);
-
-            for (int i = 0; i < cheesenum; i++)
+            for (int i = 0; i < cheeseNum; i++)
             {
                 if (!stageContents.ContainsKey("cheese" + i.ToString()))
                 {
@@ -69,10 +67,11 @@ namespace Team08.Scene.Stage.Stages
 
         public override void PreLoadContent()
         {
-            new Player0(graphicsDevice, this, "player0");
-            new Player1(graphicsDevice, this, "player1");
-            new Player2(graphicsDevice, this, "player2");
-            new Player3(graphicsDevice, this, "player3");
+            for (int i = 0; i < 4; i++)
+            {
+                new Player(graphicsDevice, this, "player" + i.ToString());
+                ((Player)stageContents["player" + i.ToString()]).player = (PlayerIndex)i;
+            }
             base.PreLoadContent();
         }
 
@@ -84,13 +83,13 @@ namespace Team08.Scene.Stage.Stages
 
         public override void Update(GameTime gameTime)
         {
-            if (eatcheese >= 5)
+            if (eatedCheese >= mouseWinNum)
             {
-                mousewin = true;
+                mouseWin = true;
             }
-            if (killmouse >= 2)
+            if (killedMouse >= catWinNum)
             {
-                catwin = true;
+                catWin = true;
             }
             base.Update(gameTime);
         }

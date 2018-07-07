@@ -7,6 +7,7 @@
 <nezumi.png:0>
 <cheese.png:0>
 <wall.png:0>
+<yajiru.png:0>
 
 マルチ画像
 <button:1>サンプルとして使用

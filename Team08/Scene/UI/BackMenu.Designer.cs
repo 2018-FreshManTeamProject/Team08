@@ -13,6 +13,7 @@ namespace Team08.Scene.UI
             #region AnimeButton
             this.back.LeftDownToUp += Back;
             this.title.LeftDownToUp += ToTitle;
+            this.reset.LeftDownToUp += ReSet;
             this.exit.LeftDownToUp += Exit;
             #endregion
         }

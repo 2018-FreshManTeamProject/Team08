@@ -18,7 +18,9 @@ namespace Team08.Scene.UI
     {
         public AnimeButton back;
         public AnimeButton title;
+        public AnimeButton reset;
         public AnimeButton exit;
+
         public BackMenu(GraphicsDevice aGraphicsDevice, BaseDisplay parent) : base(aGraphicsDevice, parent)
         {
             CanMove = false;
@@ -35,7 +37,9 @@ namespace Team08.Scene.UI
             Visible = false;
             back = new AnimeButton(graphicsDevice, this);
             title = new AnimeButton(graphicsDevice, this);
+            reset = new AnimeButton(graphicsDevice, this);
             exit = new AnimeButton(graphicsDevice, this);
+
             EventRegist();
             base.PreLoadContent();
         }
@@ -54,7 +58,9 @@ namespace Team08.Scene.UI
         {
             back.Size = tempsize;
             title.Size = tempsize;
+            reset.Size = tempsize;
             exit.Size = tempsize;
+
         }
         private void SetContentLocation(Size tempsize)
         {
@@ -62,13 +68,15 @@ namespace Team08.Scene.UI
 
             back.Location = temp;
             title.Location = new Point(temp.X + 20 + tempsize.Width, TitleSize + 2);
-            exit.Location = new Point(temp.X + 40 + 2 * tempsize.Width, TitleSize + 2);
+            reset.Location = new Point(temp.X + 40 + 2 * tempsize.Width, TitleSize + 2);
+            exit.Location = new Point(temp.X, TitleSize + 2 + 20 + tempsize.Height);
         }
 
         private void SetContentText()
         {
             back.Text = GetText("Back");
             title.Text = GetText("ToTitle");
+            reset.Text = GetText("ReSet");
             exit.Text = GetText("Exit");
         }
 
@@ -76,6 +84,7 @@ namespace Team08.Scene.UI
         {
             back.Image = ImageManage.GetSImage("button");
             title.Image = ImageManage.GetSImage("button");
+            reset.Image = ImageManage.GetSImage("button");
             exit.Image = ImageManage.GetSImage("button");
         }
 
@@ -88,6 +97,11 @@ namespace Team08.Scene.UI
         {
             ((BaseScene)parent).IsRun = false;
             ((BaseScene)parent).GameRun.scenes["title"].IsRun = true;
+            parent.Initialize();
+        }
+
+        public void ReSet(object sender, EventArgs e)
+        {
             parent.Initialize();
         }
 
