@@ -13,6 +13,7 @@ using InfinityGame.Device;
 using InfinityGame.Def;
 using InfinityGame.Element;
 using InfinityGame.Device.KeyboardManage;
+using InfinityGame.UI.UIContent;
 using Team08.Scene.Stage.Stages;
 using Team08.Scene.UI;
 
@@ -23,15 +24,23 @@ namespace Team08.Scene.Stage
         private BackMenu backMenu;
         private GameOver gameOver;
         private GameStage runStage;
+        private Label start;
         public MainScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
 
+        }
+
+        public override void Initialize()
+        {
+            start.Visible = true;
+            base.Initialize();
         }
 
         public override void PreLoadContent()
         {
             backMenu = new BackMenu(graphicsDevice, this);
             gameOver = new GameOver(graphicsDevice, this);
+            start = new Label(graphicsDevice, this);
             new GameCamera(graphicsDevice, this, "C0");
             new GameCamera(graphicsDevice, this, "C1");
             new GameCamera(graphicsDevice, this, "C2");
@@ -43,6 +52,10 @@ namespace Team08.Scene.Stage
         }
         protected override void DesignContent()
         {
+            start.TextSize = 256f;
+            start.BackColor = Color.White * 0.0f;
+            start.BDText.ForeColor = System.Drawing.Color.Yellow;
+            start.Text = (((GameStage)stages["Stage01"]).startTime / 60).ToString();
             DesignBackMenu();
             DesignGameOver();
             stageCameras["C0"].Location = Point.Zero;
@@ -104,6 +117,15 @@ namespace Team08.Scene.Stage
                     backMenu.SetFocus();
                 }
             }
+            if (start.Visible)
+            {
+                start.Text = (((GameStage)stages["Stage01"]).startTime / 60).ToString();
+                start.Location = ((size - start.Size) / 2).ToPoint();
+                if (((GameStage)stages["Stage01"]).startTime == 0)
+                {
+                    start.Visible = false;
+                }
+            }
             if ((runStage.mouseWin || runStage.catWin) && !gameOver.Visible)
             {
                 Dictionary<string, string> result = new Dictionary<string, string>();
@@ -132,11 +154,6 @@ namespace Team08.Scene.Stage
                 if (gameOver.Visible)
                     gameOver.Update(gameTime);
             }
-        }
-
-        public override void AfterDraw(GameTime gameTime)
-        {
-            base.AfterDraw(gameTime);
         }
     }
 }

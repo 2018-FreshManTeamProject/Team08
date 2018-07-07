@@ -89,60 +89,71 @@ namespace Team08.Scene.Stage.Actor
 
         public override void PreUpdate(GameTime gameTime)
         {
-            if (IGGamePad.GetKeyTrigger(player, Buttons.A))
+            if (((GameStage)Stage).startTime <= 0)
             {
-                Action();
-            }
-            if (speedv != Vector2.Zero)
-            {
-                Vector2 t = speedv;
-                speedv -= t * frictional;
-                if (speedv.Length() < 0.05f)
+                if (IGGamePad.GetKeyTrigger(player, Buttons.A))
                 {
-                    speedv = Vector2.Zero;
+                    Action();
                 }
-            }
-            if (life)
-            {
-                direction = IGGamePad.GetLeftVelocity(player);
-                if (direction != Vector2.Zero)
+                if (speedv != Vector2.Zero)
                 {
-                    accel = ((direction.Length() * power) / mass) * magnification;
-                    direction.Normalize();
-                    speedv += direction * accel;
-                }
-                if (speedv.Length() > (maxSpeed + actionMaxSpeed))
-                {
-                    speedv.Normalize();
-                    speedv *= (maxSpeed + actionMaxSpeed);
-                }
-                //actionSpeedは追加速度、上の速度制限の下に置くように
-                if (actionSpeed != Vector2.Zero)
-                {
-                    actionSpeed -= actionSpeed * frictional * 5;
-                    AddVelocity(actionSpeed, VeloParam.Run);
-                    if (actionSpeed.Length() < 0.05f)
+                    Vector2 t = speedv;
+                    speedv -= t * frictional;
+                    if (speedv.Length() < 0.05f)
                     {
-                        actionSpeed = Vector2.Zero;
+                        speedv = Vector2.Zero;
                     }
                 }
-                AddVelocity(speedv, VeloParam.Run);
+                if (life)
+                {
+                    direction = IGGamePad.GetLeftVelocity(player);
+                    if (direction != Vector2.Zero)
+                    {
+                        accel = ((direction.Length() * power) / mass) * magnification;
+                        direction.Normalize();
+                        speedv += direction * accel;
+                    }
+                    if (speedv.Length() > (maxSpeed + actionMaxSpeed))
+                    {
+                        speedv.Normalize();
+                        speedv *= (maxSpeed + actionMaxSpeed);
+                    }
+                    //actionSpeedは追加速度、上の速度制限の下に置くように
+                    if (actionSpeed != Vector2.Zero)
+                    {
+                        actionSpeed -= actionSpeed * frictional * 5;
+                        AddVelocity(actionSpeed, VeloParam.Run);
+                        if (actionSpeed.Length() < 0.05f)
+                        {
+                            actionSpeed = Vector2.Zero;
+                        }
+                    }
+                    AddVelocity(speedv, VeloParam.Run);
+                }
+                else
+                    speedv = Vector2.Zero;
+                if (speedv == Vector2.Zero)
+                {
+                    ImageRunState = 0;
+                }
+                else
+                {
+                    ImageRunState = 1;
+                }
+                if (TimeDownCount > 0)
+                {
+                    TimeDownCount--;
+                }
+                base.PreUpdate(gameTime);
             }
             else
-                speedv = Vector2.Zero;
-            if (speedv == Vector2.Zero)
             {
-                ImageRunState = 0;
+                if (!life)
+                {
+                    Initialize();
+                    ((GameStage)Stage).startTime++;
+                }
             }
-            else
-            {
-                ImageRunState = 1;
-            }
-            if (TimeDownCount > 0)
-            {
-                TimeDownCount--;
-            }
-            base.PreUpdate(gameTime);
         }
 
         public override void CalAllColl(Dictionary<string, BaseStageContent> tempbsc)
@@ -164,6 +175,14 @@ namespace Team08.Scene.Stage.Actor
                         if (tempbsc[l].Team == "mouse")
                         {
                             Eat(tempbsc[l]);
+                        }
+                    }
+                    if (((GameStage)Stage).startTime > 0)
+                    {
+                        if (tempbsc[l] is Wall)
+                        {
+                            Initialize();
+                            ((GameStage)Stage).startTime++;
                         }
                     }
                 }

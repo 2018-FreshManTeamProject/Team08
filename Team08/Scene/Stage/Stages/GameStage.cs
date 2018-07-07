@@ -26,6 +26,7 @@ namespace Team08.Scene.Stage.Stages
         public int catWinNum = 2;
         public bool mouseWin = false;
         public bool catWin = false;
+        public int startTime = 180;
         public GameStage(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
 
@@ -33,6 +34,7 @@ namespace Team08.Scene.Stage.Stages
 
         public override void Initialize()
         {
+            startTime = 180;
             eatedCheese = 0;
             killedMouse = 0;
             mouseWin = false;
@@ -82,13 +84,20 @@ namespace Team08.Scene.Stage.Stages
 
         public override void Update(GameTime gameTime)
         {
-            if (eatedCheese >= mouseWinNum)
+            if (startTime > 0)
             {
-                mouseWin = true;
+                startTime--;
             }
-            if (killedMouse >= catWinNum)
+            else
             {
-                catWin = true;
+                if (eatedCheese >= mouseWinNum)
+                {
+                    mouseWin = true;
+                }
+                if (killedMouse >= catWinNum)
+                {
+                    catWin = true;
+                }
             }
             base.Update(gameTime);
         }

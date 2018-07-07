@@ -10,6 +10,7 @@ using InfinityGame.Stage.StageContent.Block;
 using InfinityGame.Device;
 using InfinityGame.Element;
 using Team08.Scene.Stage.Stages;
+using InfinityGame.Stage.StageContent;
 
 namespace Team08.Scene.Stage
 {
@@ -41,6 +42,19 @@ namespace Team08.Scene.Stage
         {
             Initialize();
             base.LoadContent();
+        }
+
+        public override void CalAllColl(Dictionary<string, BaseStageContent> tempbsc)
+        {
+            foreach(var l in tempbsc)
+            {
+                if (l.Value is Cheese)
+                {
+                    Initialize();
+                    break;
+                }
+            }
+            base.CalAllColl(tempbsc);
         }
     }
 }
