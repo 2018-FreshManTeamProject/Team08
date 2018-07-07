@@ -119,8 +119,8 @@ namespace Team08.Scene.Stage.Actor
                 //actionSpeedは追加速度、上の速度制限の下に置くように
                 if (actionSpeed != Vector2.Zero)
                 {
-                    actionSpeed -= actionSpeed * frictional * 3;
-                    speedv += actionSpeed;
+                    actionSpeed -= actionSpeed * frictional * 5;
+                    AddVelocity(actionSpeed, VeloParam.Run);
                     if (actionSpeed.Length() < 0.05f)
                     {
                         actionSpeed = Vector2.Zero;
@@ -215,17 +215,17 @@ namespace Team08.Scene.Stage.Actor
                 {
                     point--;
                     actionMaxSpeed = 10;
-                    TimeDownCount = 120;
+                    TimeDownCount = 180;
                 }
             }
             else if (Team == "cat")
             {
                 if (timeDownCount == 0)
                 {
-                    TimeDownCount = 300;
+                    TimeDownCount = 600;
                     Vector2 ve = speedv;
                     ve.Normalize();
-                    actionSpeed = ve * 10;
+                    actionSpeed = ve * 50;
                 }
             }
         }

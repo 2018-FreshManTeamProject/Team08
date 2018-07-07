@@ -45,7 +45,7 @@ namespace Team08.Scene.Stage
             action.TextSize = 24f;
             action.BackColor = Color.White * 0.0f;
             action.BDText.ForeColor = System.Drawing.Color.Yellow;
-            
+
             base.DesignContent();
         }
 
@@ -125,7 +125,7 @@ namespace Team08.Scene.Stage
                                 marks.Remove(l);
                             }
                         }
-                        message.Text = string.Format($"ネズミ残り{((GameStage)Stage).mouseNum - ((GameStage)Stage).killedMouse}匹");
+                        message.Text = string.Format($"ネズミ残り{((GameStage)Stage).mouseNum - ((GameStage)Stage).killedMouse}匹\r\nスキルクールタイム：{((Player)FocusStageContent).TimeDownCount / 60}秒");
                     }
                     else if (team == "mouse")
                     {
@@ -136,7 +136,7 @@ namespace Team08.Scene.Stage
                                 marks.Remove(l);
                             }
                         }
-                        message.Text = string.Format($"チーズ残り{((GameStage)Stage).cheeseNum - ((GameStage)Stage).eatedCheese}個\r\nポイント：{((Player)FocusStageContent).Point}");
+                        message.Text = string.Format($"チーズ残り{((GameStage)Stage).cheeseNum - ((GameStage)Stage).eatedCheese}個\r\n加速残り：{((Player)FocusStageContent).TimeDownCount / 60}秒\r\nポイント：{((Player)FocusStageContent).Point}");
                     }
                 }
             }
