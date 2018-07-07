@@ -18,11 +18,11 @@ namespace Team08.Scene.Stage.Stages
     public class GameStage : BaseStage
     {
         protected Random rnd = new Random();
-        public int cheeseNum = 7;
+        public int cheeseNum = 20;
         public int eatedCheese = 0;
         public int mouseNum = 3;
         public int killedMouse = 0;
-        public int mouseWinNum = 2;
+        public int mouseWinNum = 18;
         public int catWinNum = 2;
         public bool mouseWin = false;
         public bool catWin = false;
@@ -59,6 +59,7 @@ namespace Team08.Scene.Stage.Stages
                     new Cheese(graphicsDevice, this, "cheese" + i.ToString());
                     stageContents["cheese" + i.ToString()].PreLoadContent();
                     stageContents["cheese" + i.ToString()].LoadContent();
+                    Thread.Sleep(10);
                 }
             }
             base.Initialize();

@@ -104,12 +104,13 @@ namespace Team08.Scene.Stage
                     backMenu.SetFocus();
                 }
             }
-            if ((runStage.mouseWin || runStage.catWin) && !gameOver.Visible)
+            if (runStage.mouseWin || runStage.catWin)
             {
                 Dictionary<string, string> result = new Dictionary<string, string>();
                 if (runStage.mouseWin && runStage.catWin)
                 {
                     result["winer"] = "引き分け";
+
                 }
                 else if (runStage.mouseWin)
                 {
