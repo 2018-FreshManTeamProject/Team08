@@ -59,7 +59,6 @@ namespace Team08.Scene.Stage.Stages
                     new Cheese(graphicsDevice, this, "cheese" + i.ToString());
                     stageContents["cheese" + i.ToString()].PreLoadContent();
                     stageContents["cheese" + i.ToString()].LoadContent();
-                    Thread.Sleep(10);
                 }
             }
             base.Initialize();
