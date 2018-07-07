@@ -52,6 +52,8 @@ namespace Team08.Scene.Stage.Actor
             actionMaxSpeed = 0;
             timeDownCount = 0;
             actionSpeed = Vector2.Zero;
+            speedv = Vector2.Zero;
+            point = 0;
             SetPlayer();
             if (Team == "mouse" && !life)
             {

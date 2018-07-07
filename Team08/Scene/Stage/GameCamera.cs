@@ -28,6 +28,7 @@ namespace Team08.Scene.Stage
         {
 
         }
+
         public override void PreLoadContent()
         {
             message = new Label(graphicsDevice, this);
@@ -50,6 +51,9 @@ namespace Team08.Scene.Stage
 
         public override void Initialize()
         {
+            marks.Clear();
+            lastTeam = "";
+            team = "";
             message.Text = Name;
             if (FocusStageContent.Team == "mouse")
                 action.Text = "Aボタン加速";
