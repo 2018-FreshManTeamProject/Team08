@@ -186,25 +186,25 @@ namespace Team08.Scene.Stage.Actor
             base.CalAllColl(tempbsc);
         }
 
-        protected void Eat(StageObj so)
+        protected void Eat(StageObj bsc)
         {
             if (Team == "mouse")
             {
-                if (!((Cheese)so).eaten)
+                if (!((Cheese)bsc).eaten)
                 {
-                    ((Cheese)so).eaten = true;
-                    so.Visible = false;
+                    ((Cheese)bsc).eaten = true;
+                    bsc.Visible = false;
                     ((GameStage)Stage).eatedCheese++;
                     point++;
                 }
             }
             else if (Team == "cat")
             {
-                if (((Player)so).life)
+                if (((Player)bsc).life)
                 {
-                    ((Player)so).life = false;
-                    so.Render.Color = Color.Red;
-                    so.IsCrimp = false;
+                    ((Player)bsc).life = false;
+                    bsc.Render.Color = Color.Red;
+                    bsc.IsCrimp = false;
                     ((GameStage)Stage).killedMouse++;
                 }
             }

@@ -1152,27 +1152,27 @@
         <member name="M:InfinityGame.Stage.StageContent.StageObj.CalNotCrimpColl(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageContent.StageObj})">
             <summary>
             非障害物衝突した後の処理
-            tempsoは衝突した物体LIST
+            tempbscは衝突した物体LIST
             overrideしてください
             円の障害物処理はここにある
             </summary>
-            <param name="tempso"></param>
+            <param name="tempbsc"></param>
         </member>
         <member name="M:InfinityGame.Stage.StageContent.StageObj.CalCrimpColl(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageContent.StageObj})">
             <summary>
             障害物衝突した後の処理
-            tempsoは衝突した物体LIST
+            tempbscは衝突した物体LIST
             overrideしてください
             </summary>
-            <param name="tempso"></param>
+            <param name="tempbsc"></param>
         </member>
         <member name="M:InfinityGame.Stage.StageContent.StageObj.CalAllColl(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageContent.StageObj})">
             <summary>
             衝突した後の処理
-            tempsoは衝突した物体LIST
+            tempbscは衝突した物体LIST
             overrideしてください
             </summary>
-            <param name="tempso"></param>
+            <param name="tempbsc"></param>
         </member>
         <member name="M:InfinityGame.Stage.StageContent.StageObj.AddVelocity(Microsoft.Xna.Framework.Vector2,InfinityGame.Stage.VeloParam)">
             <summary>
@@ -1191,7 +1191,7 @@
             <summary>
             呼び出し衝突処理
             </summary>
-            <param name="so">衝突した物体</param>
+            <param name="bsc">衝突した物体</param>
         </member>
         <member name="M:InfinityGame.Stage.StageContent.StageObj.CrimpPro(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageContent.StageObj})">
             <summary>
@@ -1279,7 +1279,7 @@
             半径
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.Circle.So">
+        <member name="P:InfinityGame.Stage.StageContent.Circle.Bsc">
             <summary>
             ステージオブジェクト
             </summary>
@@ -1288,13 +1288,13 @@
             <summary>
             自動生成
             </summary>
-            <param name="aSo"></param>
+            <param name="aBsc"></param>
         </member>
         <member name="M:InfinityGame.Stage.StageContent.Circle.#ctor(InfinityGame.Stage.StageContent.StageObj,System.Single)">
             <summary>
             半径を指定して生成
             </summary>
-            <param name="aSo"></param>
+            <param name="aBsc"></param>
             <param name="aCenter"></param>
             <param name="aRadius"></param>
         </member>
@@ -1322,7 +1322,7 @@
             1:障害物を取得
             2:非障害物を取得
             </summary>
-            <param name="so">基準</param>
+            <param name="bsc">基準</param>
             <param name="checkDict">チェックディクショナリ</param>
             <param name="collDict">リターンディクショナリ</param>
             <param name="param"></param>
@@ -1332,8 +1332,8 @@
             <summary>
             円の衝突判定
             </summary>
-            <param name="so1"></param>
-            <param name="so2"></param>
+            <param name="bsc1"></param>
+            <param name="bsc2"></param>
             <returns></returns>
         </member>
         <member name="T:InfinityGame.Stage.StageContent.Detector">
@@ -1345,7 +1345,7 @@
             <summary>
             正方形範囲検出
             </summary>
-            <param name="so">物体自身</param>
+            <param name="bsc">物体自身</param>
             <param name="distance">物体の中心からの距離</param>
             <returns></returns>
         </member>
@@ -1353,7 +1353,7 @@
             <summary>
             矩形範囲検出
             </summary>
-            <param name="so">物体自身</param>
+            <param name="bsc">物体自身</param>
             <param name="width">物体の中心から横半径</param>
             <param name="height">物体の中心から縦半径</param>
             <returns></returns>
@@ -1362,7 +1362,7 @@
             <summary>
             円範囲検出
             </summary>
-            <param name="so">物体自身</param>
+            <param name="bsc">物体自身</param>
             <param name="radius">円半径</param>
             <returns></returns>
         </member>
@@ -1393,7 +1393,7 @@
             <param name="obj">以下のクラスを提供することで実体を生成できる
             Detector
             </param>
-            <param name="so"></param>
+            <param name="bsc"></param>
             <param name="radius"></param>
         </member>
         <member name="T:InfinityGame.Stage.StageContent.StageField">
