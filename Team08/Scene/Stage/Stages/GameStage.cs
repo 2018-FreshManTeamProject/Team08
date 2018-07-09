@@ -45,7 +45,6 @@ namespace Team08.Scene.Stage.Stages
                 stageContents["player" + i.ToString()].Team = "mouse";
                 stageContents["player" + i.ToString()].Image = ImageManage.GetSImage("nezumi.png");
                 stageContents["player" + i.ToString()].Size = Size.Parse(stageContents["player" + i.ToString()].Image.Image.Size);
-                stageContents["player" + i.ToString()].Coordinate = new Vector2(rnd.Next(EndOfLeftUp.X, EndOfRightDown.X), rnd.Next(EndOfLeftUp.Y, EndOfRightDown.Y));
             }
             int j = rnd.Next(4);
             stageContents["player" + j.ToString()].CrimpGroup = "cat";

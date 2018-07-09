@@ -36,7 +36,7 @@ namespace Team08.Scene.Stage
             base.LoadContent();
         }
 
-        public override void CalAllColl(Dictionary<string, BaseStageContent> tempbsc)
+        public override void CalAllColl(Dictionary<string, StageObj> tempbsc)
         {
             string[] nm = tempbsc.Keys.ToArray();
             foreach(var l in nm)

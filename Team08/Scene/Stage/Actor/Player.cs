@@ -46,6 +46,7 @@ namespace Team08.Scene.Stage.Actor
 
         public override void Initialize()
         {
+            Coordinate = new Vector2(rnd.Next(Stage.EndOfLeftUp.X, Stage.EndOfRightDown.X), rnd.Next(Stage.EndOfLeftUp.Y, Stage.EndOfRightDown.Y));
             Render.Color = Color.White;
             IsCrimp = true;
             life = true;
@@ -55,12 +56,6 @@ namespace Team08.Scene.Stage.Actor
             speedv = Vector2.Zero;
             point = 0;
             SetPlayer();
-            if (Team == "mouse" && !life)
-            {
-                Coordinate = new Vector2(rnd.Next(Stage.EndOfLeftUp.X, Stage.EndOfRightDown.X), rnd.Next(Stage.EndOfLeftUp.Y, Stage.EndOfRightDown.Y));
-                ((GameStage)Stage).killedMouse--;
-                Initialize();
-            }
             base.Initialize();
         }
 
@@ -148,15 +143,16 @@ namespace Team08.Scene.Stage.Actor
             }
             else
             {
-                if (!life)
+                if (Team == "mouse" && !life)
                 {
-                    Initialize();
+                    ((GameStage)Stage).killedMouse--;
                     ((GameStage)Stage).startTime++;
+                    Initialize();
                 }
             }
         }
 
-        public override void CalAllColl(Dictionary<string, BaseStageContent> tempbsc)
+        public override void CalAllColl(Dictionary<string, StageObj> tempbsc)
         {
             string[] nm = tempbsc.Keys.ToArray();
             foreach (var l in nm)
@@ -190,7 +186,7 @@ namespace Team08.Scene.Stage.Actor
             base.CalAllColl(tempbsc);
         }
 
-        protected void Eat(BaseStageContent bsc)
+        protected void Eat(StageObj bsc)
         {
             if (Team == "mouse")
             {
