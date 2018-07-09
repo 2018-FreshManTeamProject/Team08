@@ -686,6 +686,11 @@
             メソッドをオーバーライドするときに必ずこれを使用してください。
             </summary>
         </member>
+        <member name="P:InfinityGame.GameGraphics.BaseDisplay.GraphicsDevice">
+            <summary>
+            グラフィックスデバイス
+            </summary>
+        </member>
         <member name="M:InfinityGame.GameGraphics.BaseDisplay.GetText(System.String)">
             <summary>
             text取得method
@@ -1146,7 +1151,7 @@
         </member>
         <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.CalNotCrimpColl(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageContent.BaseStageContent})">
             <summary>
-            非障害物衝突した後の判定
+            非障害物衝突した後の処理
             tempbscは衝突した物体LIST
             overrideしてください
             円の障害物処理はここにある
@@ -1155,7 +1160,7 @@
         </member>
         <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.CalCrimpColl(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageContent.BaseStageContent})">
             <summary>
-            障害物衝突した後の判定
+            障害物衝突した後の処理
             tempbscは衝突した物体LIST
             overrideしてください
             </summary>
@@ -1163,7 +1168,7 @@
         </member>
         <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.CalAllColl(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageContent.BaseStageContent})">
             <summary>
-            衝突した後の判定
+            衝突した後の処理
             tempbscは衝突した物体LIST
             overrideしてください
             </summary>
@@ -1240,6 +1245,12 @@
             ステージを移動する。座標変えず
             </summary>
             <param name="newStage"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.BaseStageContent.GetSample(System.Object)">
+            <summary>
+            ステージに存在しないサンプルを設立
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:InfinityGame.Stage.StageContent.Block.Block">
             <summary>
@@ -1325,6 +1336,36 @@
             <param name="bsc2"></param>
             <returns></returns>
         </member>
+        <member name="T:InfinityGame.Stage.StageContent.Detector">
+            <summary>
+            近くの物体を検出する
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.Detector.Square(InfinityGame.Stage.StageContent.BaseStageContent,System.Int32)">
+            <summary>
+            正方形範囲検出
+            </summary>
+            <param name="bsc">物体自身</param>
+            <param name="distance">物体の中心からの距離</param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.Detector.Rectangle(InfinityGame.Stage.StageContent.BaseStageContent,System.Int32,System.Int32)">
+            <summary>
+            矩形範囲検出
+            </summary>
+            <param name="bsc">物体自身</param>
+            <param name="width">物体の中心から横半径</param>
+            <param name="height">物体の中心から縦半径</param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.Detector.Circel(InfinityGame.Stage.StageContent.BaseStageContent,System.Single)">
+            <summary>
+            円範囲検出
+            </summary>
+            <param name="bsc">物体自身</param>
+            <param name="radius">円半径</param>
+            <returns></returns>
+        </member>
         <member name="T:InfinityGame.Stage.StageContent.ICircle">
             <summary>
             円の障害物のインターフェース
@@ -1334,6 +1375,26 @@
             <summary>
             円の障害物
             </summary>
+        </member>
+        <member name="T:InfinityGame.Stage.StageContent.SampleCircle">
+            <summary>
+            サンプル円
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageContent.SampleCircle.Circle">
+            <summary>
+            サンプル円
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Stage.StageContent.SampleCircle.#ctor(System.Object,InfinityGame.Stage.StageContent.BaseStageContent,System.Single)">
+            <summary>
+            サンプル円
+            </summary>
+            <param name="obj">以下のクラスを提供することで実体を生成できる
+            Detector
+            </param>
+            <param name="bsc"></param>
+            <param name="radius"></param>
         </member>
         <member name="T:InfinityGame.Stage.StageContent.StageField">
             <summary>
