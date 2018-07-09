@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using InfinityGame.GameGraphics;
-using InfinityGame.Stage.StageContent;
-using InfinityGame.Stage.StageContent.Block;
+using InfinityGame.Stage.StageObject;
+using InfinityGame.Stage.StageObject.Block;
 using InfinityGame.Device;
 using InfinityGame.Element;
 using Team08.Scene.Stage.Actor;
@@ -36,24 +36,24 @@ namespace Team08.Scene.Stage
             base.LoadContent();
         }
 
-        public override void CalAllColl(Dictionary<string, StageObj> tempbsc)
+        public override void CalAllColl(Dictionary<string, StageObj> tempSO)
         {
-            string[] nm = tempbsc.Keys.ToArray();
+            string[] nm = tempSO.Keys.ToArray();
             foreach(var l in nm)
             {
-                if (tempbsc.ContainsKey(l))
+                if (tempSO.ContainsKey(l))
                 {
-                    if (tempbsc[l] is Cheese)
+                    if (tempSO[l] is Cheese)
                     {
-                        tempbsc[l].Initialize();
+                        tempSO[l].Initialize();
                     }
-                    //if (tempbsc[l] is Player)
+                    //if (tempSO[l] is Player)
                     //{
-                    //    ((Player)tempbsc[l]).ClearSpeedv();
+                    //    ((Player)tempSO[l]).ClearSpeedv();
                     //}
                 }
             }
-            base.CalAllColl(tempbsc);
+            base.CalAllColl(tempSO);
         }
     }
 }

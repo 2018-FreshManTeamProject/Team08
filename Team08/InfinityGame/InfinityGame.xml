@@ -860,7 +860,7 @@
             基本となるステージ
             </summary>
         </member>
-        <member name="F:InfinityGame.Stage.BaseStage.stageContents">
+        <member name="F:InfinityGame.Stage.BaseStage.stageObjs">
             <summary>
             ステージオブジェクト
             </summary>
@@ -922,7 +922,7 @@
             ステージ層スペース
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.BaseStage.FocusStageContent">
+        <member name="P:InfinityGame.Stage.BaseStage.FocusStageObj">
             <summary>
             非複数カメラモードでの中心オブジェクト
             </summary>
@@ -940,7 +940,7 @@
         </member>
         <member name="M:InfinityGame.Stage.BaseStage.SetFocusLocation">
             <summary>
-            FocusStageContentがあるときにcameraLocationを設定する
+            FocusStageObjがあるときにcameraLocationを設定する
             </summary>
         </member>
         <member name="M:InfinityGame.Stage.BaseStage.RenderDraw(Microsoft.Xna.Framework.GameTime)">
@@ -960,12 +960,12 @@
             FocusSCIDを初期化する
             </summary>
         </member>
-        <member name="M:InfinityGame.Stage.SCIDBuilder.SCClear(InfinityGame.Stage.StageContent.StageObj)">
+        <member name="M:InfinityGame.Stage.SCIDBuilder.SCClear(InfinityGame.Stage.StageObject.StageObj)">
             <summary>
-            SCIDを回収し、該当するbaseStageContentのUIIDが回収された為、インスタンスをメモリ上からクリアする。
+            SCIDを回収し、該当するstageObjのUIIDが回収された為、インスタンスをメモリ上からクリアする。
             インスタンスをクリアしたくないとき、baseUIのVisibleとEnable両方をFalseに設定すると良い。
             </summary>
-            <param name="baseStageContent"></param>
+            <param name="stageObj"></param>
         </member>
         <member name="T:InfinityGame.Stage.StageCamera">
             <summary>
@@ -1002,7 +1002,7 @@
             カメラの中心の座標
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageCamera.FocusStageContent">
+        <member name="P:InfinityGame.Stage.StageCamera.FocusStageObj">
             <summary>
             カメラをステージオブジェクトにロック
             </summary>
@@ -1020,49 +1020,49 @@
             <param name="stageRender"></param>
             <returns></returns>
         </member>
-        <member name="T:InfinityGame.Stage.StageContent.Actor.Character">
+        <member name="T:InfinityGame.Stage.StageObject.Actor.Character">
             <summary>
             キャラクター
             移動優先順位１０
             </summary>
         </member>
-        <member name="T:InfinityGame.Stage.StageContent.StageObj">
+        <member name="T:InfinityGame.Stage.StageObject.StageObj">
             <summary>
             ステージオブジェクトでベースとなるクラス
             </summary>
         </member>
-        <member name="F:InfinityGame.Stage.StageContent.StageObj.imageEntity">
+        <member name="F:InfinityGame.Stage.StageObject.StageObj.imageEntity">
             <summary>
             Image実体
             </summary>
         </member>
-        <member name="F:InfinityGame.Stage.StageContent.StageObj.MaxMouseMove">
+        <member name="F:InfinityGame.Stage.StageObject.StageObj.MaxMouseMove">
             <summary>
             マウス制限するときの最大移動量
             </summary>
         </member>
-        <member name="F:InfinityGame.Stage.StageContent.StageObj.IsCrimp">
+        <member name="F:InfinityGame.Stage.StageObject.StageObj.IsCrimp">
             <summary>
             障害物かどうか
             </summary>
         </member>
-        <member name="F:InfinityGame.Stage.StageContent.StageObj.CanCollision">
+        <member name="F:InfinityGame.Stage.StageObject.StageObj.CanCollision">
             <summary>
             他の物体に衝突されるかどうか
             </summary>
         </member>
-        <member name="F:InfinityGame.Stage.StageContent.StageObj.EnableColl">
+        <member name="F:InfinityGame.Stage.StageObject.StageObj.EnableColl">
             <summary>
             他の物体を衝突することができるかどうか
             </summary>
         </member>
-        <member name="F:InfinityGame.Stage.StageContent.StageObj.BeAffect">
+        <member name="F:InfinityGame.Stage.StageObject.StageObj.BeAffect">
             <summary>
             力場に影響されるかどうか
             重力などの計算に使用される
             </summary>
         </member>
-        <member name="F:InfinityGame.Stage.StageContent.StageObj.ForceMove">
+        <member name="F:InfinityGame.Stage.StageObject.StageObj.ForceMove">
             <summary>
             強制移動可能
             どんな場合でも移動可能と認め。
@@ -1070,65 +1070,65 @@
             画像が想定外に重ねる恐れがあり、特別な場合に使ってください。
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.StageObj.Stage">
+        <member name="P:InfinityGame.Stage.StageObject.StageObj.Stage">
             <summary>
             自身がどのステージに存在するか
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.StageObj.Coordinate">
+        <member name="P:InfinityGame.Stage.StageObject.StageObj.Coordinate">
             <summary>
             ステージに相対する座標
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.StageObj.LastCoordinate">
+        <member name="P:InfinityGame.Stage.StageObject.StageObj.LastCoordinate">
             <summary>
             前の座標
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.StageObj.Location">
+        <member name="P:InfinityGame.Stage.StageObject.StageObj.Location">
             <summary>
             ステージに相対する座標（Point）
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.StageObj.Team">
+        <member name="P:InfinityGame.Stage.StageObject.StageObj.Team">
             <summary>
             チーム
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.StageObj.CrimpGroup">
+        <member name="P:InfinityGame.Stage.StageObject.StageObj.CrimpGroup">
             <summary>
             障害物グループ
             同じグループ同士は障害物として認識されない。
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.StageObj.NewSpace">
+        <member name="P:InfinityGame.Stage.StageObject.StageObj.NewSpace">
             <summary>
             現在はステージのどこを占めている。
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.StageObj.BeMove">
+        <member name="P:InfinityGame.Stage.StageObject.StageObj.BeMove">
             <summary>
             取得するにはGetBeMoveを使ってください
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.StageObj.MovePriority">
+        <member name="P:InfinityGame.Stage.StageObject.StageObj.MovePriority">
             <summary>
             移動優先順位
             この値が高い方が動く
             同じの場合先にUpdateした方が動く
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.StageObj.Render">
+        <member name="P:InfinityGame.Stage.StageObject.StageObj.Render">
             <summary>
             カメラモードでの描画オブジェクト
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.StageObj.GravityVelociy">
+        <member name="P:InfinityGame.Stage.StageObject.StageObj.GravityVelociy">
             <summary>
             重力によって発生した移動量
             </summary>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,InfinityGame.GameGraphics.BaseDisplay,System.String)">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,InfinityGame.GameGraphics.BaseDisplay,System.String)">
             <summary>
             nameを"Null"に指定すると、SCIDをnameとする。
             </summary>
@@ -1136,12 +1136,12 @@
             <param name="aParent"></param>
             <param name="aName"></param>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.ClearGravityVelociy">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.ClearGravityVelociy">
             <summary>
             重力によって発生した移動量をクリアする
             </summary>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.GetBeMove">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.GetBeMove">
             <summary>
             状態によって取得する
             予備メソッド
@@ -1149,82 +1149,82 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.CalNotCrimpColl(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageContent.StageObj})">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.CalNotCrimpColl(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageObject.StageObj})">
             <summary>
             非障害物衝突した後の処理
-            tempbscは衝突した物体LIST
+            tempSOは衝突した物体LIST
             overrideしてください
             円の障害物処理はここにある
             </summary>
-            <param name="tempbsc"></param>
+            <param name="tempSO"></param>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.CalCrimpColl(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageContent.StageObj})">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.CalCrimpColl(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageObject.StageObj})">
             <summary>
             障害物衝突した後の処理
-            tempbscは衝突した物体LIST
+            tempSOは衝突した物体LIST
             overrideしてください
             </summary>
-            <param name="tempbsc"></param>
+            <param name="tempSO"></param>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.CalAllColl(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageContent.StageObj})">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.CalAllColl(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageObject.StageObj})">
             <summary>
             衝突した後の処理
-            tempbscは衝突した物体LIST
+            tempSOは衝突した物体LIST
             overrideしてください
             </summary>
-            <param name="tempbsc"></param>
+            <param name="tempSO"></param>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.AddVelocity(Microsoft.Xna.Framework.Vector2,InfinityGame.Stage.VeloParam)">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.AddVelocity(Microsoft.Xna.Framework.Vector2,InfinityGame.Stage.VeloParam)">
             <summary>
             移動量を追加
             </summary>
             <param name="velocity"></param>
             <param name="veloParam"></param>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.Update(Microsoft.Xna.Framework.GameTime)">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.Update(Microsoft.Xna.Framework.GameTime)">
             <summary>
             Update
             </summary>
             <param name="gameTime"></param>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.Coll(InfinityGame.Stage.StageContent.StageObj)">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.Coll(InfinityGame.Stage.StageObject.StageObj)">
             <summary>
             呼び出し衝突処理
             </summary>
-            <param name="bsc">衝突した物体</param>
+            <param name="stageObj">衝突した物体</param>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.CrimpPro(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageContent.StageObj})">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.CrimpPro(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageObject.StageObj})">
             <summary>
             障害物処理衝突側から処理する、受け側じゃなく
             </summary>
             <param name="crimps"></param>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.CrimpPro_C_C(InfinityGame.Stage.StageContent.Circle)">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.CrimpPro_C_C(InfinityGame.Stage.StageObject.Circle)">
             <summary>
             円と円
             </summary>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.CrimpPro_C_R(InfinityGame.Stage.StageContent.StageObj)">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.CrimpPro_C_R(InfinityGame.Stage.StageObject.StageObj)">
             <summary>
             円と矩形
             </summary>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.CrimpPro_R_C(InfinityGame.Stage.StageContent.Circle)">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.CrimpPro_R_C(InfinityGame.Stage.StageObject.Circle)">
             <summary>
             矩形と円
             </summary>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.CrimpPro_R_R(InfinityGame.Stage.StageContent.StageObj)">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.CrimpPro_R_R(InfinityGame.Stage.StageObject.StageObj)">
             <summary>
             矩形と矩形
             </summary>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.CrimpPro_End">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.CrimpPro_End">
             <summary>
             境界線処理
             </summary>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.RenderDraw(Microsoft.Xna.Framework.GameTime)">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.RenderDraw(Microsoft.Xna.Framework.GameTime)">
             <summary>
             基本はImageを描画するが、他の物を描画したい場合、これをオーバーライドしてください
             また、詳しいく描画したい場合もオーバーライドしてください
@@ -1233,88 +1233,88 @@
             </summary>
             <param name="gameTime"></param>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.ChangeStage(InfinityGame.Stage.BaseStage,Microsoft.Xna.Framework.Vector2)">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.ChangeStage(InfinityGame.Stage.BaseStage,Microsoft.Xna.Framework.Vector2)">
             <summary>
             ステージを移動する。座標指定
             </summary>
             <param name="newStage"></param>
             <param name="newCoordinate"></param>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.ChangeStage(InfinityGame.Stage.BaseStage)">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.ChangeStage(InfinityGame.Stage.BaseStage)">
             <summary>
             ステージを移動する。座標変えず
             </summary>
             <param name="newStage"></param>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.StageObj.GetSample(System.Object)">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.GetSample(System.Object)">
             <summary>
             ステージに存在しないサンプルを設立
             </summary>
             <returns></returns>
         </member>
-        <member name="T:InfinityGame.Stage.StageContent.Block.Block">
+        <member name="T:InfinityGame.Stage.StageObject.Block.Block">
             <summary>
             基本となるブロッククラス
             移動優先順位５
             </summary>
         </member>
-        <member name="T:InfinityGame.Stage.StageContent.Block.Crimp">
+        <member name="T:InfinityGame.Stage.StageObject.Block.Crimp">
             <summary>
             障害物
             移動優先順位0
             </summary>
         </member>
-        <member name="T:InfinityGame.Stage.StageContent.Circle">
+        <member name="T:InfinityGame.Stage.StageObject.Circle">
             <summary>
             円
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.Circle.Center">
+        <member name="P:InfinityGame.Stage.StageObject.Circle.Center">
             <summary>
             円心
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.Circle.Radius">
+        <member name="P:InfinityGame.Stage.StageObject.Circle.Radius">
             <summary>
             半径
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.Circle.Bsc">
+        <member name="P:InfinityGame.Stage.StageObject.Circle.StageObj">
             <summary>
             ステージオブジェクト
             </summary>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.Circle.#ctor(InfinityGame.Stage.StageContent.StageObj)">
+        <member name="M:InfinityGame.Stage.StageObject.Circle.#ctor(InfinityGame.Stage.StageObject.StageObj)">
             <summary>
             自動生成
             </summary>
-            <param name="aBsc"></param>
+            <param name="aStageObj"></param>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.Circle.#ctor(InfinityGame.Stage.StageContent.StageObj,System.Single)">
+        <member name="M:InfinityGame.Stage.StageObject.Circle.#ctor(InfinityGame.Stage.StageObject.StageObj,System.Single)">
             <summary>
             半径を指定して生成
             </summary>
-            <param name="aBsc"></param>
+            <param name="aStageObj"></param>
             <param name="aCenter"></param>
             <param name="aRadius"></param>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.Circle.CreateCircle">
+        <member name="M:InfinityGame.Stage.StageObject.Circle.CreateCircle">
             <summary>
             矩形から円を生成
             </summary>
         </member>
-        <member name="T:InfinityGame.Stage.StageContent.Collision">
+        <member name="T:InfinityGame.Stage.StageObject.Collision">
             <summary>
             あたり判定クラス
             </summary>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.Collision.IsCollRect(Microsoft.Xna.Framework.Rectangle,InfinityGame.Stage.StageContent.StageObj)">
+        <member name="M:InfinityGame.Stage.StageObject.Collision.IsCollRect(Microsoft.Xna.Framework.Rectangle,InfinityGame.Stage.StageObject.StageObj)">
             <summary>
             二つの物体の当たり判定
             </summary>
             <returns></returns>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.Collision.CollisionCheck(InfinityGame.Stage.StageContent.StageObj,System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageContent.StageObj},System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageContent.StageObj},System.Int32)">
+        <member name="M:InfinityGame.Stage.StageObject.Collision.CollisionCheck(InfinityGame.Stage.StageObject.StageObj,System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageObject.StageObj},System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageObject.StageObj},System.Int32)">
             <summary>
             大量チェック
             param
@@ -1322,81 +1322,81 @@
             1:障害物を取得
             2:非障害物を取得
             </summary>
-            <param name="bsc">基準</param>
+            <param name="stageObj">基準</param>
             <param name="checkDict">チェックディクショナリ</param>
             <param name="collDict">リターンディクショナリ</param>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.Collision.IsCollCircle(InfinityGame.Stage.StageContent.ICircle,InfinityGame.Stage.StageContent.StageObj)">
+        <member name="M:InfinityGame.Stage.StageObject.Collision.IsCollCircle(InfinityGame.Stage.StageObject.ICircle,InfinityGame.Stage.StageObject.StageObj)">
             <summary>
             円の衝突判定
             </summary>
-            <param name="bsc1"></param>
-            <param name="bsc2"></param>
+            <param name="stageObj1"></param>
+            <param name="stageObj2"></param>
             <returns></returns>
         </member>
-        <member name="T:InfinityGame.Stage.StageContent.Detector">
+        <member name="T:InfinityGame.Stage.StageObject.Detector">
             <summary>
             近くの物体を検出する
             </summary>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.Detector.Square(InfinityGame.Stage.StageContent.StageObj,System.Int32)">
+        <member name="M:InfinityGame.Stage.StageObject.Detector.Square(InfinityGame.Stage.StageObject.StageObj,System.Int32)">
             <summary>
             正方形範囲検出
             </summary>
-            <param name="bsc">物体自身</param>
+            <param name="stageObj">物体自身</param>
             <param name="distance">物体の中心からの距離</param>
             <returns></returns>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.Detector.Rectangle(InfinityGame.Stage.StageContent.StageObj,System.Int32,System.Int32)">
+        <member name="M:InfinityGame.Stage.StageObject.Detector.Rectangle(InfinityGame.Stage.StageObject.StageObj,System.Int32,System.Int32)">
             <summary>
             矩形範囲検出
             </summary>
-            <param name="bsc">物体自身</param>
+            <param name="stageObj">物体自身</param>
             <param name="width">物体の中心から横半径</param>
             <param name="height">物体の中心から縦半径</param>
             <returns></returns>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.Detector.Circel(InfinityGame.Stage.StageContent.StageObj,System.Single)">
+        <member name="M:InfinityGame.Stage.StageObject.Detector.Circel(InfinityGame.Stage.StageObject.StageObj,System.Single)">
             <summary>
             円範囲検出
             </summary>
-            <param name="bsc">物体自身</param>
+            <param name="stageObj">物体自身</param>
             <param name="radius">円半径</param>
             <returns></returns>
         </member>
-        <member name="T:InfinityGame.Stage.StageContent.ICircle">
+        <member name="T:InfinityGame.Stage.StageObject.ICircle">
             <summary>
             円の障害物のインターフェース
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.ICircle.Circle">
+        <member name="P:InfinityGame.Stage.StageObject.ICircle.Circle">
             <summary>
             円の障害物
             </summary>
         </member>
-        <member name="T:InfinityGame.Stage.StageContent.SampleCircle">
+        <member name="T:InfinityGame.Stage.StageObject.SampleCircle">
             <summary>
             サンプル円
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageContent.SampleCircle.Circle">
+        <member name="P:InfinityGame.Stage.StageObject.SampleCircle.Circle">
             <summary>
             サンプル円
             </summary>
         </member>
-        <member name="M:InfinityGame.Stage.StageContent.SampleCircle.#ctor(System.Object,InfinityGame.Stage.StageContent.StageObj,System.Single)">
+        <member name="M:InfinityGame.Stage.StageObject.SampleCircle.#ctor(System.Object,InfinityGame.Stage.StageObject.StageObj,System.Single)">
             <summary>
             サンプル円
             </summary>
             <param name="obj">以下のクラスを提供することで実体を生成できる
             Detector
             </param>
-            <param name="bsc"></param>
+            <param name="stageObj"></param>
             <param name="radius"></param>
         </member>
-        <member name="T:InfinityGame.Stage.StageContent.StageField">
+        <member name="T:InfinityGame.Stage.StageObject.StageField">
             <summary>
             ステージのフィールドとなるクラス
             当たり判定しない。

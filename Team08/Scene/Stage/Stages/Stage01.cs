@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using InfinityGame.GameGraphics;
 using InfinityGame.Stage;
-using InfinityGame.Stage.StageContent;
+using InfinityGame.Stage.StageObject;
 using InfinityGame.Device;
 using InfinityGame.Element;
 using Team08.Scene.Stage.Actor;
@@ -27,11 +27,11 @@ namespace Team08.Scene.Stage.Stages
         {
             for (int i = 0; i < 20; i++)
             {
-                if (!stageContents.ContainsKey("wall" + i.ToString()))
+                if (!stageObjs.ContainsKey("wall" + i.ToString()))
                 {
                     new Wall(graphicsDevice, this, "wall" + i.ToString());
-                    stageContents["wall" + i.ToString()].PreLoadContent();
-                    stageContents["wall" + i.ToString()].LoadContent();
+                    stageObjs["wall" + i.ToString()].PreLoadContent();
+                    stageObjs["wall" + i.ToString()].LoadContent();
                 }
             }
             base.Initialize();
@@ -45,16 +45,16 @@ namespace Team08.Scene.Stage.Stages
 
         protected override void DesignContent()
         {
-            stageContents["stageField0"].Coordinate = EndOfLeftUp.ToVector2();
-            stageContents["stageField0"].Size = new Size(3840, 2160);
-            stageContents["stageField0"].Render.Scale = Vector2.One * 2;
+            stageObjs["stageField0"].Coordinate = EndOfLeftUp.ToVector2();
+            stageObjs["stageField0"].Size = new Size(3840, 2160);
+            stageObjs["stageField0"].Render.Scale = Vector2.One * 2;
 
             base.DesignContent();
         }
 
         public override void LoadContent()
         {
-            stageContents["stageField0"].Image = ImageManage.GetSImage("stagefield.png");
+            stageObjs["stageField0"].Image = ImageManage.GetSImage("stagefield.png");
             base.LoadContent();
         }
     }

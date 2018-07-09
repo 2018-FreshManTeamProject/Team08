@@ -11,8 +11,8 @@ using InfinityGame.Device;
 using InfinityGame.Device.KeyboardManage;
 using InfinityGame.GameGraphics;
 using InfinityGame.Stage;
-using InfinityGame.Stage.StageContent;
-using InfinityGame.Stage.StageContent.Actor;
+using InfinityGame.Stage.StageObject;
+using InfinityGame.Stage.StageObject.Actor;
 using Team08.Scene.Stage.Stages;
 
 namespace Team08.Scene.Stage.Actor
@@ -152,30 +152,30 @@ namespace Team08.Scene.Stage.Actor
             }
         }
 
-        public override void CalAllColl(Dictionary<string, StageObj> tempbsc)
+        public override void CalAllColl(Dictionary<string, StageObj> tempSO)
         {
-            string[] nm = tempbsc.Keys.ToArray();
+            string[] nm = tempSO.Keys.ToArray();
             foreach (var l in nm)
             {
-                if (tempbsc.ContainsKey(l))
+                if (tempSO.ContainsKey(l))
                 {
                     if (Team == "mouse")
                     {
-                        if (tempbsc[l] is Cheese)
+                        if (tempSO[l] is Cheese)
                         {
-                            Eat(tempbsc[l]);
+                            Eat(tempSO[l]);
                         }
                     }
                     else if (Team == "cat")
                     {
-                        if (tempbsc[l].Team == "mouse")
+                        if (tempSO[l].Team == "mouse")
                         {
-                            Eat(tempbsc[l]);
+                            Eat(tempSO[l]);
                         }
                     }
                     if (((GameStage)Stage).startTime > 0)
                     {
-                        if (tempbsc[l] is Wall)
+                        if (tempSO[l] is Wall)
                         {
                             Initialize();
                             ((GameStage)Stage).startTime++;
@@ -183,28 +183,28 @@ namespace Team08.Scene.Stage.Actor
                     }
                 }
             }
-            base.CalAllColl(tempbsc);
+            base.CalAllColl(tempSO);
         }
 
-        protected void Eat(StageObj bsc)
+        protected void Eat(StageObj stageObj)
         {
             if (Team == "mouse")
             {
-                if (!((Cheese)bsc).eaten)
+                if (!((Cheese)stageObj).eaten)
                 {
-                    ((Cheese)bsc).eaten = true;
-                    bsc.Visible = false;
+                    ((Cheese)stageObj).eaten = true;
+                    stageObj.Visible = false;
                     ((GameStage)Stage).eatedCheese++;
                     point++;
                 }
             }
             else if (Team == "cat")
             {
-                if (((Player)bsc).life)
+                if (((Player)stageObj).life)
                 {
-                    ((Player)bsc).life = false;
-                    bsc.Render.Color = Color.Red;
-                    bsc.IsCrimp = false;
+                    ((Player)stageObj).life = false;
+                    stageObj.Render.Color = Color.Red;
+                    stageObj.IsCrimp = false;
                     ((GameStage)Stage).killedMouse++;
                 }
             }

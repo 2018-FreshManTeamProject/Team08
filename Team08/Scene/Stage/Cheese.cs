@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using InfinityGame.GameGraphics;
-using InfinityGame.Stage.StageContent.Block;
+using InfinityGame.Stage.StageObject.Block;
 using InfinityGame.Device;
 using InfinityGame.Element;
 using Team08.Scene.Stage.Stages;
-using InfinityGame.Stage.StageContent;
+using InfinityGame.Stage.StageObject;
 
 namespace Team08.Scene.Stage
 {
@@ -44,9 +44,9 @@ namespace Team08.Scene.Stage
             base.LoadContent();
         }
 
-        public override void CalAllColl(Dictionary<string, StageObj> tempbsc)
+        public override void CalAllColl(Dictionary<string, StageObj> tempSO)
         {
-            foreach(var l in tempbsc)
+            foreach(var l in tempSO)
             {
                 if (l.Value is Cheese)
                 {
@@ -54,7 +54,7 @@ namespace Team08.Scene.Stage
                     break;
                 }
             }
-            base.CalAllColl(tempbsc);
+            base.CalAllColl(tempSO);
         }
     }
 }

@@ -55,9 +55,9 @@ namespace Team08.Scene.Stage
             lastTeam = "";
             team = "";
             message.Text = Name;
-            if (FocusStageContent.Team == "mouse")
+            if (FocusStageObj.Team == "mouse")
                 action.Text = "Aボタン加速";
-            else if (FocusStageContent.Team == "cat")
+            else if (FocusStageObj.Team == "cat")
                 action.Text = "Aボタンダッシュ";
             action.Location = new Point(size.Width - action.Size.Width - 20, 20);
             base.Initialize();
@@ -79,21 +79,21 @@ namespace Team08.Scene.Stage
 
         private void CheckTarget()
         {
-            if (FocusStageContent != null)
+            if (FocusStageObj != null)
             {
                 lastTeam = team;
-                team = FocusStageContent.Team;
+                team = FocusStageObj.Team;
                 if (lastTeam != team)
                 {
                     marks.Clear();
-                    string[] nm = Stage.stageContents.Keys.ToArray();
+                    string[] nm = Stage.stageObjs.Keys.ToArray();
                     foreach (var l in nm)
                     {
-                        if (Stage.stageContents.ContainsKey(l))
+                        if (Stage.stageObjs.ContainsKey(l))
                         {
                             if (team == "cat")
                             {
-                                if (Stage.stageContents[l].Team == "mouse")
+                                if (Stage.stageObjs[l].Team == "mouse")
                                 {
                                     if (!marks.Contains(l))
                                     {
@@ -103,7 +103,7 @@ namespace Team08.Scene.Stage
                             }
                             else if (team == "mouse")
                             {
-                                if (Stage.stageContents[l] is Cheese)
+                                if (Stage.stageObjs[l] is Cheese)
                                 {
                                     if (!marks.Contains(l))
                                     {
@@ -120,23 +120,23 @@ namespace Team08.Scene.Stage
                     {
                         foreach (var l in marks.ToArray())
                         {
-                            if (!((Player)Stage.stageContents[l]).Life)
+                            if (!((Player)Stage.stageObjs[l]).Life)
                             {
                                 marks.Remove(l);
                             }
                         }
-                        message.Text = string.Format($"ネズミ残り{((GameStage)Stage).mouseNum - ((GameStage)Stage).killedMouse}匹\r\nスキルクールタイム：{((Player)FocusStageContent).TimeDownCount / 60}秒");
+                        message.Text = string.Format($"ネズミ残り{((GameStage)Stage).mouseNum - ((GameStage)Stage).killedMouse}匹\r\nスキルクールタイム：{((Player)FocusStageObj).TimeDownCount / 60}秒");
                     }
                     else if (team == "mouse")
                     {
                         foreach (var l in marks.ToArray())
                         {
-                            if (((Cheese)Stage.stageContents[l]).eaten)
+                            if (((Cheese)Stage.stageObjs[l]).eaten)
                             {
                                 marks.Remove(l);
                             }
                         }
-                        message.Text = string.Format($"チーズ残り{((GameStage)Stage).cheeseNum - ((GameStage)Stage).eatedCheese}個\r\n加速残り：{((Player)FocusStageContent).TimeDownCount / 60}秒\r\nポイント：{((Player)FocusStageContent).Point}");
+                        message.Text = string.Format($"チーズ残り{((GameStage)Stage).cheeseNum - ((GameStage)Stage).eatedCheese}個\r\n加速残り：{((Player)FocusStageObj).TimeDownCount / 60}秒\r\nポイント：{((Player)FocusStageObj).Point}");
                     }
                 }
             }
@@ -147,14 +147,14 @@ namespace Team08.Scene.Stage
             base.Draw2(gameTime);
             foreach (var l in marks)
             {
-                if (Stage.stageContents.ContainsKey(l))
+                if (Stage.stageObjs.ContainsKey(l))
                 {
-                    if (Stage.stageContents[l].Coordinate.X + Stage.stageContents[l].Size.Width < CameraLocation.X ||
-                        Stage.stageContents[l].Coordinate.Y + Stage.stageContents[l].Size.Height < CameraLocation.Y ||
-                        Stage.stageContents[l].Coordinate.X > CameraLocation.X + size.Width ||
-                        Stage.stageContents[l].Coordinate.Y > CameraLocation.Y + size.Height)
+                    if (Stage.stageObjs[l].Coordinate.X + Stage.stageObjs[l].Size.Width < CameraLocation.X ||
+                        Stage.stageObjs[l].Coordinate.Y + Stage.stageObjs[l].Size.Height < CameraLocation.Y ||
+                        Stage.stageObjs[l].Coordinate.X > CameraLocation.X + size.Width ||
+                        Stage.stageObjs[l].Coordinate.Y > CameraLocation.Y + size.Height)
                     {
-                        Vector2 ve = Stage.stageContents[l].Coordinate - CameraCenter;
+                        Vector2 ve = Stage.stageObjs[l].Coordinate - CameraCenter;
                         ve.Normalize();
                         ve *= size.Height * 0.3f;
                         Vector2 re = location.ToVector2() + (size.ToVector2() / 2) + ve;

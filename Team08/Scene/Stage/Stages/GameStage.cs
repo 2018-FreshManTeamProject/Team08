@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using InfinityGame.GameGraphics;
 using InfinityGame.Stage;
-using InfinityGame.Stage.StageContent;
+using InfinityGame.Stage.StageObject;
 using InfinityGame.Device;
 using InfinityGame.Element;
 using Team08.Scene.Stage.Actor;
@@ -41,25 +41,25 @@ namespace Team08.Scene.Stage.Stages
             catWin = false;
             for (int i = 0; i < 4; i++)
             {
-                stageContents["player" + i.ToString()].CrimpGroup = "mouse";
-                stageContents["player" + i.ToString()].Team = "mouse";
-                stageContents["player" + i.ToString()].Image = ImageManage.GetSImage("nezumi.png");
-                stageContents["player" + i.ToString()].Size = Size.Parse(stageContents["player" + i.ToString()].Image.Image.Size);
+                stageObjs["player" + i.ToString()].CrimpGroup = "mouse";
+                stageObjs["player" + i.ToString()].Team = "mouse";
+                stageObjs["player" + i.ToString()].Image = ImageManage.GetSImage("nezumi.png");
+                stageObjs["player" + i.ToString()].Size = Size.Parse(stageObjs["player" + i.ToString()].Image.Image.Size);
             }
             int j = rnd.Next(4);
-            stageContents["player" + j.ToString()].CrimpGroup = "cat";
-            stageContents["player" + j.ToString()].Team = "cat";
-            stageContents["player" + j.ToString()].Image = ImageManage.GetSImage("neko.png");
-            stageContents["player" + j.ToString()].Size = Size.Parse(stageContents["player" + j.ToString()].Image.Image.Size);
-            stageContents["player" + j.ToString()].MovePriority = 9;
+            stageObjs["player" + j.ToString()].CrimpGroup = "cat";
+            stageObjs["player" + j.ToString()].Team = "cat";
+            stageObjs["player" + j.ToString()].Image = ImageManage.GetSImage("neko.png");
+            stageObjs["player" + j.ToString()].Size = Size.Parse(stageObjs["player" + j.ToString()].Image.Image.Size);
+            stageObjs["player" + j.ToString()].MovePriority = 9;
 
             for (int i = 0; i < cheeseNum; i++)
             {
-                if (!stageContents.ContainsKey("cheese" + i.ToString()))
+                if (!stageObjs.ContainsKey("cheese" + i.ToString()))
                 {
                     new Cheese(graphicsDevice, this, "cheese" + i.ToString());
-                    stageContents["cheese" + i.ToString()].PreLoadContent();
-                    stageContents["cheese" + i.ToString()].LoadContent();
+                    stageObjs["cheese" + i.ToString()].PreLoadContent();
+                    stageObjs["cheese" + i.ToString()].LoadContent();
                 }
             }
             base.Initialize();
@@ -70,7 +70,7 @@ namespace Team08.Scene.Stage.Stages
             for (int i = 0; i < 4; i++)
             {
                 new Player(graphicsDevice, this, "player" + i.ToString());
-                ((Player)stageContents["player" + i.ToString()]).player = (PlayerIndex)i;
+                ((Player)stageObjs["player" + i.ToString()]).player = (PlayerIndex)i;
             }
             base.PreLoadContent();
         }

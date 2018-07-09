@@ -100,10 +100,10 @@ namespace Team08.Scene.Stage
         public override void LoadContent()
         {
             Image = ImageManage.GetSImage("stagescene.png");
-            stageCameras["C0"].FocusStageContent = stageCameras["C0"].Stage.stageContents["player0"];
-            stageCameras["C1"].FocusStageContent = stageCameras["C1"].Stage.stageContents["player1"];
-            stageCameras["C2"].FocusStageContent = stageCameras["C2"].Stage.stageContents["player2"];
-            stageCameras["C3"].FocusStageContent = stageCameras["C3"].Stage.stageContents["player3"];
+            stageCameras["C0"].FocusStageObj = stageCameras["C0"].Stage.stageObjs["player0"];
+            stageCameras["C1"].FocusStageObj = stageCameras["C1"].Stage.stageObjs["player1"];
+            stageCameras["C2"].FocusStageObj = stageCameras["C2"].Stage.stageObjs["player2"];
+            stageCameras["C3"].FocusStageObj = stageCameras["C3"].Stage.stageObjs["player3"];
             base.LoadContent();
         }
 
