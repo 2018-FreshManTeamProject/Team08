@@ -1,0 +1,3 @@
+﻿<Count:30>
+<Freams:4>
+<Type:png>

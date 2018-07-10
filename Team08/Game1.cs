@@ -13,6 +13,7 @@ using System.Threading;
 
 using Team08.Scene.Title;
 using Team08.Scene.Stage;
+using Team08.Scene;
 
 /// <summary>
 /// プロジェクト名がnamespaceとなります
@@ -31,6 +32,7 @@ namespace Team08
         private string title = "GameTitle";
         private GameRun gameRun;
         private InfinityGame.Element.Size tempScreen;
+        private ULoadScene uLoadScene;
 
 
         /// <summary>
@@ -87,7 +89,9 @@ namespace Team08
         {
             Resources.SetGD(GraphicsDevice);
             GameTexts.Initialize(IGConfig.gameLanguage);
-            gameRun = new GameRun(GraphicsDevice, graphicsDeviceManager);
+            gameRun = new GameRun(GraphicsDevice, graphicsDeviceManager, true);
+            uLoadScene = new ULoadScene("Loading", GraphicsDevice, null, gameRun);
+            gameRun.SetLoadScene(uLoadScene);
             Window.Title = GameTexts.GetText(title);
         }
 
@@ -147,7 +151,7 @@ namespace Team08
             //     (Keyboard.GetState().IsKeyDown(Keys.Escape)))
             //{
             //}
-
+            //
             // この下に更新ロジックを記述
             gameRun.Update(gameTime);
 
@@ -178,7 +182,8 @@ namespace Team08
         /// <param name="args"></param>
         protected override void OnExiting(object sender, EventArgs args)
         {
-            ChangeScreen.ChangeResolution(tempScreen.Width, tempScreen.Height);
+            if (IGConfig.isFullScreen)
+                ChangeScreen.ChangeResolution(tempScreen.Width, tempScreen.Height);
             gameRun.IsGameRun = false;
             Thread.Sleep(500);
             base.OnExiting(sender, args);

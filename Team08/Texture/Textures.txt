@@ -1,5 +1,4 @@
-�V���O���摜
-<IG.png:0>
+﻿シングル画像
 <title.png:0>
 <stagescene.png:0>
 <stagefield.png:0>
@@ -9,5 +8,6 @@
 <wall.png:0>
 <yajiru.png:0>
 
-�}���`�摜
-<button:1>�T���v���Ƃ��Ďg�p
+マルチ画像
+<IG:1>
+<button:1>サンプルとして使用

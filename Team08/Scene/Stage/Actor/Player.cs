@@ -47,7 +47,7 @@ namespace Team08.Scene.Stage.Actor
         public override void Initialize()
         {
             Coordinate = new Vector2(rnd.Next(Stage.EndOfLeftUp.X, Stage.EndOfRightDown.X), rnd.Next(Stage.EndOfLeftUp.Y, Stage.EndOfRightDown.Y));
-            Render.Color = Color.White;
+            Color = Color.White;
             IsCrimp = true;
             life = true;
             actionMaxSpeed = 0;
@@ -203,7 +203,7 @@ namespace Team08.Scene.Stage.Actor
                 if (((Player)stageObj).life)
                 {
                     ((Player)stageObj).life = false;
-                    stageObj.Render.Color = Color.Red;
+                    stageObj.Color = Color.Red;
                     stageObj.IsCrimp = false;
                     ((GameStage)Stage).killedMouse++;
                 }

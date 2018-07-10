@@ -754,6 +754,23 @@
             今活動しているシーン
             </summary>
         </member>
+        <member name="M:InfinityGame.GameRun.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.GraphicsDeviceManager,System.Boolean)">
+            <summary>
+            カスタムLoadScene受付可能
+            LoadSceneを継承して作ってください
+            aCustomLoad:true=>カスタムLoadScene、この場合は
+            aCustomLoad:false=>デフォルトLoadScene
+            </summary>
+            <param name="aGraphicsDevice"></param>
+            <param name="aGraphics"></param>
+            <param name="customLoad"></param>
+        </member>
+        <member name="M:InfinityGame.GameRun.SetLoadScene(InfinityGame.Scene.LoadScene)">
+            <summary>
+            カスタムLoadSceneを設定
+            </summary>
+            <param name="aLoadScene"></param>
+        </member>
         <member name="M:InfinityGame.GameRun.EndTheGame">
             <summary>
             全てのThreadをAbortする
@@ -811,6 +828,12 @@
         <member name="T:InfinityGame.Scene.LoadScene">
             <summary>
             ロードシーン
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Scene.LoadScene.startUp">
+            <summary>
+            表示するText
+            変数StartUpText
             </summary>
         </member>
         <member name="F:InfinityGame.Scene.LoadScene.minLogoFrames">
@@ -925,6 +948,11 @@
         <member name="P:InfinityGame.Stage.BaseStage.FocusStageObj">
             <summary>
             非複数カメラモードでの中心オブジェクト
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.BaseStage.Color">
+            <summary>
+            フィルター
             </summary>
         </member>
         <member name="P:InfinityGame.Stage.BaseStage.Gravity">
@@ -1126,6 +1154,11 @@
         <member name="P:InfinityGame.Stage.StageObject.StageObj.GravityVelociy">
             <summary>
             重力によって発生した移動量
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageObject.StageObj.Color">
+            <summary>
+            フィルター
             </summary>
         </member>
         <member name="M:InfinityGame.Stage.StageObject.StageObj.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,InfinityGame.GameGraphics.BaseDisplay,System.String)">
