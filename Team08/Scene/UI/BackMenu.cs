@@ -23,12 +23,13 @@ namespace Team08.Scene.UI
 
         public BackMenu(GraphicsDevice aGraphicsDevice, BaseDisplay parent) : base(aGraphicsDevice, parent)
         {
-            CanMove = false;
+            
         }
 
         public override void Initialize()
         {
             Visible = false;
+            Location = Alignment.GetMXFAlignment(ContentAlignment.MiddleCenter, parent.Size, Size);
             base.Initialize();
         }
 
