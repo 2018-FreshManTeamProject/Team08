@@ -754,6 +754,11 @@
             今活動しているシーン
             </summary>
         </member>
+        <member name="P:InfinityGame.GameRun.SpriteBatch">
+            <summary>
+            描画クラス
+            </summary>
+        </member>
         <member name="M:InfinityGame.GameRun.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.GraphicsDeviceManager,System.Boolean)">
             <summary>
             カスタムLoadScene受付可能
@@ -1174,7 +1179,7 @@
             重力によって発生した移動量をクリアする
             </summary>
         </member>
-        <member name="M:InfinityGame.Stage.StageObject.StageObj.GetBeMove">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.GetBeMove(InfinityGame.Stage.StageObject.StageObj,Microsoft.Xna.Framework.Vector2)">
             <summary>
             状態によって取得する
             予備メソッド
@@ -1213,6 +1218,18 @@
             </summary>
             <param name="velocity"></param>
             <param name="veloParam"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.FastUpdate(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            FastUpdate
+            </summary>
+            <param name="gameTime"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.PreUpdate(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            PreUpdate
+            </summary>
+            <param name="gameTime"></param>
         </member>
         <member name="M:InfinityGame.Stage.StageObject.StageObj.Update(Microsoft.Xna.Framework.GameTime)">
             <summary>
@@ -1382,13 +1399,15 @@
             <param name="distance">物体の中心からの距離</param>
             <returns></returns>
         </member>
-        <member name="M:InfinityGame.Stage.StageObject.Detector.Rectangle(InfinityGame.Stage.StageObject.StageObj,System.Int32,System.Int32)">
+        <member name="M:InfinityGame.Stage.StageObject.Detector.Rectangle(InfinityGame.Stage.StageObject.StageObj,System.Int32,System.Int32,System.Boolean,System.Boolean)">
             <summary>
             矩形範囲検出
             </summary>
             <param name="stageObj">物体自身</param>
-            <param name="width">物体の中心から横半径</param>
-            <param name="height">物体の中心から縦半径</param>
+            <param name="width">center=>true:物体の中心から横半径;false:横長</param>
+            <param name="height">center=>true:物体の中心から縦半径;false:縦長</param>
+            <param name="center">中心点を基準とする</param>
+            <param name="copy">true:stageObjからサンプルを取る;false:stageObjそのまま使用;（基本はtrueに）</param>
             <returns></returns>
         </member>
         <member name="M:InfinityGame.Stage.StageObject.Detector.Circel(InfinityGame.Stage.StageObject.StageObj,System.Single)">
@@ -1397,6 +1416,20 @@
             </summary>
             <param name="stageObj">物体自身</param>
             <param name="radius">円半径</param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Stage.StageObject.Detector.Prediction(InfinityGame.Stage.StageObject.StageObj,Microsoft.Xna.Framework.Vector2,System.Int32)">
+            <summary>
+            新しい位置による衝突判定（検索、実際に衝突しない）
+            「予測機能」
+            param
+            0:全部取得
+            1:障害物を取得
+            2:非障害物を取得
+            </summary>
+            <param name="stageObj">物体自身</param>
+            <param name="velocity">移動量</param>
+            <param name="param"></param>
             <returns></returns>
         </member>
         <member name="T:InfinityGame.Stage.StageObject.ICircle">
