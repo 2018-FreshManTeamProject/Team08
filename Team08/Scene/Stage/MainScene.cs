@@ -15,7 +15,7 @@ using InfinityGame.Element;
 using InfinityGame.Device.KeyboardManage;
 using InfinityGame.UI.UIContent;
 using Team08.Scene.Stage.Stages;
-using Team08.Scene.UI;
+using Team08.Scene.Stage.UI;
 
 namespace Team08.Scene.Stage
 {

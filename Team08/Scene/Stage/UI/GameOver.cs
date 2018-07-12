@@ -9,7 +9,7 @@ using InfinityGame.UI.UIContent;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace Team08.Scene.UI
+namespace Team08.Scene.Stage.UI
 {
     public class GameOver : UIWindow
     {

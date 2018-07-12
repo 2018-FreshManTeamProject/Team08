@@ -23,7 +23,7 @@ namespace Team08.Scene.Stage.Stages
         public int mouseNum = 3;
         public int killedMouse = 0;
         public int mouseWinNum = 18;
-        public int catWinNum = 2;
+        public int catWinNum = 4;
         public bool mouseWin = false;
         public bool catWin = false;
         public int startTime = 180;
@@ -41,16 +41,16 @@ namespace Team08.Scene.Stage.Stages
             catWin = false;
             for (int i = 0; i < 4; i++)
             {
-                stageObjs["player" + i.ToString()].CrimpGroup = "mouse";
                 stageObjs["player" + i.ToString()].Team = "mouse";
                 stageObjs["player" + i.ToString()].Image = ImageManage.GetSImage("nezumi.png");
-                stageObjs["player" + i.ToString()].Size = Size.Parse(stageObjs["player" + i.ToString()].Image.Image.Size);
+                stageObjs["player" + i.ToString()].Size = Size.Parse(stageObjs["player" + i.ToString()].Image.Image.Size) / 2;
+                stageObjs["player" + i.ToString()].Render.Scale = Vector2.One / 2;
             }
             int j = rnd.Next(4);
-            stageObjs["player" + j.ToString()].CrimpGroup = "cat";
             stageObjs["player" + j.ToString()].Team = "cat";
             stageObjs["player" + j.ToString()].Image = ImageManage.GetSImage("neko.png");
-            stageObjs["player" + j.ToString()].Size = Size.Parse(stageObjs["player" + j.ToString()].Image.Image.Size);
+            stageObjs["player" + j.ToString()].Size = Size.Parse(stageObjs["player" + j.ToString()].Image.Image.Size) / 2;
+            stageObjs["player" + j.ToString()].Render.Scale = Vector2.One / 2;
             stageObjs["player" + j.ToString()].MovePriority = 9;
 
             for (int i = 0; i < cheeseNum; i++)

@@ -7,7 +7,9 @@
 <cheese.png:0>
 <wall.png:0>
 <yajiru.png:0>
+<taskbar.png:0>
 
 マルチ画像
 <IG:1>
 <button:1>サンプルとして使用
+<shutdown:1>

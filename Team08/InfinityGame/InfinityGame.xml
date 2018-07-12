@@ -1103,6 +1103,11 @@
             画像が想定外に重ねる恐れがあり、特別な場合に使ってください。
             </summary>
         </member>
+        <member name="F:InfinityGame.Stage.StageObject.StageObj.MaxCrimoCount">
+            <summary>
+            障害物処理１フィルムで最大処理する回数。
+            </summary>
+        </member>
         <member name="P:InfinityGame.Stage.StageObject.StageObj.Stage">
             <summary>
             自身がどのステージに存在するか

@@ -1,7 +1,7 @@
 ﻿<InfintyGame:インフィニティゲーム>
 <StartUpText:IGOS を起動しています>
 <ja_JP:日本語>
-<Font:MS UI Gothic>
+<Font:HGP創英角ﾎﾟｯﾌﾟ体>
 <Loading:読み込み中>
 <GameTitle:Team08>
 <BackMenu:バックメニュー>ゲームをタイトルに戻るとか、いつもEsc押したら出るメニューの名前はなに？日本語

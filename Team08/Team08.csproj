@@ -45,8 +45,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene\Stage\Actor\Player.cs" />
-    <Compile Include="Scene\UI\BackMenu.cs" />
-    <Compile Include="Scene\UI\BackMenu.Designer.cs">
+    <Compile Include="Scene\Stage\UI\BackMenu.cs" />
+    <Compile Include="Scene\Stage\UI\BackMenu.Designer.cs">
       <DependentUpon>BackMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Scene\Stage\Cheese.cs" />
@@ -59,7 +59,15 @@
     <Compile Include="Scene\Title\TitleScene.Designer.cs">
       <DependentUpon>TitleScene.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scene\UI\GameOver.cs" />
+    <Compile Include="Scene\Stage\UI\GameOver.cs" />
+    <Compile Include="Scene\Title\UI\StartMenu.cs" />
+    <Compile Include="Scene\Title\UI\StartMenu.Designer.cs">
+      <DependentUpon>StartMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene\Title\UI\TaskBar.cs" />
+    <Compile Include="Scene\Title\UI\TaskBar.Designer.cs">
+      <DependentUpon>TaskBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene\ULoadScene.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -217,46 +225,40 @@
     <Content Include="Texture\IG\IG_0019.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Texture\IG\IG_0020.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Texture\IG\IG_0021.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Texture\IG\IG_0022.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Texture\IG\IG_0023.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Texture\IG\IG_0024.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Texture\IG\IG_0025.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Texture\IG\IG_0026.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Texture\IG\IG_0027.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Texture\IG\IG_0028.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Texture\IG\IG_0029.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Texture\neko.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\nezumi.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\shutdown\shutdown.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\shutdown\shutdown_0000.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\shutdown\shutdown_0001.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\shutdown\shutdown_0002.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\shutdown\shutdown_0003.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\shutdown\shutdown_0004.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\shutdown\shutdown_0005.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\stagefield.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\stagescene.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\taskbar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\Textures.txt">

@@ -12,7 +12,7 @@ using InfinityGame.UI.UIContent;
 using InfinityGame.Device;
 using InfinityGame.Scene;
 
-namespace Team08.Scene.UI
+namespace Team08.Scene.Stage.UI
 {
     public partial class BackMenu : UIWindow
     {

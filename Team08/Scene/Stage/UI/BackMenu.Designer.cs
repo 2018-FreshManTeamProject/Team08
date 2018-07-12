@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Team08.Scene.UI
+namespace Team08.Scene.Stage.UI
 {
     public partial class BackMenu
     {

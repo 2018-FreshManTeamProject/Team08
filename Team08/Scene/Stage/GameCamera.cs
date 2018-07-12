@@ -145,7 +145,7 @@ namespace Team08.Scene.Stage
         public override void Draw2(GameTime gameTime)
         {
             base.Draw2(gameTime);
-            foreach (var l in marks)
+            foreach (var l in marks.ToArray())
             {
                 if (Stage.stageObjs.ContainsKey(l))
                 {

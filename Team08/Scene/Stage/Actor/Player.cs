@@ -46,6 +46,8 @@ namespace Team08.Scene.Stage.Actor
 
         public override void Initialize()
         {
+            MovePriority = 5;
+            CrimpGroup = Team;
             Coordinate = new Vector2(rnd.Next(Stage.EndOfLeftUp.X, Stage.EndOfRightDown.X), rnd.Next(Stage.EndOfLeftUp.Y, Stage.EndOfRightDown.Y));
             Color = Color.White;
             IsCrimp = true;
@@ -66,14 +68,14 @@ namespace Team08.Scene.Stage.Actor
                 power = 1;
                 mass = 2;
                 frictional = 0.02f;
-                maxSpeed = 13;
+                maxSpeed = 7;
             }
             else if (Team == "mouse")
             {
                 power = 0.2f;
                 mass = 0.1f;
                 frictional = 0.1f;
-                maxSpeed = 9;
+                maxSpeed = 5;
             }
         }
 
@@ -99,9 +101,22 @@ namespace Team08.Scene.Stage.Actor
                         speedv = Vector2.Zero;
                     }
                 }
+                if (actionSpeed != Vector2.Zero)
+                {
+                    actionSpeed -= actionSpeed * frictional * 5;
+                    AddVelocity(actionSpeed, VeloParam.Run);
+                    if (actionSpeed.Length() < 0.05f)
+                    {
+                        actionSpeed = Vector2.Zero;
+                    }
+                }
                 if (life)
                 {
                     direction = IGGamePad.GetLeftVelocity(player);
+                    /*if (Name == "player0")
+                    {
+                        direction = GameKeyboard.GetVelocity(IGConfig.PlayerKeys);
+                    }*/
                     if (direction != Vector2.Zero)
                     {
                         accel = ((direction.Length() * power) / mass) * magnification;
@@ -112,16 +127,6 @@ namespace Team08.Scene.Stage.Actor
                     {
                         speedv.Normalize();
                         speedv *= (maxSpeed + actionMaxSpeed);
-                    }
-                    //actionSpeedは追加速度、上の速度制限の下に置くように
-                    if (actionSpeed != Vector2.Zero)
-                    {
-                        actionSpeed -= actionSpeed * frictional * 5;
-                        AddVelocity(actionSpeed, VeloParam.Run);
-                        if (actionSpeed.Length() < 0.05f)
-                        {
-                            actionSpeed = Vector2.Zero;
-                        }
                     }
                     AddVelocity(speedv, VeloParam.Run);
                 }
@@ -145,7 +150,6 @@ namespace Team08.Scene.Stage.Actor
             {
                 if (Team == "mouse" && !life)
                 {
-                    ((GameStage)Stage).killedMouse--;
                     ((GameStage)Stage).startTime++;
                     Initialize();
                 }
@@ -175,7 +179,7 @@ namespace Team08.Scene.Stage.Actor
                     }
                     if (((GameStage)Stage).startTime > 0)
                     {
-                        if (tempSO[l] is Wall)
+                        if (tempSO[l] is Wall || tempSO[l] is Player)
                         {
                             Initialize();
                             ((GameStage)Stage).startTime++;
@@ -188,7 +192,7 @@ namespace Team08.Scene.Stage.Actor
 
         protected void Eat(StageObj stageObj)
         {
-            if (Team == "mouse")
+            if (Team == "mouse" && life)
             {
                 if (!((Cheese)stageObj).eaten)
                 {
@@ -202,10 +206,13 @@ namespace Team08.Scene.Stage.Actor
             {
                 if (((Player)stageObj).life)
                 {
+                    ((Player)stageObj).actionSpeed = 10 * (speedv + actionSpeed);
                     ((Player)stageObj).life = false;
                     stageObj.Color = Color.Red;
-                    stageObj.IsCrimp = false;
-                    ((GameStage)Stage).killedMouse++;
+                    stageObj.CrimpGroup = "";
+                    stageObj.MovePriority = 6;
+                    if (((GameStage)Stage).startTime <= 0)
+                        ((GameStage)Stage).killedMouse++;
                 }
             }
         }
@@ -216,10 +223,6 @@ namespace Team08.Scene.Stage.Actor
             {
                 actionMaxSpeed = 0;
             }
-            if (Team == "cat")
-            {
-                actionSpeed = Vector2.Zero;
-            }
         }
 
         protected void Action()
@@ -229,7 +232,7 @@ namespace Team08.Scene.Stage.Actor
                 if (point > 0)
                 {
                     point--;
-                    actionMaxSpeed = 10;
+                    actionMaxSpeed = 5;
                     TimeDownCount = 180;
                 }
             }
@@ -240,7 +243,7 @@ namespace Team08.Scene.Stage.Actor
                     TimeDownCount = 600;
                     Vector2 ve = speedv;
                     ve.Normalize();
-                    actionSpeed = ve * 50;
+                    actionSpeed = ve * 25;
                 }
             }
         }

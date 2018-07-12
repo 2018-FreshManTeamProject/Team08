@@ -46,7 +46,7 @@ namespace Team08.Scene.Stage
 
         public override void CalAllColl(Dictionary<string, StageObj> tempSO)
         {
-            foreach(var l in tempSO)
+            foreach (var l in tempSO)
             {
                 if (l.Value is Cheese)
                 {

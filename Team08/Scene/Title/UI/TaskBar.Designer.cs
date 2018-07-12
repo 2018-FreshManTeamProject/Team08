@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Team08.Scene.Title
+namespace Team08.Scene.Title.UI
 {
-    public partial class TitleScene
+    public partial class TaskBar
     {
         private void EventRegist()
         {
             #region AnimeButton
-            this.startAB.LeftDownToUp += StartGame;
+            this.start.LeftDownToUp += OnStartMenu;
             #endregion
 
         }
