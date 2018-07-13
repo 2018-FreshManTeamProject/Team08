@@ -22,11 +22,13 @@ namespace Team08.Scene.Title
         private TaskBar taskBar;
         private StartMenu startMenu;
         private Warning warning;
+        private Hacking hacking;
         private bool isShutdown = false;
         private int warningCountDown = 180;
 
         public TaskBar TaskBar { get { return taskBar; } }
         public StartMenu StartMenu { get { return startMenu; } }
+        public Hacking Hacking { get { return hacking; } }
         public TitleScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
 
@@ -44,6 +46,7 @@ namespace Team08.Scene.Title
             taskBar = new TaskBar(graphicsDevice, this);
             startMenu = new StartMenu(graphicsDevice, this);
             warning = new Warning(graphicsDevice, this);
+            hacking = new Hacking(graphicsDevice, this);
             EventRegist();
             base.PreLoadContent();
         }
@@ -53,15 +56,13 @@ namespace Team08.Scene.Title
             antivirus.Size = new Size(128, 128);
             antivirus.Location = new Point(10, 10);
             antivirus.Text = GetText("Antivirus");//サンプル例後で換える
-            antivirus.TextSize = 16f;
-            antivirus.TextAlign = ContentAlignment.BottomCenter;
             base.DesignContent();
         }
 
         public override void LoadContent()
         {
             Image = ImageManage.GetSImage("title.png");
-            antivirus.Image = ImageManage.GetSImage("button");
+            antivirus.Image = ImageManage.GetSImage("antivirus_icon");
             base.LoadContent();
         }
 

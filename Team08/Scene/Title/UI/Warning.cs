@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using InfinityGame.Device.MouseManage;
 
-namespace Team08.Scene.Title
+namespace Team08.Scene.Title.UI
 {
     public partial class Warning : UIWindow
     {
@@ -62,9 +62,9 @@ namespace Team08.Scene.Title
 
         private void OK(object sender, EventArgs e)
         {
-            ((BaseScene)parent).IsRun = false;
-            ((BaseScene)parent).GameRun.scenes["stagescene"].IsRun = true;
-            parent.Initialize();
+            if (!((TitleScene)parent).Hacking.Visible)
+                ((TitleScene)parent).Hacking.Visible = true;
+            Close();
         }
 
         private void Cancel(object sender, EventArgs e)

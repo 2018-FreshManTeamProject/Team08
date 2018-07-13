@@ -11,9 +11,11 @@
 <startmenu.png:0>
 <login_logout.png:0>
 <fileiconborder.png:0>
+<playercursor.png:0>
 
 マルチ画像
 <IG:1>
 <button:1>サンプルとして使用
 <button01:1>
 <shutdown:1>
+<antivirus_icon:1>

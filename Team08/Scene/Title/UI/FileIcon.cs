@@ -26,6 +26,8 @@ namespace Team08.Scene.Title.UI
 
         public override void PreLoadContent()
         {
+            TextSize = 16f;
+            TextAlign = ContentAlignment.BottomCenter;
             EventRegist();
             base.PreLoadContent();
         }

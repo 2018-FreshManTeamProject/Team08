@@ -52,6 +52,13 @@ namespace Team08.Scene.Title.UI
             base.LoadContent();
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            time.Text = DateTime.Now.ToString("HH:mm");
+            date.Text = DateTime.Now.ToString("yyyy/MM/dd");
+            base.Update(gameTime);
+        }
+
         private void OnStartMenu(object sender, EventArgs e)
         {
             ((TitleScene)parent).StartMenu.Visible = !((TitleScene)parent).StartMenu.Visible;

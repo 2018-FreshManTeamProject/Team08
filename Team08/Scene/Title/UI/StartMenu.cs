@@ -19,6 +19,7 @@ namespace Team08.Scene.Title.UI
     {
         private AnimeButton shutdown;
         private Label downText;
+
         public StartMenu(GraphicsDevice aGraphicsDevice, BaseDisplay aParent) : base(aGraphicsDevice, aParent)
         {
             canMove = false;
