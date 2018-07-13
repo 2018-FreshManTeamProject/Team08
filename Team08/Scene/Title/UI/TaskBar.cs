@@ -10,6 +10,7 @@ using InfinityGame.UI.UIContent;
 using InfinityGame.Device;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using InfinityGame.Device.MouseManage;
 
 namespace Team08.Scene.Title.UI
 {

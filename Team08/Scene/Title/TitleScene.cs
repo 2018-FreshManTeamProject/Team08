@@ -18,9 +18,12 @@ namespace Team08.Scene.Title
 {
     public partial class TitleScene : BaseScene
     {
-        private AnimeButton startAB;
+        private FileIcon antivirus;
         private TaskBar taskBar;
         private StartMenu startMenu;
+        private Warning warning;
+        private bool isShutdown = false;
+        private int warningCountDown = 180;
 
         public TaskBar TaskBar { get { return taskBar; } }
         public StartMenu StartMenu { get { return startMenu; } }
@@ -29,38 +32,75 @@ namespace Team08.Scene.Title
 
         }
 
+        public override void Initialize()
+        {
+            warningCountDown = 180;
+            base.Initialize();
+        }
+
         public override void PreLoadContent()
         {
-            startAB = new AnimeButton(graphicsDevice, this);
+            antivirus = new FileIcon(graphicsDevice, this);
             taskBar = new TaskBar(graphicsDevice, this);
             startMenu = new StartMenu(graphicsDevice, this);
+            warning = new Warning(graphicsDevice, this);
             EventRegist();
             base.PreLoadContent();
         }
 
         protected override void DesignContent()
         {
-            startAB.Size = new Size(128, 128);
-            startAB.Location = new Point(10, 10);
-            startAB.Text = "Start";//サンプル例後で換える
+            antivirus.Size = new Size(128, 128);
+            antivirus.Location = new Point(10, 10);
+            antivirus.Text = GetText("Antivirus");//サンプル例後で換える
+            antivirus.TextSize = 16f;
+            antivirus.TextAlign = ContentAlignment.BottomCenter;
             base.DesignContent();
         }
 
         public override void LoadContent()
         {
             Image = ImageManage.GetSImage("title.png");
-            startAB.Image = ImageManage.GetSImage("button");
+            antivirus.Image = ImageManage.GetSImage("button");
             base.LoadContent();
         }
 
-        public void StartGame(object sender, EventArgs e)
+        public override void Update(GameTime gameTime)
         {
-            if (startAB.Space.Contains(((GameMouse)sender).MouseState.Position))
+            if (warningCountDown > -1)
+                warningCountDown--;
+            if (warningCountDown == 0)
             {
-                IsRun = false;
-                GameRun.scenes["stagescene"].IsRun = true;
-                //Start
+                warning.Visible = true;
             }
+            if (isShutdown)
+            {
+                Refract -= 0.1f;
+                if (refract <= 0)
+                {
+                    Refract = 0;
+                    OnShutdown();
+                }
+            }
+            base.Update(gameTime);
+        }
+
+        public void OpenWarning(object sender, EventArgs e)
+        {
+            if (!warning.Visible)
+                warning.Visible = true;
+        }
+
+        public void Shutdown()
+        {
+            isShutdown = true;
+        }
+
+        private void OnShutdown()
+        {
+            IsRun = false;
+            GameRun.scenes["shutdown"].IsRun = true;
+            Program.GetGame().IsMouseVisible = false;
         }
     }
 }

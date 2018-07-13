@@ -11,7 +11,7 @@ namespace Team08.Scene.Title.UI
         private void EventRegist()
         {
             #region AnimeButton
-            this.start.LeftDownToUp += OnStartMenu;
+            this.start.Click += OnStartMenu;
             #endregion
 
         }

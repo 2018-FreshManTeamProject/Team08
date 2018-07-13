@@ -67,9 +67,7 @@ namespace Team08
             //コンテンツデータ（リソースデータ）のルートフォルダは"Contentに設定
             Content.RootDirectory = "Content";
             IGConfig.MNCT = Content;
-            IsMouseVisible = true;
-
-
+            //IsMouseVisible = true;
         }
 
         /// <summary>
@@ -99,9 +97,11 @@ namespace Team08
         {
             //基本はここでSceneなどの追加作業を行う
             //他の処理は必要に応じてFirstInitialize()やLastInitialize()に書き込む
+            gameRun.scenes["startup"] = new StartUp("startup", GraphicsDevice, null, gameRun);
             gameRun.scenes["title"] = new TitleScene("title", GraphicsDevice, null, gameRun);
-            gameRun.firstScene = "title";
             gameRun.scenes["stagescene"] = new MainScene("stagescene", GraphicsDevice, null, gameRun);
+            gameRun.scenes["shutdown"] = new ShutDown("shutdown", GraphicsDevice, null, gameRun);
+            gameRun.firstScene = "startup";
         }
 
         public void LastInitialize()

@@ -12,3 +12,9 @@
 <ReSet:リセット>
 <OK:確認>
 <Cancel:取消>
+<StartText:ようこそ>
+<EndText:シャットダウンしています>
+<Warning:警告>
+<WarningText:システム内多数ウィルス発見！！
+速やかに排除してください！！！！>
+<Antivirus:ウィルス対策>

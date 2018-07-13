@@ -8,8 +8,12 @@
 <wall.png:0>
 <yajiru.png:0>
 <taskbar.png:0>
+<startmenu.png:0>
+<login_logout.png:0>
+<fileiconborder.png:0>
 
 マルチ画像
 <IG:1>
 <button:1>サンプルとして使用
+<button01:1>
 <shutdown:1>

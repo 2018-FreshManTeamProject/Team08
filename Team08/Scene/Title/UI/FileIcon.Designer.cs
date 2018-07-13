@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Team08.Scene.Title.UI
 {
-    public partial class StartMenu
+    public partial class FileIcon
     {
         private void EventRegist()
         {
-            #region AnimeButton
-            shutdown.Click += ExitGame;
-            #endregion
+            Enter += ShowB;
+            Leave += NotShowB;
         }
     }
 }

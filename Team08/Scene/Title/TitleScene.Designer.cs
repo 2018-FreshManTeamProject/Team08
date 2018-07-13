@@ -11,7 +11,7 @@ namespace Team08.Scene.Title
         private void EventRegist()
         {
             #region AnimeButton
-            this.startAB.LeftDownToUp += StartGame;
+            this.antivirus.Click += OpenWarning;
             #endregion
 
         }

@@ -11,6 +11,7 @@ using InfinityGame.UI;
 using InfinityGame.UI.UIContent;
 using InfinityGame.Device;
 using InfinityGame.Scene;
+using Team08.Scene.Title;
 
 namespace Team08.Scene.Stage.UI
 {
@@ -108,7 +109,8 @@ namespace Team08.Scene.Stage.UI
 
         public void Exit(object sender, EventArgs e)
         {
-            Program.Exit();
+            ToTitle(sender, e);
+            ((TitleScene)((BaseScene)parent).GameRun.scenes["title"]).Shutdown();
         }
     }
 }

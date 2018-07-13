@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Team08.Scene.Title.UI
+namespace Team08.Scene.Title
 {
-    public partial class StartMenu
+    public partial class Warning
     {
         private void EventRegist()
         {
             #region AnimeButton
-            shutdown.Click += ExitGame;
+            ok.Click += OK;
+            cancel.Click += Cancel;
             #endregion
         }
     }

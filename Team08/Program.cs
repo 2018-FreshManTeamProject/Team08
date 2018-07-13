@@ -21,6 +21,11 @@ namespace Team08
             game.Run(); //ゲームの実行
         }
 
+        public static Game1 GetGame()
+        {
+            return game;
+        }
+
         public static void Exit()
         {
             game.Exit();
