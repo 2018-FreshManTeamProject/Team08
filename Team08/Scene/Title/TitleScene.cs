@@ -55,7 +55,7 @@ namespace Team08.Scene.Title
         {
             antivirus.Size = new Size(128, 128);
             antivirus.Location = new Point(10, 10);
-            antivirus.Text = GetText("Antivirus");//サンプル例後で換える
+            antivirus.Text = GetText("Antivirus");
             base.DesignContent();
         }
 

@@ -24,7 +24,9 @@ namespace Team08.Scene.Stage.UI
 
         public BackMenu(GraphicsDevice aGraphicsDevice, BaseDisplay parent) : base(aGraphicsDevice, parent)
         {
-            
+            BDText.ForeColor = System.Drawing.Color.Yellow;
+            BorderColor = Color.DarkRed;
+            backColor = Color.PaleVioletRed;
         }
 
         public override void Initialize()
@@ -36,24 +38,41 @@ namespace Team08.Scene.Stage.UI
 
         public override void PreLoadContent()
         {
+            Text = GetText("BackMenu");
+            Size = new Size(400, 420);
             Visible = false;
             back = new AnimeButton(graphicsDevice, this);
             title = new AnimeButton(graphicsDevice, this);
             reset = new AnimeButton(graphicsDevice, this);
             exit = new AnimeButton(graphicsDevice, this);
-
+            back.BDText.ForeColor = System.Drawing.Color.Yellow;
+            title.BDText.ForeColor = System.Drawing.Color.Yellow;
+            reset.BDText.ForeColor = System.Drawing.Color.Yellow;
+            exit.BDText.ForeColor = System.Drawing.Color.Yellow;
+            back.ImageColor = Color.Blue;
+            title.ImageColor = Color.Blue;
+            reset.ImageColor = Color.Blue;
+            exit.ImageColor = Color.Blue;
             EventRegist();
             base.PreLoadContent();
         }
 
         protected override void DesignContent()
         {
-            Size tempsize = new Size(128, 128);
+            Size tempsize = new Size(360, 80);
             SetContentSize(tempsize);
             SetContentLocation(tempsize);
             SetContentText();
             SetContentImage();
             base.DesignContent();
+        }
+
+        public override void LoadContent()
+        {
+            closeButton.BDText.ForeColor = System.Drawing.Color.Yellow;
+            closeButton.EnterColor = Color.Blue;
+            closeButton.NormalColor = Color.White * 0.0f;
+            base.LoadContent();
         }
 
         private void SetContentSize(Size tempsize)
@@ -66,28 +85,26 @@ namespace Team08.Scene.Stage.UI
         }
         private void SetContentLocation(Size tempsize)
         {
-            Point temp = new Point(BorderSize + 2, TitleSize + 2);
-
-            back.Location = temp;
-            title.Location = new Point(temp.X + 20 + tempsize.Width, TitleSize + 2);
-            reset.Location = new Point(temp.X + 40 + 2 * tempsize.Width, TitleSize + 2);
-            exit.Location = new Point(temp.X, TitleSize + 2 + 20 + tempsize.Height);
+            back.Location = new Point((Size.Width - tempsize.Width) / 2, TitleSize + 10);
+            title.Location = new Point((Size.Width - tempsize.Width) / 2, TitleSize + tempsize.Height + 20);
+            reset.Location = new Point((Size.Width - tempsize.Width) / 2, TitleSize + 2 * tempsize.Height + 30);
+            exit.Location = new Point((Size.Width - tempsize.Width) / 2, TitleSize + 3 * tempsize.Height + 40);
         }
 
         private void SetContentText()
         {
-            back.Text = GetText("Back");
-            title.Text = GetText("ToTitle");
-            reset.Text = GetText("ReSet");
-            exit.Text = GetText("Exit");
+            back.Text = GetText("Fight");
+            title.Text = GetText("GiveUp");
+            reset.Text = GetText("Extension");
+            exit.Text = GetText("ToRuin");
         }
 
         private void SetContentImage()
         {
-            back.Image = ImageManage.GetSImage("button");
-            title.Image = ImageManage.GetSImage("button");
-            reset.Image = ImageManage.GetSImage("button");
-            exit.Image = ImageManage.GetSImage("button");
+            back.Image = ImageManage.GetSImage("button01");
+            title.Image = ImageManage.GetSImage("button01");
+            reset.Image = ImageManage.GetSImage("button01");
+            exit.Image = ImageManage.GetSImage("button01");
         }
 
         public void Back(object sender, EventArgs e)

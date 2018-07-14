@@ -16,7 +16,7 @@ namespace Team08.Scene.Title.UI
     {
         private SImage border;
         private bool showBorder;
-
+        
         public bool ShowBorder { get { return showBorder; } set { showBorder = value; } }
         public FileIcon(GraphicsDevice aGraphicsDevice, BaseDisplay aParent) : base(aGraphicsDevice, aParent)
         {

@@ -77,7 +77,6 @@ namespace Team08.Scene.Stage.Stages
 
         public override void LoadContent()
         {
-            Initialize();
             base.LoadContent();
         }
 

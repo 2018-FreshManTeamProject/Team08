@@ -4,7 +4,7 @@
 <Font:HGP創英角ﾎﾟｯﾌﾟ体>
 <Loading:読み込み中>
 <GameTitle:Team08>
-<BackMenu:バックメニュー>ゲームをタイトルに戻るとか、いつもEsc押したら出るメニューの名前はなに？日本語
+<BackMenu:危険な選択肢>
 <Back:戻る>
 <ToTitle:タイトルへ戻る>
 <Exit:終了>
@@ -18,4 +18,13 @@
 <WarningText:システム内多数ウィルス発見！！
 速やかに排除してください！！！！>
 <Antivirus:ウィルス対策>
-<Hacking:ハッキングされている！！！！>
+<Hacking:お前はハッキングされたぜ！覚悟を！！！！>
+<OnHackingText:ハッキングされた！！
+ウィルス対策無効！！
+シャットダウンしてください！！
+もしくは戦ってください！！>
+<Fight:戦い>
+<GiveUp:諦め>
+<Extension:延長戦>
+<ToRuin:滅び>
+<TimeDown:残り時間：>

@@ -56,7 +56,6 @@ namespace Team08.Scene.Stage
             start.BackColor = Color.White * 0.0f;
             start.BDText.ForeColor = System.Drawing.Color.Yellow;
             start.Text = (((GameStage)stages["Stage01"]).startTime / 60).ToString();
-            DesignBackMenu();
             DesignGameOver();
             stageCameras["C0"].Location = Point.Zero;
             stageCameras["C1"].Location = new Point(size.Width / 2, 0);
@@ -72,18 +71,6 @@ namespace Team08.Scene.Stage
             stageCameras["C3"].Stage = stages["Stage01"];
 
             base.DesignContent();
-        }
-
-        private void DesignBackMenu()
-        {
-            backMenu.Text = GetText("BackMenu");
-            int sW = size.Width;
-            int sH = size.Height;
-            int eMSW, eMSH;//Size-----WidthとHeight
-            eMSW = sW / 3;
-            eMSH = sH / 2;
-            backMenu.Size = new Size(eMSW, eMSH);
-            backMenu.Location = Alignment.GetMXFAlignment(ContentAlignment.MiddleCenter, size, backMenu.Size);
         }
 
         private void DesignGameOver()

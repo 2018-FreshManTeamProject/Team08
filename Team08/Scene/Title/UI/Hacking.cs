@@ -7,6 +7,7 @@ using InfinityGame.GameGraphics;
 using InfinityGame.UI;
 using InfinityGame.UI.UIContent;
 using InfinityGame.Scene;
+using InfinityGame;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -24,6 +25,7 @@ namespace Team08.Scene.Title.UI
         {
             Visible = false;
             Text = GetText("Hacking");
+            BDText.ForeColor = System.Drawing.Color.Yellow;
             BorderColor = Color.DarkRed;
             backColor = Color.PaleVioletRed;
             CanClose = false;
@@ -43,13 +45,14 @@ namespace Team08.Scene.Title.UI
             Location = ((parent.Size - size) / 2).ToPoint();
             time = new Label(graphicsDevice, this);
             time.TextSize = 16f;
+            time.BDText.ForeColor = System.Drawing.Color.Yellow;
             for (int i = 0; i < 4; i++)
             {
                 new PlayerCursor("P" + i.ToString(), graphicsDevice, this);
                 players["P" + i.ToString()].Coo = new Point(i, 0);
             }
             base.PreLoadContent();
-            
+
         }
 
         public override void LoadContent()
@@ -66,11 +69,14 @@ namespace Team08.Scene.Title.UI
                     timedown--;
                 if (timedown <= 0)
                 {
-                    ((BaseScene)parent).IsRun = false;
-                    ((BaseScene)parent).GameRun.scenes["stagescene"].IsRun = true;
-                    parent.Initialize();
+                    if (GameRun.ActiveScene is TitleScene)
+                    {
+                        ((BaseScene)parent).IsRun = false;
+                        ((BaseScene)parent).GameRun.scenes["stagescene"].IsRun = true;
+                        parent.Initialize();
+                    }
                 }
-                time.Text = (timedown / 60f).ToString();
+                time.Text = GetText("TimeDown") + (timedown / 60f).ToString();
                 foreach (var l in players)
                 {
                     Point tempP = new Point(200 * l.Value.Coo.X + 200, 200 * l.Value.Coo.Y + 200);
