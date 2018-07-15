@@ -19,3 +19,7 @@
 <button01:1>
 <shutdown:1>
 <antivirus_icon:1>
+<gomi_backside:1>
+<gomi_frontside:1>
+<gomi_leftside:1>
+<gomi_rightside:1>

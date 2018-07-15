@@ -34,14 +34,9 @@ namespace Team08.Scene.Stage
             {
                 ((GameStage)Stage).eatedCheese--;
                 Initialize();
+                return;
             }
             base.Initialize();
-        }
-
-        public override void LoadContent()
-        {
-            Initialize();
-            base.LoadContent();
         }
 
         public override void CalAllColl(Dictionary<string, StageObj> tempSO)

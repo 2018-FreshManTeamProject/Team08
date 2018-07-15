@@ -13,6 +13,7 @@ using InfinityGame.GameGraphics;
 using InfinityGame.Stage;
 using InfinityGame.Stage.StageObject;
 using InfinityGame.Stage.StageObject.Actor;
+using InfinityGame.Element;
 using Team08.Scene.Stage.Stages;
 
 namespace Team08.Scene.Stage.Actor
@@ -36,18 +37,43 @@ namespace Team08.Scene.Stage.Actor
         private float maxSpeed = 0;//最大速度
         private float actionMaxSpeed = 0;
         private Vector2 actionSpeed = Vector2.Zero;
+        private string chara;
+        private string nowCharaSide;
+        private Dictionary<string, SImage> charaImages = new Dictionary<string, SImage>();
         public int TimeDownCount { get { return timeDownCount; } set { timeDownCount = value; if (timeDownCount == 0) TimeDownAction(); } }
         public bool Life { get { return life; } }
         public int Point { get { return point; } }
+        public string Chara { get { return chara; } set { chara = value; } }
         public Player(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
             IsCrimp = true;
+            ImageRunState = 0;
+            Render.Scale = Vector2.One / 2;
         }
 
         public override void Initialize()
         {
+            nowCharaSide = "";
+            iTIndex = 0;
+            imageTimeCounter = 0;
             MovePriority = 5;
             CrimpGroup = Team;
+            if (Team == "cat")
+            {
+                //変更
+                MovePriority = 4;
+                chara = "gomi";
+                charaImages[chara + "_frontside"] = ImageManage.GetSImage(chara + "_frontside");
+                charaImages[chara + "_backside"] = ImageManage.GetSImage(chara + "_backside");
+                charaImages[chara + "_leftside"] = ImageManage.GetSImage(chara + "_leftside");
+                charaImages[chara + "_rightside"] = ImageManage.GetSImage(chara + "_rightside");
+                SetChara(chara + "_frontside");
+            }
+            else if (Team == "mouse")
+            {
+                Image = ImageManage.GetSImage("nezumi.png");
+                Size = Size.Parse(Image.Image.Size) / 2;
+            }
             Coordinate = new Vector2(rnd.Next(Stage.EndOfLeftUp.X, Stage.EndOfRightDown.X), rnd.Next(Stage.EndOfLeftUp.Y, Stage.EndOfRightDown.Y));
             Color = Color.White;
             IsCrimp = true;
@@ -59,6 +85,18 @@ namespace Team08.Scene.Stage.Actor
             point = 0;
             SetPlayer();
             base.Initialize();
+        }
+
+        private void SetChara(string charaSide)
+        {
+            if (nowCharaSide != charaSide)
+            {
+                iTIndex = 0;
+                imageTimeCounter = 0;
+                nowCharaSide = charaSide;
+                Image = charaImages[charaSide];
+                Size = Size.Parse(Image.Image.Size) / 2;
+            }
         }
 
         private void SetPlayer()
@@ -128,11 +166,22 @@ namespace Team08.Scene.Stage.Actor
                         speedv.Normalize();
                         speedv *= (maxSpeed + actionMaxSpeed);
                     }
-                    AddVelocity(speedv, VeloParam.Run);
+                    if (speedv != Vector2.Zero)
+                        AddVelocity(speedv, VeloParam.Run);
                 }
                 else
                     speedv = Vector2.Zero;
-                if (speedv == Vector2.Zero)
+                if (Team == "cat")
+                {
+                    if ((speedv + actionSpeed).Length() > 7)
+                        imageTimeCounter++;
+                }
+                else if (Team == "mouse")
+                {
+                    if ((speedv + actionSpeed).Length() > 5)
+                        imageTimeCounter++;
+                }
+                if (speedv == Vector2.Zero && actionSpeed == Vector2.Zero)
                 {
                     ImageRunState = 0;
                 }
@@ -153,6 +202,34 @@ namespace Team08.Scene.Stage.Actor
                     ((GameStage)Stage).startTime++;
                     Initialize();
                 }
+            }
+        }
+
+        public override void AddVelocity(Vector2 velocity, VeloParam veloParam)
+        {
+            if (veloParam == VeloParam.Run)
+            {
+                if (Team == "cat")
+                    RunChara(velocity);
+            }
+            base.AddVelocity(velocity, veloParam);
+        }
+
+        private void RunChara(Vector2 ve)
+        {
+            if (Math.Abs(ve.Y) >= Math.Abs(ve.X))
+            {
+                if (ve.Y >= 0)
+                    SetChara(chara + "_frontside");
+                else
+                    SetChara(chara + "_backside");
+            }
+            else
+            {
+                if (ve.X >= 0)
+                    SetChara(chara + "_rightside");
+                else
+                    SetChara(chara + "_leftside");
             }
         }
 

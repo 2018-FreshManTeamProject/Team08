@@ -9,6 +9,7 @@ using InfinityGame;
 using InfinityGame.GameGraphics;
 using InfinityGame.Scene;
 using InfinityGame.UI.UIContent;
+using InfinityGame.UI;
 using InfinityGame.Element;
 using InfinityGame.Device;
 using InfinityGame.Device.MouseManage;

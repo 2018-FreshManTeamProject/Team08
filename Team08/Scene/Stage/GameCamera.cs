@@ -67,7 +67,6 @@ namespace Team08.Scene.Stage
         {
             Image = ImageManage.GetSImage("stagescene.png");
             mk = ImageManage.GetSImage("yajiru.png");
-            Initialize();
             base.LoadContent();
         }
 
