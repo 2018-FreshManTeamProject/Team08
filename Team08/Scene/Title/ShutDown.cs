@@ -10,6 +10,7 @@ using InfinityGame.Device;
 using InfinityGame.GameGraphics;
 using InfinityGame.Scene;
 using InfinityGame.UI.UIContent;
+using Microsoft.Xna.Framework.Audio;
 
 
 namespace Team08.Scene.Title
@@ -18,6 +19,7 @@ namespace Team08.Scene.Title
     {
         private int timeDown = 180;
         private Label endText;
+        private bool soundplay = false;
         public ShutDown(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
 
@@ -25,6 +27,7 @@ namespace Team08.Scene.Title
 
         public override void Initialize()
         {
+            soundplay = false;
             timeDown = 180;
             Refract = 1.0f;
             base.Initialize();
@@ -42,11 +45,17 @@ namespace Team08.Scene.Title
         {
             endText.Location = ((size - endText.Size) / 2).ToPoint();
             Image = ImageManage.GetSImage("login_logout.png");
+            sounds["logout"] = SoundManage.GetSound("logout.wav");
             base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (!soundplay)
+            {
+                sounds["logout"].Play();
+                soundplay = true;
+            }
             if (timeDown > 0)
                 timeDown--;
             base.Update(gameTime);

@@ -12,6 +12,7 @@ using InfinityGame.Scene;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using InfinityGame.Device.MouseManage;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Team08.Scene.Title.UI
 {
@@ -23,6 +24,7 @@ namespace Team08.Scene.Title.UI
         private bool onHacking = false;
         private int timedown = 600;
         private Random rnd = new Random();
+        private bool soundplay = false;
         public Warning(GraphicsDevice aGraphicsDevice, BaseDisplay parent) : base(aGraphicsDevice, parent)
         {
             Visible = false;
@@ -31,6 +33,9 @@ namespace Team08.Scene.Title.UI
 
         public override void Initialize()
         {
+            soundplay = false;
+            if (!sounds["warning02"].GetState(SoundState.Stopped))
+                sounds["warning02"].Stop();
             CanClose = true;
             onHacking = false;
             Visible = false;
@@ -66,39 +71,56 @@ namespace Team08.Scene.Title.UI
         {
             ok.Image = ImageManage.GetSImage("button01");
             cancel.Image = ImageManage.GetSImage("button01");
+            sounds["warning01"] = SoundManage.GetSound("warning01.wav");
+            sounds["warning02"] = SoundManage.GetSound("warning02.wav");
+            sounds["warning02"].SetSELoopPlay(true);
             base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (onHacking)
+            if (Visible)
             {
-                if (timedown > 0)
-                    timedown--;
-                if (timedown == 590)
+                if (!soundplay)
                 {
-                    CanClose = false;
-                    Text = GetText("Warning");
-                    warningText.Text = GetText("OnHackingText");
-                    warningText.TextSize = 16f;
-                    Size = Size / 2;
-                    warningText.Location = ((size - warningText.Size) / 2).ToPoint();
-                    ok.Visible = false;
-                    cancel.Visible = false;
+                    sounds["warning01"].Play();
+                    soundplay = true;
                 }
-                if (timedown == 570)
+                if (onHacking)
                 {
-                    Location = new Point(rnd.Next(0, parent.Size.Width - Size.Width), rnd.Next(0, parent.Size.Height - Size.Height));
-                    if (!((TitleScene)parent).Hacking.Visible)
-                        ((TitleScene)parent).Hacking.Visible = true;
-                }
-                if ((timedown > 300 && timedown % 60 == 0) ||
-                    (timedown > 150 && timedown <= 300 && timedown % 30 == 0) ||
-                    (timedown > 75 && timedown <= 150 && timedown % 15 == 0) ||
-                    (timedown > 30 && timedown <= 75 && timedown % 6 == 0) ||
-                    timedown <= 30)
-                {
-                    Location = new Point(rnd.Next(0, parent.Size.Width - Size.Width), rnd.Next(0, parent.Size.Height - Size.Height));
+                    if (!sounds["warning02"].GetState(SoundState.Playing))
+                    {
+                        sounds["warning02"].Play();
+                    }
+                    if (timedown > 0)
+                        timedown--;
+                    if (timedown == 590)
+                    {
+                        CanClose = false;
+                        Text = GetText("Warning");
+                        warningText.Text = GetText("OnHackingText");
+                        warningText.TextSize = 16f;
+                        Size = Size / 2;
+                        warningText.Location = ((size - warningText.Size) / 2).ToPoint();
+                        ok.Visible = false;
+                        cancel.Visible = false;
+                    }
+                    if (timedown == 570)
+                    {
+                        Location = new Point(rnd.Next(0, parent.Size.Width - Size.Width), rnd.Next(0, parent.Size.Height - Size.Height));
+                        if (!((TitleScene)parent).Hacking.Visible)
+                        {
+                            ((TitleScene)parent).Hacking.Visible = true;
+                        }
+                    }
+                    if ((timedown > 300 && timedown % 60 == 0) ||
+                        (timedown > 150 && timedown <= 300 && timedown % 30 == 0) ||
+                        (timedown > 75 && timedown <= 150 && timedown % 15 == 0) ||
+                        (timedown > 30 && timedown <= 75 && timedown % 6 == 0) ||
+                        timedown <= 30)
+                    {
+                        Location = new Point(rnd.Next(0, parent.Size.Width - Size.Width), rnd.Next(0, parent.Size.Height - Size.Height));
+                    }
                 }
             }
             base.Update(gameTime);
@@ -112,6 +134,19 @@ namespace Team08.Scene.Title.UI
         private void Cancel(object sender, EventArgs e)
         {
             Close();
+        }
+
+        public override void Close()
+        {
+            soundplay = false;
+            sounds["warning02"].Stop();
+            base.Close();
+        }
+
+        public override void SetFocus()
+        {
+            if (!onHacking)
+                base.SetFocus();
         }
     }
 }

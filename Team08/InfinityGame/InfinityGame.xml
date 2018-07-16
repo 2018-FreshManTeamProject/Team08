@@ -556,6 +556,13 @@
             サウンド
             </summary>
         </member>
+        <member name="M:InfinityGame.Element.Sound.GetState(Microsoft.Xna.Framework.Audio.SoundState)">
+            <summary>
+            状態を取得
+            </summary>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
         <member name="M:InfinityGame.Element.Sound.Play">
             <summary>
             SEインスタンスを再生

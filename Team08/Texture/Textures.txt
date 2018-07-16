@@ -23,3 +23,13 @@
 <gomi_frontside:1>
 <gomi_leftside:1>
 <gomi_rightside:1>
+
+ダミ
+<1.png:0>
+<2.png:0>
+<3.png:0>
+<4.png:0>
+<5.png:0>
+<6.png:0>
+<7.png:0>
+<8.png:0>

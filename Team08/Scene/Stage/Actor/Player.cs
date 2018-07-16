@@ -58,7 +58,7 @@ namespace Team08.Scene.Stage.Actor
             imageTimeCounter = 0;
             MovePriority = 5;
             CrimpGroup = Team;
-            if (Team == "cat")
+            if (Team == "antivirus")
             {
                 //変更
                 MovePriority = 4;
@@ -101,7 +101,7 @@ namespace Team08.Scene.Stage.Actor
 
         private void SetPlayer()
         {
-            if (Team == "cat")
+            if (Team == "antivirus")
             {
                 power = 1;
                 mass = 2;
@@ -171,7 +171,7 @@ namespace Team08.Scene.Stage.Actor
                 }
                 else
                     speedv = Vector2.Zero;
-                if (Team == "cat")
+                if (Team == "antivirus")
                 {
                     if ((speedv + actionSpeed).Length() > 7)
                         imageTimeCounter++;
@@ -209,7 +209,7 @@ namespace Team08.Scene.Stage.Actor
         {
             if (veloParam == VeloParam.Run)
             {
-                if (Team == "cat")
+                if (Team == "antivirus")
                     RunChara(velocity);
             }
             base.AddVelocity(velocity, veloParam);
@@ -247,7 +247,7 @@ namespace Team08.Scene.Stage.Actor
                             Eat(tempSO[l]);
                         }
                     }
-                    else if (Team == "cat")
+                    else if (Team == "antivirus")
                     {
                         if (tempSO[l].Team == "mouse")
                         {
@@ -279,7 +279,7 @@ namespace Team08.Scene.Stage.Actor
                     point++;
                 }
             }
-            else if (Team == "cat")
+            else if (Team == "antivirus")
             {
                 if (((Player)stageObj).life)
                 {
@@ -313,7 +313,7 @@ namespace Team08.Scene.Stage.Actor
                     TimeDownCount = 180;
                 }
             }
-            else if (Team == "cat")
+            else if (Team == "antivirus")
             {
                 if (timeDownCount == 0)
                 {
