@@ -47,6 +47,7 @@ namespace Team08.Scene.Stage.Actor
         public Player(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
             IsCrimp = true;
+            PassIndex_0 = true;
             ImageRunState = 0;
             Render.Scale = Vector2.One / 2;
         }

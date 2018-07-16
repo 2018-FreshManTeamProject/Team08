@@ -708,6 +708,11 @@
             グラフィックスデバイス
             </summary>
         </member>
+        <member name="P:InfinityGame.GameGraphics.BaseDisplay.PassIndex_0">
+            <summary>
+            連続運動時0番画像をパスする
+            </summary>
+        </member>
         <member name="M:InfinityGame.GameGraphics.BaseDisplay.GetText(System.String)">
             <summary>
             text取得method
