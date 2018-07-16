@@ -34,8 +34,8 @@ namespace Team08.Scene.Title.UI
             shutdown = new AnimeButton(graphicsDevice, this);
             shutdown.ImageEntity.Enable = false;
             downText = new Label(graphicsDevice, this);
-            downText.TextSize = 8f;
-            downText.Visible = false;
+            downText.TextSize = 16f;
+            downText.Text = GetText("ShutDown");
             Size = new Size(300, 500);
             Location = new Point(0, parent.Size.Height - ((TitleScene)parent).TaskBar.Size.Height - size.Height);
             EventRegist();
@@ -48,6 +48,7 @@ namespace Team08.Scene.Title.UI
             shutdown.Image = ImageManage.GetSImage("shutdown");
             shutdown.Size = Size.Parse(shutdown.Image.Image.Size);
             shutdown.Location = new Point(0, size.Height - shutdown.Size.Height);
+            downText.Location = new Point(60, size.Height - downText.Size.Height - 15);
             base.LoadContent();
         }
 

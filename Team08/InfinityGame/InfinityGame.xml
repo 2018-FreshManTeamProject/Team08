@@ -54,6 +54,16 @@
             textsize主に本文用
             </summary>
         </member>
+        <member name="F:InfinityGame.Def.IGConfig.DIYFont">
+            <summary>
+            カスタムフォントスイッチ
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Def.IGConfig.DFont">
+            <summary>
+            カスタムフォント
+            </summary>
+        </member>
         <member name="F:InfinityGame.Def.IGConfig.MNCT">
             <summary>
             MonoGameのコンテンツ

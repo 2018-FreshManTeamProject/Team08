@@ -118,22 +118,25 @@ namespace Team08.Scene.Title.UI
             {
                 Coo = new Point(Coo.X + 1, Coo.Y);
             }
-            /*if (GameKeyboard.GetKeyTrigger(Keys.W))
+            if (player == "P0")
             {
-                Coo = new Point(Coo.X, Coo.Y - 1);
+                if (GameKeyboard.GetKeyTrigger(Keys.W))
+                {
+                    Coo = new Point(Coo.X, Coo.Y - 1);
+                }
+                else if (GameKeyboard.GetKeyTrigger(Keys.S))
+                {
+                    Coo = new Point(Coo.X, Coo.Y + 1);
+                }
+                else if (GameKeyboard.GetKeyTrigger(Keys.A))
+                {
+                    Coo = new Point(Coo.X - 1, Coo.Y);
+                }
+                else if (GameKeyboard.GetKeyTrigger(Keys.D))
+                {
+                    Coo = new Point(Coo.X + 1, Coo.Y);
+                }
             }
-            else if (GameKeyboard.GetKeyTrigger(Keys.S))
-            {
-                Coo = new Point(Coo.X, Coo.Y + 1);
-            }
-            else if (GameKeyboard.GetKeyTrigger(Keys.A))
-            {
-                Coo = new Point(Coo.X - 1, Coo.Y);
-            }
-            else if (GameKeyboard.GetKeyTrigger(Keys.D))
-            {
-                Coo = new Point(Coo.X + 1, Coo.Y);
-            }*/
             base.Update(gameTime);
         }
 
@@ -148,6 +151,15 @@ namespace Team08.Scene.Title.UI
             {
                 ((Player)gameStage.stageObjs[name]).Chara = focusChara.Chara;
             }
+        }
+
+        public override void PreDraw(GameTime gameTime)
+        {
+            if (!visible)
+            {
+                AfterDraw(gameTime);
+            }
+            base.PreDraw(gameTime);
         }
     }
 }

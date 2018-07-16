@@ -18,6 +18,7 @@ namespace Team08.Scene.Title.UI
     {
         private Label time;
         private Label date;
+        private Label menu;
         private AnimeButton start;
         public TaskBar(GraphicsDevice aGraphicsDevice, BaseDisplay parent) : base(aGraphicsDevice, parent)
         {
@@ -30,12 +31,15 @@ namespace Team08.Scene.Title.UI
         {
             time = new Label(graphicsDevice, this);
             date = new Label(graphicsDevice, this);
+            menu = new Label(graphicsDevice, this);
             start = new AnimeButton(graphicsDevice, this);
             start.ImageEntity.Enable = false;
             time.TextSize = 12f;
             date.TextSize = 12f;
+            menu.TextSize = 16f;
             time.Text = DateTime.Now.ToString("HH:mm");
             date.Text = DateTime.Now.ToString("yyyy/MM/dd");
+            menu.Text = GetText("Menu");
             Size = new Size(parent.Size.Width, 50);
             start.Size = new Size(50, 50);
             Location = new Point(0, parent.Size.Height - size.Height);
@@ -47,6 +51,7 @@ namespace Team08.Scene.Title.UI
         {
             time.Location = new Point(size.Width - date.Size.Width / 2 - time.Size.Width / 2 - 20, 5);
             date.Location = new Point(size.Width - date.Size.Width - 20, 30);
+            menu.Location = new Point(start.Size.Width + 5, (size.Height - menu.Size.Height) / 2);
             Image = ImageManage.GetSImage("taskbar.png");
             start.Image = ImageManage.GetSImage("IG");
             base.LoadContent();

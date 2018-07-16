@@ -73,7 +73,7 @@ namespace Team08.Scene.Title.UI
                 int i = 0;
                 foreach (var l in charas)
                 {
-                    l.Value.Location = new Point(50 + 150 * (i % 4), border_Top.Size.Height + time.Size.Height + 50 + 150 * (i / 4));
+                    l.Value.Location = new Point(50 + 150 * (i % 4), border_Top.Size.Height + time.Size.Height + 50 + 200 * (i / 4));
                     charasDict.Add(new Point(i % 4, i / 4), l.Key);
                     i++;
                 }

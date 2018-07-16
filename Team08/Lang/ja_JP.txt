@@ -28,3 +28,5 @@
 <Extension:延長戦>
 <ToRuin:滅び>
 <TimeDown:残り時間：>
+<Menu:メニュー>
+<ShutDown:シャットダウン>

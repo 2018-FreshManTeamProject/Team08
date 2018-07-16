@@ -151,10 +151,10 @@ namespace Team08.Scene.Stage.Actor
                 if (life)
                 {
                     direction = IGGamePad.GetLeftVelocity(player);
-                    /*if (Name == "player0")
+                    if (Name == "player0")
                     {
                         direction = GameKeyboard.GetVelocity(IGConfig.PlayerKeys);
-                    }*/
+                    }
                     if (direction != Vector2.Zero)
                     {
                         accel = ((direction.Length() * power) / mass) * magnification;
