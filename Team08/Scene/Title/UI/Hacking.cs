@@ -8,8 +8,10 @@ using InfinityGame.UI;
 using InfinityGame.UI.UIContent;
 using InfinityGame.Scene;
 using InfinityGame;
+using InfinityGame.Device;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Team08.Scene.Title.UI
 {
@@ -40,6 +42,8 @@ namespace Team08.Scene.Title.UI
         {
             Visible = false;
             timedown = 600;
+            if (!sounds["hacking"].GetState(SoundState.Stopped))
+                sounds["hacking"].Stop();
             base.Initialize();
         }
 
@@ -74,6 +78,8 @@ namespace Team08.Scene.Title.UI
                     i++;
                 }
             }
+            sounds["hacking"] = SoundManage.GetSound("hacking.wav");
+            sounds["hacking"].SetSELoopPlay(true);
             base.LoadContent();
         }
 
@@ -81,13 +87,17 @@ namespace Team08.Scene.Title.UI
         {
             if (Visible)
             {
+                if (!sounds["hacking"].GetState(SoundState.Playing))
+                {
+                    sounds["hacking"].Play();
+                }
                 if (timedown > 0)
                     timedown--;
                 if (timedown <= 0)
                 {
                     if (GameRun.ActiveScene is TitleScene)
                     {
-                        foreach(var l in Players)
+                        foreach (var l in Players)
                         {
                             l.Value.SetChara();
                         }

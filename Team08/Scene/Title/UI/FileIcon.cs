@@ -16,7 +16,7 @@ namespace Team08.Scene.Title.UI
     {
         private SImage border;
         private bool showBorder;
-        
+
         public bool ShowBorder { get { return showBorder; } set { showBorder = value; } }
         public FileIcon(GraphicsDevice aGraphicsDevice, BaseDisplay aParent) : base(aGraphicsDevice, aParent)
         {
@@ -35,6 +35,7 @@ namespace Team08.Scene.Title.UI
         public override void LoadContent()
         {
             border = ImageManage.GetSImage("fileiconborder.png");
+            sounds["click"] = SoundManage.GetSound("click.wav");
             base.LoadContent();
         }
 
@@ -43,6 +44,11 @@ namespace Team08.Scene.Title.UI
             if (showBorder)
                 spriteBatch.Draw(border.ImageT[0], new Rectangle(DrawLocation, size.ToPoint()), Color * refract);
             base.Draw2(gameTime);
+        }
+
+        private void Clicked(object sender, EventArgs e)
+        {
+            sounds["click"].Play();
         }
 
         private void ShowB(object sender, EventArgs e)

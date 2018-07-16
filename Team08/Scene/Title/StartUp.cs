@@ -17,6 +17,7 @@ namespace Team08.Scene.Title
     {
         private int timeDown = 180;
         private Label startText;
+        private bool soundplay = false;
         public StartUp(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
 
@@ -24,6 +25,7 @@ namespace Team08.Scene.Title
 
         public override void Initialize()
         {
+            soundplay = false;
             timeDown = 180;
             Refract = 1.0f;
             base.Initialize();
@@ -41,11 +43,17 @@ namespace Team08.Scene.Title
         {
             startText.Location = ((size - startText.Size) / 2).ToPoint();
             Image = ImageManage.GetSImage("login_logout.png");
+            sounds["login"] = SoundManage.GetSound("login.wav");
             base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (!soundplay)
+            {
+                sounds["login"].Play();
+                soundplay = true;
+            }
             if (timeDown > 0)
                 timeDown--;
             base.Update(gameTime);

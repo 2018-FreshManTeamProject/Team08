@@ -12,6 +12,7 @@ namespace Team08.Scene.Title.UI
         {
             Enter += ShowB;
             Leave += NotShowB;
+            Click += Clicked;
         }
     }
 }

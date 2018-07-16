@@ -1,1 +1,7 @@
-﻿
+﻿<click.wav:0>
+<hacking.wav:0>
+<loading.wav:0>
+<login.wav:0>
+<logout.wav:0>
+<warning01.wav:0>
+<warning02.wav:0>
