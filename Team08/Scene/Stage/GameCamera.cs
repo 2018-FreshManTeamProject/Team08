@@ -57,7 +57,7 @@ namespace Team08.Scene.Stage
             message.Text = Name;
             if (FocusStageObj.Team == "mouse")
                 action.Text = "Aボタン加速";
-            else if (FocusStageObj.Team == "cat")
+            else if (FocusStageObj.Team == "antivirus")
                 action.Text = "Aボタンダッシュ";
             action.Location = new Point(size.Width - action.Size.Width - 20, 20);
             base.Initialize();
@@ -90,7 +90,7 @@ namespace Team08.Scene.Stage
                     {
                         if (Stage.stageObjs.ContainsKey(l))
                         {
-                            if (team == "cat")
+                            if (team == "antivirus")
                             {
                                 if (Stage.stageObjs[l].Team == "mouse")
                                 {
@@ -115,7 +115,7 @@ namespace Team08.Scene.Stage
                 }
                 else
                 {
-                    if (team == "cat")
+                    if (team == "antivirus")
                     {
                         foreach (var l in marks.ToArray())
                         {

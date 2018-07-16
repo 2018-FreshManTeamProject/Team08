@@ -126,7 +126,7 @@ namespace Team08.Scene.Stage
                 }
                 else if (runStage.catWin)
                 {
-                    result["winer"] = "勝者ネコ";
+                    result["winer"] = "勝者ウィルス対策";
                 }
                 result["mouse"] = string.Format($"ネズミ残り：{runStage.mouseNum - runStage.killedMouse}/{runStage.mouseNum}");
                 result["cheese"] = string.Format($"チーズ残り：{runStage.cheeseNum - runStage.eatedCheese}/{runStage.cheeseNum}");

@@ -113,5 +113,11 @@ namespace Team08.Scene.Title.UI
         {
             Close();
         }
+
+        public override void SetFocus()
+        {
+            if (!onHacking)
+                base.SetFocus();
+        }
     }
 }

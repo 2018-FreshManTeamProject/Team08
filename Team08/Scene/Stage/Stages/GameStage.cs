@@ -44,7 +44,7 @@ namespace Team08.Scene.Stage.Stages
                 stageObjs["player" + i.ToString()].Team = "mouse";
             }
             int j = rnd.Next(4);
-            stageObjs["player" + j.ToString()].Team = "cat";
+            stageObjs["player" + j.ToString()].Team = "antivirus";
 
             for (int i = 0; i < cheeseNum; i++)
             {

@@ -17,8 +17,12 @@ namespace Team08.Scene.Title.UI
     {
         private Label time;
         private Dictionary<string, PlayerCursor> players = new Dictionary<string, PlayerCursor>();
+        private Dictionary<string, CharaIcon> charas = new Dictionary<string, CharaIcon>();
+        private Dictionary<Point, string> charasDict = new Dictionary<Point, string>();
         private int timedown = 600;
         public Dictionary<string, PlayerCursor> Players { get { return players; } }
+        public Dictionary<string, CharaIcon> Charas { get { return charas; } }
+        public Dictionary<Point, string> CharasDict { get { return charasDict; } }
 
 
         public Hacking(GraphicsDevice aGraphicsDevice, BaseDisplay parent) : base(aGraphicsDevice, parent)
@@ -46,10 +50,13 @@ namespace Team08.Scene.Title.UI
             time = new Label(graphicsDevice, this);
             time.TextSize = 16f;
             time.BDText.ForeColor = System.Drawing.Color.Yellow;
+            for (int i = 1; i < 9; i++)
+            {
+                new CharaIcon(i.ToString(), graphicsDevice, this);
+            }
             for (int i = 0; i < 4; i++)
             {
                 new PlayerCursor("P" + i.ToString(), graphicsDevice, this);
-                players["P" + i.ToString()].Coo = new Point(i, 0);
             }
             base.PreLoadContent();
 
@@ -58,6 +65,15 @@ namespace Team08.Scene.Title.UI
         public override void LoadContent()
         {
             time.Location = new Point(border_Left.Size.Width + 10, border_Top.Size.Height + 10);
+            {
+                int i = 0;
+                foreach (var l in charas)
+                {
+                    l.Value.Location = new Point(50 + 150 * (i % 4), border_Top.Size.Height + time.Size.Height + 50 + 150 * (i / 4));
+                    charasDict.Add(new Point(i % 4, i / 4), l.Key);
+                    i++;
+                }
+            }
             base.LoadContent();
         }
 
@@ -71,20 +87,16 @@ namespace Team08.Scene.Title.UI
                 {
                     if (GameRun.ActiveScene is TitleScene)
                     {
+                        foreach(var l in Players)
+                        {
+                            l.Value.SetChara();
+                        }
                         ((BaseScene)parent).IsRun = false;
                         ((BaseScene)parent).GameRun.scenes["stagescene"].IsRun = true;
                         parent.Initialize();
                     }
                 }
                 time.Text = GetText("TimeDown") + (timedown / 60f).ToString();
-                foreach (var l in players)
-                {
-                    Point tempP = new Point(200 * l.Value.Coo.X + 200, 200 * l.Value.Coo.Y + 200);
-                    if (tempP != l.Value.Location)
-                    {
-                        l.Value.Location = tempP;
-                    }
-                }
                 base.Update(gameTime);
             }
         }
