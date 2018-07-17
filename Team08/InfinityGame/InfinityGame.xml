@@ -1538,6 +1538,11 @@
             プログラミングで変数を変更した後、すべてのコンテンツを更新
             </summary>
         </member>
+        <member name="M:InfinityGame.UI.BDText.SetFont">
+            <summary>
+            SetFont
+            </summary>
+        </member>
         <member name="M:InfinityGame.UI.BDText.CalLocation">
             <summary>
             locationを計算
