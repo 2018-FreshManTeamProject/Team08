@@ -13,9 +13,9 @@ using InfinityGame.UI;
 using InfinityGame.Element;
 using InfinityGame.Device;
 using InfinityGame.Device.MouseManage;
-using Team08.Scene.Title.UI;
+using MouseTrash.Scene.Title.UI;
 
-namespace Team08.Scene.Title
+namespace MouseTrash.Scene.Title
 {
     public partial class TitleScene : BaseScene
     {

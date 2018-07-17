@@ -10,7 +10,7 @@ using InfinityGame.Device;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace Team08.Scene.Title.UI
+namespace MouseTrash.Scene.Title.UI
 {
     public partial class FileIcon : AnimeButton
     {

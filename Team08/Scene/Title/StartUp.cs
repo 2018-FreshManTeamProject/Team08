@@ -11,7 +11,7 @@ using InfinityGame.Scene;
 using InfinityGame.Device;
 using InfinityGame.UI.UIContent;
 
-namespace Team08.Scene.Title
+namespace MouseTrash.Scene.Title
 {
     public class StartUp : BaseScene
     {

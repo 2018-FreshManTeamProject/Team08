@@ -10,9 +10,9 @@ using InfinityGame.Stage;
 using InfinityGame.Stage.StageObject;
 using InfinityGame.Device;
 using InfinityGame.Element;
-using Team08.Scene.Stage.Actor;
+using MouseTrash.Scene.Stage.Actor;
 
-namespace Team08.Scene.Stage.Stages
+namespace MouseTrash.Scene.Stage.Stages
 {
     public class Stage01 : GameStage
     {

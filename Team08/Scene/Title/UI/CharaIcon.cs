@@ -10,7 +10,7 @@ using InfinityGame.Element;
 using InfinityGame.Device;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Team08.Scene.Title.UI
+namespace MouseTrash.Scene.Title.UI
 {
     public class CharaIcon : Panel
     {

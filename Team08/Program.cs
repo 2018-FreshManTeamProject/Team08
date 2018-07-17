@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Team08
+namespace MouseTrash
 {
 #if WINDOWS || LINUX
     /// <summary>

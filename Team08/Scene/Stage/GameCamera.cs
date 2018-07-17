@@ -10,11 +10,11 @@ using InfinityGame.Stage;
 using InfinityGame.Device;
 using InfinityGame.Element;
 using InfinityGame.UI.UIContent;
-using Team08.Scene.Stage.Actor;
-using Team08.Scene.Stage.Stages;
+using MouseTrash.Scene.Stage.Actor;
+using MouseTrash.Scene.Stage.Stages;
 
 
-namespace Team08.Scene.Stage
+namespace MouseTrash.Scene.Stage
 {
     public class GameCamera : StageCamera
     {

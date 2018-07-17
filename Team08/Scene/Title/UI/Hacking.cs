@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 
-namespace Team08.Scene.Title.UI
+namespace MouseTrash.Scene.Title.UI
 {
     public class Hacking : UIWindow, IPlayerCursor
     {

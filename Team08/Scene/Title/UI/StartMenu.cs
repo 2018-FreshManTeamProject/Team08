@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using InfinityGame.Device.MouseManage;
 
-namespace Team08.Scene.Title.UI
+namespace MouseTrash.Scene.Title.UI
 {
     public partial class StartMenu : UIWindow
     {

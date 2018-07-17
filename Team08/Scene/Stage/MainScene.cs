@@ -14,10 +14,10 @@ using InfinityGame.Def;
 using InfinityGame.Element;
 using InfinityGame.Device.KeyboardManage;
 using InfinityGame.UI.UIContent;
-using Team08.Scene.Stage.Stages;
-using Team08.Scene.Stage.UI;
+using MouseTrash.Scene.Stage.Stages;
+using MouseTrash.Scene.Stage.UI;
 
-namespace Team08.Scene.Stage
+namespace MouseTrash.Scene.Stage
 {
     public class MainScene : StageScene
     {
@@ -122,13 +122,13 @@ namespace Team08.Scene.Stage
                 }
                 else if (runStage.mouseWin)
                 {
-                    result["winer"] = "勝者ネズミたち";
+                    result["winer"] = "勝者マウスたち";
                 }
                 else if (runStage.catWin)
                 {
                     result["winer"] = "勝者ウィルス対策";
                 }
-                result["mouse"] = string.Format($"ネズミ残り：{runStage.mouseNum - runStage.killedMouse}/{runStage.mouseNum}");
+                result["mouse"] = string.Format($"マウス残り：{runStage.mouseNum - runStage.killedMouse}/{runStage.mouseNum}");
                 result["cheese"] = string.Format($"チーズ残り：{runStage.cheeseNum - runStage.eatedCheese}/{runStage.cheeseNum}");
                 gameOver.ShowResult(result);
             }

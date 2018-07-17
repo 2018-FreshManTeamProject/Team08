@@ -9,10 +9,10 @@ using InfinityGame.GameGraphics;
 using InfinityGame.Stage.StageObject.Block;
 using InfinityGame.Device;
 using InfinityGame.Element;
-using Team08.Scene.Stage.Stages;
+using MouseTrash.Scene.Stage.Stages;
 using InfinityGame.Stage.StageObject;
 
-namespace Team08.Scene.Stage
+namespace MouseTrash.Scene.Stage
 {
     public class Cheese : Block
     {

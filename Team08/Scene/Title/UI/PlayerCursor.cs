@@ -13,10 +13,10 @@ using InfinityGame.Device.KeyboardManage;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Team08.Scene.Stage.Stages;
-using Team08.Scene.Stage.Actor;
+using MouseTrash.Scene.Stage.Stages;
+using MouseTrash.Scene.Stage.Actor;
 
-namespace Team08.Scene.Title.UI
+namespace MouseTrash.Scene.Title.UI
 {
     public class PlayerCursor : Panel
     {

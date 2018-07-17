@@ -13,7 +13,7 @@ using InfinityGame.UI.UIContent;
 using Microsoft.Xna.Framework.Audio;
 
 
-namespace Team08.Scene.Title
+namespace MouseTrash.Scene.Title
 {
     public class ShutDown : BaseScene
     {

@@ -11,9 +11,9 @@ using InfinityGame.UI;
 using InfinityGame.UI.UIContent;
 using InfinityGame.Device;
 using InfinityGame.Scene;
-using Team08.Scene.Title;
+using MouseTrash.Scene.Title;
 
-namespace Team08.Scene.Stage.UI
+namespace MouseTrash.Scene.Stage.UI
 {
     public partial class BackMenu : UIWindow
     {

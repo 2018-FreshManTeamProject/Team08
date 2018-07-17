@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 
-namespace Team08.Scene
+namespace MouseTrash.Scene
 {
     public class ULoadScene : LoadScene
     {

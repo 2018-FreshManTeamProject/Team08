@@ -10,9 +10,9 @@ using InfinityGame.Stage.StageObject;
 using InfinityGame.Stage.StageObject.Block;
 using InfinityGame.Device;
 using InfinityGame.Element;
-using Team08.Scene.Stage.Actor;
+using MouseTrash.Scene.Stage.Actor;
 
-namespace Team08.Scene.Stage
+namespace MouseTrash.Scene.Stage
 {
     public class Wall : Crimp
     {

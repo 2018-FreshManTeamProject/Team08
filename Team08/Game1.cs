@@ -11,14 +11,14 @@ using InfinityGame.Device.WindowsScreen;
 using System;
 using System.Threading;
 
-using Team08.Scene.Title;
-using Team08.Scene.Stage;
-using Team08.Scene;
+using MouseTrash.Scene.Title;
+using MouseTrash.Scene.Stage;
+using MouseTrash.Scene;
 
 /// <summary>
 /// プロジェクト名がnamespaceとなります
 /// </summary>
-namespace Team08
+namespace MouseTrash
 {
     /// <summary>
     /// ゲームの基盤となるメインのクラス

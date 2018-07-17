@@ -14,9 +14,9 @@ using InfinityGame.Stage;
 using InfinityGame.Stage.StageObject;
 using InfinityGame.Stage.StageObject.Actor;
 using InfinityGame.Element;
-using Team08.Scene.Stage.Stages;
+using MouseTrash.Scene.Stage.Stages;
 
-namespace Team08.Scene.Stage.Actor
+namespace MouseTrash.Scene.Stage.Actor
 {
     public class Player : Character
     {
