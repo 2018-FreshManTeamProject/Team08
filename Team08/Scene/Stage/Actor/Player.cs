@@ -54,6 +54,7 @@ namespace Team08.Scene.Stage.Actor
 
         public override void Initialize()
         {
+            ImageRunState = 0;
             nowCharaSide = "";
             iTIndex = 0;
             imageTimeCounter = 0;
@@ -90,10 +91,13 @@ namespace Team08.Scene.Stage.Actor
 
         private void SetChara(string charaSide)
         {
-            if (nowCharaSide != charaSide)
+            if (nowCharaSide != charaSide && image != null)
             {
-                iTIndex = 0;
-                imageTimeCounter = 0;
+                if (iTIndex > Image.ImageT.Count - 1)
+                {
+                    iTIndex = 1;
+                    imageTimeCounter = 0;
+                }
                 nowCharaSide = charaSide;
                 Image = charaImages[charaSide];
                 Size = Size.Parse(Image.Image.Size) / 2;
@@ -152,10 +156,10 @@ namespace Team08.Scene.Stage.Actor
                 if (life)
                 {
                     direction = IGGamePad.GetLeftVelocity(player);
-                    if (Name == "player0")
+                    /*if (Name == "player0")
                     {
                         direction = GameKeyboard.GetVelocity(IGConfig.PlayerKeys);
-                    }
+                    }*/
                     if (direction != Vector2.Zero)
                     {
                         accel = ((direction.Length() * power) / mass) * magnification;
