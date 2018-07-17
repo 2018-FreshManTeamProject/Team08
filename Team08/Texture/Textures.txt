@@ -13,6 +13,7 @@
 <fileiconborder.png:0>
 <playercursor.png:0>
 <warningmessage.png:0>
+<mousetrash_logo.png:0>
 
 マルチ画像
 <IG:1>

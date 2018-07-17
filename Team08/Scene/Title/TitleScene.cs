@@ -32,7 +32,7 @@ namespace MouseTrash.Scene.Title
         public Hacking Hacking { get { return hacking; } }
         public TitleScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
-
+            
         }
 
         public override void Initialize()
@@ -63,7 +63,7 @@ namespace MouseTrash.Scene.Title
 
         public override void LoadContent()
         {
-            Image = ImageManage.GetSImage("title.png");
+            Image = ImageManage.GetSImage("mousetrash_logo.png");
             antivirus.Image = ImageManage.GetSImage("antivirus_icon");
             base.LoadContent();
         }

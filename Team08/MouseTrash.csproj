@@ -413,6 +413,9 @@
     <Content Include="Texture\IG\IG_0019.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\mousetrash_logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\neko.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
