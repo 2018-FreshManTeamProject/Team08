@@ -24,9 +24,9 @@ namespace Team08.Scene.Stage.UI
 
         public BackMenu(GraphicsDevice aGraphicsDevice, BaseDisplay parent) : base(aGraphicsDevice, parent)
         {
-            BDText.ForeColor = System.Drawing.Color.Yellow;
+            /*BDText.ForeColor = System.Drawing.Color.Yellow;
             BorderColor = Color.DarkRed;
-            backColor = Color.PaleVioletRed;
+            backColor = Color.PaleVioletRed;*/
         }
 
         public override void Initialize()
@@ -45,14 +45,14 @@ namespace Team08.Scene.Stage.UI
             title = new AnimeButton(graphicsDevice, this);
             reset = new AnimeButton(graphicsDevice, this);
             exit = new AnimeButton(graphicsDevice, this);
-            back.BDText.ForeColor = System.Drawing.Color.Yellow;
+            /*back.BDText.ForeColor = System.Drawing.Color.Yellow;
             title.BDText.ForeColor = System.Drawing.Color.Yellow;
             reset.BDText.ForeColor = System.Drawing.Color.Yellow;
             exit.BDText.ForeColor = System.Drawing.Color.Yellow;
             back.ImageColor = Color.Blue;
             title.ImageColor = Color.Blue;
             reset.ImageColor = Color.Blue;
-            exit.ImageColor = Color.Blue;
+            exit.ImageColor = Color.Blue;*/
             EventRegist();
             base.PreLoadContent();
         }
@@ -69,9 +69,9 @@ namespace Team08.Scene.Stage.UI
 
         public override void LoadContent()
         {
-            closeButton.BDText.ForeColor = System.Drawing.Color.Yellow;
+            /*closeButton.BDText.ForeColor = System.Drawing.Color.Yellow;
             closeButton.EnterColor = Color.Blue;
-            closeButton.NormalColor = Color.White * 0.0f;
+            closeButton.NormalColor = Color.White * 0.0f;*/
             base.LoadContent();
         }
 
@@ -93,10 +93,10 @@ namespace Team08.Scene.Stage.UI
 
         private void SetContentText()
         {
-            back.Text = GetText("Fight");
-            title.Text = GetText("GiveUp");
-            reset.Text = GetText("Extension");
-            exit.Text = GetText("ToRuin");
+            back.Text = GetText("Back");
+            title.Text = GetText("ToTitle");
+            reset.Text = GetText("ReSet");
+            exit.Text = GetText("ShutDown");
         }
 
         private void SetContentImage()

@@ -4,8 +4,8 @@
 <Font:HGP創英角ﾎﾟｯﾌﾟ体>
 <Loading:読み込み中>
 <GameTitle:Team08>
-<BackMenu:危険な選択肢>
-<Back:戻る>
+<BackMenu:メニュー>
+<Back:ゲームに戻る>
 <ToTitle:タイトルへ戻る>
 <Exit:終了>
 <GameOver:ゲームオーバー>
@@ -31,4 +31,8 @@
 <Menu:メニュー>
 <ShutDown:シャットダウン>
 <Help01:十字キーを
-使って選択>
+使って選択
+時間が切れたら
+カーソルのある
+ところのキャラ
+が選択されます>

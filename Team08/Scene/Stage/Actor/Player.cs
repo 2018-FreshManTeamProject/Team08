@@ -202,10 +202,18 @@ namespace Team08.Scene.Stage.Actor
             }
             else
             {
-                if (Team == "mouse" && !life)
+                if (Team == "mouse")
                 {
-                    ((GameStage)Stage).startTime++;
-                    Initialize();
+                    var tempdict = Detector.Circel(this, 500);
+                    foreach(var l in tempdict)
+                    {
+                        if (l.Value.Team == "antivirus")
+                        {
+                            ((GameStage)Stage).startTime++;
+                            Initialize();
+                            break;
+                        }
+                    }
                 }
             }
         }

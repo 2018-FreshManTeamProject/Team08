@@ -12,6 +12,7 @@ namespace Team08.Scene.Title.UI
         {
             #region AnimeButton
             shutdown.Click += ExitGame;
+            antivirus.Click += ((TitleScene)parent).OpenWarning;
             #endregion
         }
     }
