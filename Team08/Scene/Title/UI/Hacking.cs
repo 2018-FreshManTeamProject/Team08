@@ -18,6 +18,7 @@ namespace Team08.Scene.Title.UI
     public class Hacking : UIWindow, IPlayerCursor
     {
         private Label time;
+        private Label message;
         private Dictionary<string, PlayerCursor> players = new Dictionary<string, PlayerCursor>();
         private Dictionary<string, CharaIcon> charas = new Dictionary<string, CharaIcon>();
         private Dictionary<Point, string> charasDict = new Dictionary<Point, string>();
@@ -52,6 +53,10 @@ namespace Team08.Scene.Title.UI
             Size = parent.Size / 2;
             Location = ((parent.Size - size) / 2).ToPoint();
             time = new Label(graphicsDevice, this);
+            message = new Label(graphicsDevice, this);
+            message.TextSize = 24f;
+            message.BDText.ForeColor = System.Drawing.Color.Yellow;
+            message.Text = GetText("Help01");
             time.TextSize = 16f;
             time.BDText.ForeColor = System.Drawing.Color.Yellow;
             for (int i = 1; i < 9; i++)
@@ -69,11 +74,12 @@ namespace Team08.Scene.Title.UI
         public override void LoadContent()
         {
             time.Location = new Point(border_Left.Size.Width + 10, border_Top.Size.Height + 10);
+            message.Location = new Point(Size.Width - message.Size.Width, (Size.Height - message.Size.Height) / 2);
             {
                 int i = 0;
                 foreach (var l in charas)
                 {
-                    l.Value.Location = new Point(50 + 150 * (i % 4), border_Top.Size.Height + time.Size.Height + 50 + 200 * (i / 4));
+                    l.Value.Location = new Point(50 + 150 * (i % 4), border_Top.Size.Height + time.Size.Height + 50 + 180 * (i / 4));
                     charasDict.Add(new Point(i % 4, i / 4), l.Key);
                     i++;
                 }
@@ -87,6 +93,10 @@ namespace Team08.Scene.Title.UI
         {
             if (Visible)
             {
+                if (parent.gameWindowsIDs[parent.gameWindowsIDs.Count - 1] != UIID)
+                {
+                    SetFocus();
+                }
                 if (!sounds["hacking"].GetState(SoundState.Playing))
                 {
                     sounds["hacking"].Play();

@@ -36,7 +36,7 @@ namespace Team08.Scene.Title.UI
             downText = new Label(graphicsDevice, this);
             downText.TextSize = 16f;
             downText.Text = GetText("ShutDown");
-            Size = new Size(300, 500);
+            Size = new Size(300, 100);
             Location = new Point(0, parent.Size.Height - ((TitleScene)parent).TaskBar.Size.Height - size.Height);
             EventRegist();
             base.PreLoadContent();

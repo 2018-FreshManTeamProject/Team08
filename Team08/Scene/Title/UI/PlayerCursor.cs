@@ -75,18 +75,26 @@ namespace Team08.Scene.Title.UI
                 case "P0":
                     lable.Location = new Point(0, -lable.Size.Height);
                     pad = PlayerIndex.One;
+                    lable.BDText.ForeColor = System.Drawing.Color.Blue;
+                    ImageColor = Color.Blue;
                     break;
                 case "P1":
                     lable.Location = new Point(size.Width - lable.Size.Width, -lable.Size.Height);
                     pad = PlayerIndex.Two;
+                    lable.BDText.ForeColor = System.Drawing.Color.Red;
+                    ImageColor = Color.Red;
                     break;
                 case "P2":
                     lable.Location = new Point(0, size.Height);
                     pad = PlayerIndex.Three;
+                    lable.BDText.ForeColor = System.Drawing.Color.Green;
+                    imageColor = Color.Green;
                     break;
                 case "P3":
                     lable.Location = new Point(size.Width - lable.Size.Width, size.Height);
                     pad = PlayerIndex.Four;
+                    lable.BDText.ForeColor = System.Drawing.Color.Yellow;
+                    imageColor = Color.Yellow;
                     break;
             }
             Image = ImageManage.GetSImage("playercursor.png");

@@ -23,7 +23,7 @@ namespace Team08.Scene.Stage.Stages
         public int mouseNum = 3;
         public int killedMouse = 0;
         public int mouseWinNum = 18;
-        public int catWinNum = 4;
+        public int catWinNum = 3;
         public bool mouseWin = false;
         public bool catWin = false;
         public int startTime = 180;
