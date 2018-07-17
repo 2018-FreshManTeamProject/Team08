@@ -25,7 +25,7 @@ namespace Team08.Scene.Title
         private Warning warning;
         private Hacking hacking;
         private bool isShutdown = false;
-        private int warningCountDown = 180;
+        private int warningCountDown = 30;
 
         public TaskBar TaskBar { get { return taskBar; } }
         public StartMenu StartMenu { get { return startMenu; } }
@@ -37,7 +37,7 @@ namespace Team08.Scene.Title
 
         public override void Initialize()
         {
-            warningCountDown = 180;
+            warningCountDown = 30;
             base.Initialize();
         }
 
@@ -48,6 +48,7 @@ namespace Team08.Scene.Title
             startMenu = new StartMenu(graphicsDevice, this);
             warning = new Warning(graphicsDevice, this);
             hacking = new Hacking(graphicsDevice, this);
+            new WarningMessage(graphicsDevice, this, antivirus);
             EventRegist();
             base.PreLoadContent();
         }
@@ -69,11 +70,20 @@ namespace Team08.Scene.Title
 
         public override void Update(GameTime gameTime)
         {
-            if (warningCountDown > -1)
-                warningCountDown--;
-            if (warningCountDown == 0)
+            if (!warning.Visible)
             {
-                warning.Visible = true;
+                if (warningCountDown > -1)
+                    warningCountDown--;
+                if (warningCountDown == 0)
+                {
+                    warningCountDown = 30;
+                    antivirus.Warning.Visible = !antivirus.Warning.Visible;
+                }
+            }
+            else
+            {
+                if (antivirus.Warning.Visible)
+                    antivirus.Warning.Visible = false;
             }
             if (isShutdown)
             {

@@ -16,12 +16,21 @@ namespace Team08.Scene.Title.UI
     {
         private SImage border;
         private bool showBorder;
+        private WarningMessage warning;
 
         public bool ShowBorder { get { return showBorder; } set { showBorder = value; } }
+        public WarningMessage Warning { get { return warning; } set { warning = value; SetLocation(); } }
         public FileIcon(GraphicsDevice aGraphicsDevice, BaseDisplay aParent) : base(aGraphicsDevice, aParent)
         {
             imageEntity.Enable = false;
             CanMove = true;
+        }
+
+        public override void SetLocation()
+        {
+            if (warning != null)
+                warning.Location = new Point(location.X + Size.Width + 10, location.Y + ((size.Height - warning.Size.Height) / 2));
+            base.SetLocation();
         }
 
         public override void PreLoadContent()

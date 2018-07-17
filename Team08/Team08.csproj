@@ -82,6 +82,7 @@
     <Compile Include="Scene\Title\UI\Warning.Designer.cs">
       <DependentUpon>Warning.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scene\Title\UI\WarningMessage.cs" />
     <Compile Include="Scene\ULoadScene.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -447,6 +448,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\wall.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\warningmessage.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\yajiru.png">

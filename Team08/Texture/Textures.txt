@@ -12,6 +12,7 @@
 <login_logout.png:0>
 <fileiconborder.png:0>
 <playercursor.png:0>
+<warningmessage.png:0>
 
 マルチ画像
 <IG:1>
