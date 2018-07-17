@@ -65,7 +65,7 @@ namespace MouseTrash.Scene.Stage
 
         public override void LoadContent()
         {
-            Image = ImageManage.GetSImage("stagescene.png");
+            Image = ImageManage.GetSImage("mousetrash_logo.png");
             mk = ImageManage.GetSImage("yajiru.png");
             base.LoadContent();
         }
