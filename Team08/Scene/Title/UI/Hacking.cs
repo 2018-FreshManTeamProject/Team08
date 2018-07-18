@@ -22,7 +22,7 @@ namespace MouseTrash.Scene.Title.UI
         private Dictionary<string, PlayerCursor> players = new Dictionary<string, PlayerCursor>();
         private Dictionary<string, CharaIcon> charas = new Dictionary<string, CharaIcon>();
         private Dictionary<Point, string> charasDict = new Dictionary<Point, string>();
-        private int timedown = 600;
+        private int timedown = 300;
         public Dictionary<string, PlayerCursor> Players { get { return players; } }
         public Dictionary<string, CharaIcon> Charas { get { return charas; } }
         public Dictionary<Point, string> CharasDict { get { return charasDict; } }
@@ -42,7 +42,7 @@ namespace MouseTrash.Scene.Title.UI
         public override void Initialize()
         {
             Visible = false;
-            timedown = 60;
+            timedown = 300;
             if (!sounds["hacking"].GetState(SoundState.Stopped))
                 sounds["hacking"].Stop();
             base.Initialize();

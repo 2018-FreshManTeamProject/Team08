@@ -41,6 +41,12 @@ namespace MouseTrash.Scene.Stage.Actor
         private string chara;
         private string nowCharaSide;
         private Dictionary<string, SImage> charaImages = new Dictionary<string, SImage>();
+
+
+        /// <summary>
+        /// 状態
+        /// </summary>
+        public Dictionary<string, int> PlayerState = new Dictionary<string, int>();
         public int TimeDownCount { get { return timeDownCount; } set { timeDownCount = value; if (timeDownCount == 0) TimeDownAction(); } }
         public bool Life { get { return life; } }
         public int Point { get { return point; } }
@@ -52,10 +58,12 @@ namespace MouseTrash.Scene.Stage.Actor
             PassIndex_0 = true;
             ImageRunState = 0;
             Render.Scale = Vector2.One / 2;
+            PlayerState["paralysis"] = 0;
         }
 
         public override void Initialize()
         {
+            PlayerState["paralysis"] = 0;
             ImageRunState = 0;
             nowCharaSide = "";
             iTIndex = 0;
@@ -201,7 +209,7 @@ namespace MouseTrash.Scene.Stage.Actor
         {
             if (((GameStage)Stage).startTime <= 0)
             {
-                if (IGGamePad.GetKeyTrigger(player, Buttons.A))
+                if (IGGamePad.GetKeyTrigger(player, Buttons.A) && PlayerState["paralysis"] <= 0)
                 {
                     Action();
                 }
@@ -241,32 +249,61 @@ namespace MouseTrash.Scene.Stage.Actor
                         speedv.Normalize();
                         speedv *= (maxSpeed + actionMaxSpeed);
                     }
-                    if (speedv != Vector2.Zero)
+                    if (speedv != Vector2.Zero && PlayerState["paralysis"] <= 0)
                         AddVelocity(speedv, VeloParam.Run);
                 }
                 else
                     speedv = Vector2.Zero;
-                if (Team == "antivirus")
+                if (PlayerState["paralysis"] <= 0)
                 {
-                    if ((speedv + actionSpeed).Length() > 7)
-                        imageTimeCounter++;
-                }
-                else if (Team == "mouse")
-                {
-                    if ((speedv + actionSpeed).Length() > 5)
-                        imageTimeCounter++;
-                }
-                if (speedv == Vector2.Zero && actionSpeed == Vector2.Zero)
-                {
-                    ImageRunState = 0;
+                    if (Team == "antivirus")
+                    {
+                        if ((speedv + actionSpeed).Length() > 7)
+                            imageTimeCounter++;
+                    }
+                    else if (Team == "mouse")
+                    {
+                        if ((speedv + actionSpeed).Length() > 5)
+                            imageTimeCounter++;
+                    }
+                    if (speedv == Vector2.Zero && actionSpeed == Vector2.Zero)
+                    {
+                        ImageRunState = 0;
+                    }
+                    else
+                    {
+                        ImageRunState = 1;
+                    }
                 }
                 else
                 {
-                    ImageRunState = 1;
+                    ImageRunState = 0;
                 }
                 if (TimeDownCount > 0)
                 {
                     TimeDownCount--;
+                }
+                if (PlayerState["paralysis"] > 0)
+                {
+                    int cr = Color.R;
+                    int cg = Color.G;
+                    int cb = Color.B;
+                    cr += 15;
+                    cg += 10;
+                    cb += 5;
+                    if (cr > 255)
+                        cr = 0;
+                    if (cg > 255)
+                        cg = 0;
+                    if (cb > 255)
+                        cb = 0;
+                    Color = new Color(cr, cg, cb);
+                    PlayerState["paralysis"]--;
+                }
+                else
+                {
+                    if (Color != Color.White && life)
+                        Color = Color.White;
                 }
                 base.PreUpdate(gameTime);
             }

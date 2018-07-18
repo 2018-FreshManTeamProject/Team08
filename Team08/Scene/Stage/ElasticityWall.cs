@@ -18,6 +18,7 @@ namespace MouseTrash.Scene.Stage
     public class ElasticityWall : Crimp
     {
         private Random rnd = new Random();
+        protected int vibrationTime = 500;
         public ElasticityWall(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
             
@@ -59,7 +60,7 @@ namespace MouseTrash.Scene.Stage
                         {
                             fy = true;
                         }
-                        ((Player)tempSO[l]).SpeedVibration(500);
+                        ((Player)tempSO[l]).SpeedVibration(vibrationTime);
                         if (tempSO[l].Team == "antivirus")
                             ((Player)tempSO[l]).FlipSpeed(4, fx, fy);
                         else if (tempSO[l].Team == "mouse")
