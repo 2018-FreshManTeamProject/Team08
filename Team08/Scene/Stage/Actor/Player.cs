@@ -47,6 +47,7 @@ namespace MouseTrash.Scene.Stage.Actor
         public string Chara { get { return chara; } set { chara = value; } }
         public Player(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
+            DrawOrder = 5;
             IsCrimp = true;
             PassIndex_0 = true;
             ImageRunState = 0;

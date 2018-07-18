@@ -21,7 +21,7 @@ namespace MouseTrash.Scene.Stage
 
         public Wall(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
-
+            DrawOrder = 6;
         }
 
         public override void Initialize()

@@ -987,6 +987,11 @@
             環境引力
             </summary>
         </member>
+        <member name="M:InfinityGame.Stage.BaseStage.SortStageObj">
+            <summary>
+            StageObjをソートする
+            </summary>
+        </member>
         <member name="M:InfinityGame.Stage.BaseStage.PreLoadContent">
             <summary>
             先にインスタンス化したオブジェクトが先に描画するため、
@@ -1191,6 +1196,11 @@
         <member name="P:InfinityGame.Stage.StageObject.StageObj.Color">
             <summary>
             フィルター
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageObject.StageObj.DrawOrder">
+            <summary>
+            描画順番大きい方から描画
             </summary>
         </member>
         <member name="M:InfinityGame.Stage.StageObject.StageObj.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,InfinityGame.GameGraphics.BaseDisplay,System.String)">

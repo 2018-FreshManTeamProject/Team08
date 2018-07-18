@@ -42,7 +42,7 @@ namespace MouseTrash.Scene.Title.UI
         public override void Initialize()
         {
             Visible = false;
-            timedown = 600;
+            timedown = 60;
             if (!sounds["hacking"].GetState(SoundState.Stopped))
                 sounds["hacking"].Stop();
             base.Initialize();

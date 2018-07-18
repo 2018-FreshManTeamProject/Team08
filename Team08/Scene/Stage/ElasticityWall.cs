@@ -20,7 +20,7 @@ namespace MouseTrash.Scene.Stage
         private Random rnd = new Random();
         public ElasticityWall(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
-
+            
         }
         public override void Initialize()
         {
@@ -69,7 +69,7 @@ namespace MouseTrash.Scene.Stage
             }
             foreach (var l in tempSO)
             {
-                if (l.Value is Wall)
+                if (l.Value is Wall || l.Value is ElasticityWall)
                 {
                     Initialize();
                     break;
