@@ -35,7 +35,7 @@ namespace MouseTrash.Scene.Title.UI
 
         public override void PreLoadContent()
         {
-            TextSize = 16f;
+            TextSize = 14f;
             TextAlign = ContentAlignment.BottomCenter;
             EventRegist();
             base.PreLoadContent();

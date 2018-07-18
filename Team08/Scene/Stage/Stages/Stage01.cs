@@ -34,6 +34,15 @@ namespace MouseTrash.Scene.Stage.Stages
                     stageObjs["wall" + i.ToString()].LoadContent();
                 }
             }
+            for (int i = 0; i < 5; i++)
+            {
+                if (!stageObjs.ContainsKey("elasticitywall" + i.ToString()))
+                {
+                    new ElasticityWall(graphicsDevice, this, "elasticitywall" + i.ToString());
+                    stageObjs["elasticitywall" + i.ToString()].PreLoadContent();
+                    stageObjs["elasticitywall" + i.ToString()].LoadContent();
+                }
+            }
             base.Initialize();
         }
 

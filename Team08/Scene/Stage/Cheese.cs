@@ -43,7 +43,7 @@ namespace MouseTrash.Scene.Stage
         {
             foreach (var l in tempSO)
             {
-                if (l.Value is Cheese)
+                if (l.Value is Cheese || l.Value is Wall || l.Value is ElasticityWall)
                 {
                     Initialize();
                     break;

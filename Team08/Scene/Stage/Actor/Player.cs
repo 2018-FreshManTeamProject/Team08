@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -89,18 +90,86 @@ namespace MouseTrash.Scene.Stage.Actor
             base.Initialize();
         }
 
+        public void SpeedVibration(int time)
+        {
+            float l = 0;
+            float r = 0;
+            Vector2 ve = (speedv + actionSpeed) / 30;
+            if (ve.X < 0)
+            {
+                l += Math.Abs(ve.X);
+            }
+            else if (ve.X > 0)
+                r += Math.Abs(ve.X);
+            if (ve.Y != 0)
+            {
+                l += Math.Abs(ve.Y);
+                r += Math.Abs(ve.Y);
+            }
+            if (l > 1)
+                l = 1;
+            if (r > 1)
+                r = 1;
+            Thread thread = new Thread(() => { Vibration(l, r, time); });
+            thread.Start();
+        }
+
+        public void SetVibration(float l, float r, int time)
+        {
+            Thread thread = new Thread(() => { Vibration(l, r, time); });
+            thread.Start();
+        }
+
+        private void Vibration(float l, float r, int time)
+        {
+            GamePad.SetVibration(player, l, r);
+            Thread.Sleep(time);
+            GamePad.SetVibration(player, 0, 0);
+        }
+
         private void SetChara(string charaSide)
         {
-            if (nowCharaSide != charaSide && image != null)
+            if (nowCharaSide != charaSide)
             {
-                if (iTIndex > Image.ImageT.Count - 1)
+                if (image != null)
                 {
-                    iTIndex = 1;
+                    if (iTIndex > Image.ImageT.Count - 1)
+                    {
+                        iTIndex = 1;
+                        imageTimeCounter = 0;
+                    }
+                }
+                else
+                {
+                    iTIndex = 0;
                     imageTimeCounter = 0;
                 }
-                nowCharaSide = charaSide;
-                Image = charaImages[charaSide];
-                Size = Size.Parse(Image.Image.Size) / 2;
+            }
+            nowCharaSide = charaSide;
+            Image = charaImages[charaSide];
+            Size = Size.Parse(Image.Image.Size) / 2;
+        }
+
+        public void FlipSpeed(float magn, bool fx, bool fy)
+        {
+            if (actionSpeed != Vector2.Zero)
+            {
+                Vector2 ve = Vector2.Zero;
+                if (fx)
+                    ve.X = -actionSpeed.X * magn;
+                if (fy)
+                    ve.Y = -actionSpeed.Y * magn;
+                actionSpeed = ve;
+            }
+            if (speedv != Vector2.Zero)
+            {
+                Vector2 ve = Vector2.Zero;
+                if (fx)
+                    ve.X = -speedv.X * magn;
+                if (fy)
+                    ve.Y = -speedv.Y * magn;
+                actionSpeed += ve;
+                speedv = Vector2.Zero;
             }
         }
 
@@ -205,7 +274,7 @@ namespace MouseTrash.Scene.Stage.Actor
                 if (Team == "mouse")
                 {
                     var tempdict = Detector.Circel(this, 500);
-                    foreach(var l in tempdict)
+                    foreach (var l in tempdict)
                     {
                         if (l.Value.Team == "antivirus")
                         {
@@ -296,6 +365,7 @@ namespace MouseTrash.Scene.Stage.Actor
             {
                 if (((Player)stageObj).life)
                 {
+                    ((Player)stageObj).SetVibration(1, 1, 1000);
                     ((Player)stageObj).actionSpeed = 10 * (speedv + actionSpeed);
                     ((Player)stageObj).life = false;
                     stageObj.Color = Color.Red;

@@ -124,7 +124,7 @@ namespace MouseTrash.Scene.Stage
                                 marks.Remove(l);
                             }
                         }
-                        message.Text = string.Format($"ネズミ残り{((GameStage)Stage).mouseNum - ((GameStage)Stage).killedMouse}匹\r\nスキルクールタイム：{((Player)FocusStageObj).TimeDownCount / 60}秒");
+                        message.Text = string.Format($"マウス残り{((GameStage)Stage).mouseNum - ((GameStage)Stage).killedMouse}匹\r\nスキルクールタイム：{((Player)FocusStageObj).TimeDownCount / 60}秒");
                     }
                     else if (team == "mouse")
                     {

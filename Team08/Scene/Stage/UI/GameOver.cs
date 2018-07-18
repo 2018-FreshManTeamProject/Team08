@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using InfinityGame.GameGraphics;
 using InfinityGame.UI;
 using InfinityGame.UI.UIContent;
+using InfinityGame.Device;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
@@ -21,7 +22,7 @@ namespace MouseTrash.Scene.Stage.UI
         {
             CanMove = false;
             BorderOn = false;
-            backColor = Color.White * 0.15f;
+            backColor = Color.White * 0.0f;
             canClose = false;
         }
 
@@ -57,6 +58,12 @@ namespace MouseTrash.Scene.Stage.UI
             message.TextSize = 48f;
             message.Text = "Escボタンで戻る";
             base.DesignContent();
+        }
+
+        public override void LoadContent()
+        {
+            Image = ImageManage.GetSImage("gameover.png");
+            base.LoadContent();
         }
 
         public void ShowResult(Dictionary<string, string> result)

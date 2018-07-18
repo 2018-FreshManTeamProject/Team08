@@ -61,6 +61,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene\Stage\Actor\Player.cs" />
+    <Compile Include="Scene\Stage\ElasticityWall.cs" />
     <Compile Include="Scene\Stage\UI\BackMenu.cs" />
     <Compile Include="Scene\Stage\UI\BackMenu.Designer.cs">
       <DependentUpon>BackMenu.cs</DependentUpon>
@@ -272,7 +273,13 @@
     <Content Include="Texture\cheese.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\elasticitywall.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\fileiconborder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\gameover.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\gomi_backside\gomi_backside.txt">
