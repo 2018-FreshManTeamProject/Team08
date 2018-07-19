@@ -16,7 +16,7 @@ namespace MouseTrash.Scene.Stage.UI
     {
         private Label winer;
         private Label mouse;
-        private Label cheese;
+        private Label thedata;
         private Label message;
         public GameOver(GraphicsDevice aGraphicsDevice, BaseDisplay parent) : base(aGraphicsDevice, parent)
         {
@@ -37,7 +37,7 @@ namespace MouseTrash.Scene.Stage.UI
             Visible = false;
             winer = new Label(graphicsDevice, this);
             mouse = new Label(graphicsDevice, this);
-            cheese = new Label(graphicsDevice, this);
+            thedata = new Label(graphicsDevice, this);
             message = new Label(graphicsDevice, this);
             base.PreLoadContent();
         }
@@ -46,15 +46,15 @@ namespace MouseTrash.Scene.Stage.UI
         {
             winer.BackColor = Color.White * 0.0f;
             mouse.BackColor = Color.White * 0.0f;
-            cheese.BackColor = Color.White * 0.0f;
+            thedata.BackColor = Color.White * 0.0f;
             message.BackColor = Color.White * 0.0f;
             winer.BDText.ForeColor = System.Drawing.Color.YellowGreen;
             mouse.BDText.ForeColor = System.Drawing.Color.YellowGreen;
-            cheese.BDText.ForeColor = System.Drawing.Color.YellowGreen;
+            thedata.BDText.ForeColor = System.Drawing.Color.YellowGreen;
             message.BDText.ForeColor = System.Drawing.Color.YellowGreen;
             winer.TextSize = 128f;
             mouse.TextSize = 72f;
-            cheese.TextSize = 72f;
+            thedata.TextSize = 72f;
             message.TextSize = 48f;
             message.Text = "Escボタンで戻る";
             base.DesignContent();
@@ -70,11 +70,11 @@ namespace MouseTrash.Scene.Stage.UI
         {
             winer.Text = result["winer"];
             mouse.Text = result["mouse"];
-            cheese.Text = result["cheese"];
+            thedata.Text = result["thedata"];
             winer.Location = new Point(size.Width / 2 - winer.Size.Width / 2, 10);
             mouse.Location = new Point(size.Width / 2 - mouse.Size.Width / 2, 10 + winer.Location.Y + winer.Size.Height);
-            cheese.Location = new Point(size.Width / 2 - cheese.Size.Width / 2, 10 + mouse.Location.Y + mouse.Size.Height);
-            message.Location = new Point(size.Width / 2 - message.Size.Width / 2, 100 + cheese.Location.Y + cheese.Size.Height);
+            thedata.Location = new Point(size.Width / 2 - thedata.Size.Width / 2, 10 + mouse.Location.Y + mouse.Size.Height);
+            message.Location = new Point(size.Width / 2 - message.Size.Width / 2, 100 + thedata.Location.Y + thedata.Size.Height);
             Visible = true;
         }
     }

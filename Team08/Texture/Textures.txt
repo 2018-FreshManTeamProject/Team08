@@ -4,7 +4,7 @@
 <stagefield.png:0>
 <neko.png:0>
 <nezumi.png:0>
-<cheese.png:0>
+<thedata.png:0>
 <wall.png:0>
 <yajiru.png:0>
 <taskbar.png:0>
@@ -16,6 +16,7 @@
 <mousetrash_logo.png:0>
 <elasticitywall.png:0>
 <gameover.png:0>
+<panel01.png:0>
 
 マルチ画像
 <IG:1>

@@ -25,7 +25,7 @@ namespace MouseTrash.Scene.Stage.Stages
 
         public override void Initialize()
         {
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 10; i++)
             {
                 if (!stageObjs.ContainsKey("wall" + i.ToString()))
                 {
@@ -34,7 +34,7 @@ namespace MouseTrash.Scene.Stage.Stages
                     stageObjs["wall" + i.ToString()].LoadContent();
                 }
             }
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
                 if (!stageObjs.ContainsKey("elasticitywall" + i.ToString()))
                 {
@@ -43,7 +43,7 @@ namespace MouseTrash.Scene.Stage.Stages
                     stageObjs["elasticitywall" + i.ToString()].LoadContent();
                 }
             }
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
                 if (!stageObjs.ContainsKey("paralysiswall" + i.ToString()))
                 {

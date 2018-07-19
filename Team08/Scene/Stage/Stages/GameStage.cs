@@ -18,8 +18,8 @@ namespace MouseTrash.Scene.Stage.Stages
     public class GameStage : BaseStage
     {
         protected Random rnd = new Random();
-        public int cheeseNum = 20;
-        public int eatedCheese = 0;
+        public int thedataNum = 20;
+        public int eatedTheData = 0;
         public int mouseNum = 3;
         public int killedMouse = 0;
         public int mouseWinNum = 18;
@@ -35,7 +35,7 @@ namespace MouseTrash.Scene.Stage.Stages
         public override void Initialize()
         {
             startTime = 180;
-            eatedCheese = 0;
+            eatedTheData = 0;
             killedMouse = 0;
             mouseWin = false;
             catWin = false;
@@ -46,13 +46,13 @@ namespace MouseTrash.Scene.Stage.Stages
             int j = rnd.Next(4);
             stageObjs["player" + j.ToString()].Team = "antivirus";
 
-            for (int i = 0; i < cheeseNum; i++)
+            for (int i = 0; i < thedataNum; i++)
             {
-                if (!stageObjs.ContainsKey("cheese" + i.ToString()))
+                if (!stageObjs.ContainsKey("thedata" + i.ToString()))
                 {
-                    new Cheese(graphicsDevice, this, "cheese" + i.ToString());
-                    stageObjs["cheese" + i.ToString()].PreLoadContent();
-                    stageObjs["cheese" + i.ToString()].LoadContent();
+                    new TheData(graphicsDevice, this, "thedata" + i.ToString());
+                    stageObjs["thedata" + i.ToString()].PreLoadContent();
+                    stageObjs["thedata" + i.ToString()].LoadContent();
                 }
             }
             base.Initialize();
@@ -81,7 +81,7 @@ namespace MouseTrash.Scene.Stage.Stages
             }
             else
             {
-                if (eatedCheese >= mouseWinNum)
+                if (eatedTheData >= mouseWinNum)
                 {
                     mouseWin = true;
                 }

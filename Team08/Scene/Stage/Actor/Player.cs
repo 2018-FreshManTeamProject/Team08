@@ -153,10 +153,11 @@ namespace MouseTrash.Scene.Stage.Actor
                     iTIndex = 0;
                     imageTimeCounter = 0;
                 }
+                nowCharaSide = charaSide;
+                Image = charaImages[charaSide];
+                if (!IGGamePad.GetKeyState(player, Buttons.B))
+                    Size = Size.Parse(Image.Image.Size) / 2;
             }
-            nowCharaSide = charaSide;
-            Image = charaImages[charaSide];
-            Size = Size.Parse(Image.Image.Size) / 2;
         }
 
         public void FlipSpeed(float magn, bool fx, bool fy)
@@ -175,8 +176,12 @@ namespace MouseTrash.Scene.Stage.Actor
                 Vector2 ve = Vector2.Zero;
                 if (fx)
                     ve.X = -speedv.X * magn;
+                else
+                    ve.X = speedv.X;
                 if (fy)
                     ve.Y = -speedv.Y * magn;
+                else
+                    ve.Y = speedv.Y;
                 actionSpeed += ve;
                 speedv = Vector2.Zero;
             }
@@ -212,6 +217,27 @@ namespace MouseTrash.Scene.Stage.Actor
                 if (IGGamePad.GetKeyTrigger(player, Buttons.A) && PlayerState["paralysis"] <= 0)
                 {
                     Action();
+                }
+                if (Team == "antivirus")
+                {
+                    if (IGGamePad.GetKeyState(player, Buttons.B) && PlayerState["paralysis"] <= 0)
+                    {
+                        if (Render.Scale == Vector2.One / 2)
+                        {
+                            Size = Size.Parse(image.Image.Size) / 8;
+                            Render.Scale = Vector2.One / 8;
+                            actionMaxSpeed = -3;
+                        }
+                    }
+                    else
+                    {
+                        if (Render.Scale != Vector2.One / 2)
+                        {
+                            Size = Size.Parse(image.Image.Size) / 2;
+                            Render.Scale = Vector2.One / 2;
+                            actionMaxSpeed = 0;
+                        }
+                    }
                 }
                 if (speedv != Vector2.Zero)
                 {
@@ -362,7 +388,7 @@ namespace MouseTrash.Scene.Stage.Actor
                 {
                     if (Team == "mouse")
                     {
-                        if (tempSO[l] is Cheese)
+                        if (tempSO[l] is TheData)
                         {
                             Eat(tempSO[l]);
                         }
@@ -376,7 +402,7 @@ namespace MouseTrash.Scene.Stage.Actor
                     }
                     if (((GameStage)Stage).startTime > 0)
                     {
-                        if (tempSO[l] is Wall || tempSO[l] is Player)
+                        if (tempSO[l] is Wall || tempSO[l] is Player || tempSO[l] is ElasticityWall)
                         {
                             Initialize();
                             ((GameStage)Stage).startTime++;
@@ -389,28 +415,31 @@ namespace MouseTrash.Scene.Stage.Actor
 
         protected void Eat(StageObj stageObj)
         {
-            if (Team == "mouse" && life)
+            if (((GameStage)Stage).startTime <= 0)
             {
-                if (!((Cheese)stageObj).eaten)
+                if (Team == "mouse" && life)
                 {
-                    ((Cheese)stageObj).eaten = true;
-                    stageObj.Visible = false;
-                    ((GameStage)Stage).eatedCheese++;
-                    point++;
+                    if (!((TheData)stageObj).eaten)
+                    {
+                        ((TheData)stageObj).eaten = true;
+                        stageObj.Visible = false;
+                        ((GameStage)Stage).eatedTheData++;
+                        point++;
+                    }
                 }
-            }
-            else if (Team == "antivirus")
-            {
-                if (((Player)stageObj).life)
+                else if (Team == "antivirus")
                 {
-                    ((Player)stageObj).SetVibration(1, 1, 1000);
-                    ((Player)stageObj).actionSpeed = 10 * (speedv + actionSpeed);
-                    ((Player)stageObj).life = false;
-                    stageObj.Color = Color.Red;
-                    stageObj.CrimpGroup = "";
-                    stageObj.MovePriority = 6;
-                    if (((GameStage)Stage).startTime <= 0)
-                        ((GameStage)Stage).killedMouse++;
+                    if (((Player)stageObj).life)
+                    {
+                        ((Player)stageObj).SetVibration(1, 1, 1000);
+                        ((Player)stageObj).actionSpeed = 10 * (speedv + actionSpeed);
+                        ((Player)stageObj).life = false;
+                        stageObj.Color = Color.Red;
+                        stageObj.CrimpGroup = "";
+                        stageObj.MovePriority = 6;
+                        if (((GameStage)Stage).startTime <= 0)
+                            ((GameStage)Stage).killedMouse++;
+                    }
                 }
             }
         }
@@ -431,14 +460,14 @@ namespace MouseTrash.Scene.Stage.Actor
                 {
                     point--;
                     actionMaxSpeed = 5;
-                    TimeDownCount = 180;
+                    TimeDownCount = 120;
                 }
             }
             else if (Team == "antivirus")
             {
                 if (timeDownCount == 0)
                 {
-                    TimeDownCount = 600;
+                    TimeDownCount = 300;
                     Vector2 ve = speedv;
                     ve.Normalize();
                     actionSpeed = ve * 25;

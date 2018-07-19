@@ -67,7 +67,7 @@
     <Compile Include="Scene\Stage\UI\BackMenu.Designer.cs">
       <DependentUpon>BackMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scene\Stage\Cheese.cs" />
+    <Compile Include="Scene\Stage\TheData.cs" />
     <Compile Include="Scene\Stage\GameCamera.cs" />
     <Compile Include="Scene\Stage\MainScene.cs" />
     <Compile Include="Scene\Stage\Stages\GameStage.cs" />
@@ -86,6 +86,9 @@
       <DependentUpon>FileIcon.cs</DependentUpon>
     </Compile>
     <Compile Include="Scene\Title\UI\Hacking.cs" />
+    <Compile Include="Scene\Title\UI\Hacking.Designer.cs">
+      <DependentUpon>Hacking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene\Title\UI\IPlayerCursor.cs" />
     <Compile Include="Scene\Title\UI\PlayerCursor.cs" />
     <Compile Include="Scene\Title\UI\StartMenu.cs" />
@@ -271,7 +274,10 @@
     <Content Include="Texture\button\button_0019.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Texture\cheese.png">
+    <Content Include="Texture\panel01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\thedata.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\elasticitywall.png">

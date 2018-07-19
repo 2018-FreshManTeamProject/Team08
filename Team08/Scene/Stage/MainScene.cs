@@ -122,14 +122,14 @@ namespace MouseTrash.Scene.Stage
                 }
                 else if (runStage.mouseWin)
                 {
-                    result["winer"] = "勝者マウスたち";
+                    result["winer"] = "個人情報大量漏出";
                 }
                 else if (runStage.catWin)
                 {
-                    result["winer"] = "勝者ウィルス対策";
+                    result["winer"] = "ウィルス全滅";
                 }
-                result["mouse"] = string.Format($"マウス残り：{runStage.mouseNum - runStage.killedMouse}/{runStage.mouseNum}");
-                result["cheese"] = string.Format($"チーズ残り：{runStage.cheeseNum - runStage.eatedCheese}/{runStage.cheeseNum}");
+                result["mouse"] = string.Format($"ウィルス残り：{runStage.mouseNum - runStage.killedMouse}/{runStage.mouseNum}");
+                result["thedata"] = string.Format($"個人情報残り：{runStage.thedataNum - runStage.eatedTheData}/{runStage.thedataNum}");
                 gameOver.ShowResult(result);
             }
             if (!backMenu.Visible && !gameOver.Visible)

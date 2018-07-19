@@ -104,48 +104,51 @@ namespace MouseTrash.Scene.Title.UI
 
         public override void Update(GameTime gameTime)
         {
-            timedown--;
-            if (timedown <= 0)
+            if (((Hacking)parent).Start)
             {
-                Visible = !Visible;
-                timedown = 30;
-            }
-            if (IGGamePad.GetKeyTrigger(pad, Buttons.DPadUp))
-            {
-                Coo = new Point(Coo.X, Coo.Y - 1);
-            }
-            else if (IGGamePad.GetKeyTrigger(pad, Buttons.DPadDown))
-            {
-                Coo = new Point(Coo.X, Coo.Y + 1);
-            }
-            else if (IGGamePad.GetKeyTrigger(pad, Buttons.DPadLeft))
-            {
-                Coo = new Point(Coo.X - 1, Coo.Y);
-            }
-            else if (IGGamePad.GetKeyTrigger(pad, Buttons.DPadRight))
-            {
-                Coo = new Point(Coo.X + 1, Coo.Y);
-            }
-            if (player == "P0")
-            {
-                if (GameKeyboard.GetKeyTrigger(Keys.W))
+                timedown--;
+                if (timedown <= 0)
+                {
+                    Visible = !Visible;
+                    timedown = 30;
+                }
+                if (IGGamePad.GetKeyTrigger(pad, Buttons.DPadUp))
                 {
                     Coo = new Point(Coo.X, Coo.Y - 1);
                 }
-                else if (GameKeyboard.GetKeyTrigger(Keys.S))
+                else if (IGGamePad.GetKeyTrigger(pad, Buttons.DPadDown))
                 {
                     Coo = new Point(Coo.X, Coo.Y + 1);
                 }
-                else if (GameKeyboard.GetKeyTrigger(Keys.A))
+                else if (IGGamePad.GetKeyTrigger(pad, Buttons.DPadLeft))
                 {
                     Coo = new Point(Coo.X - 1, Coo.Y);
                 }
-                else if (GameKeyboard.GetKeyTrigger(Keys.D))
+                else if (IGGamePad.GetKeyTrigger(pad, Buttons.DPadRight))
                 {
                     Coo = new Point(Coo.X + 1, Coo.Y);
                 }
+                /*if (player == "P0")
+                {
+                    if (GameKeyboard.GetKeyTrigger(Keys.W))
+                    {
+                        Coo = new Point(Coo.X, Coo.Y - 1);
+                    }
+                    else if (GameKeyboard.GetKeyTrigger(Keys.S))
+                    {
+                        Coo = new Point(Coo.X, Coo.Y + 1);
+                    }
+                    else if (GameKeyboard.GetKeyTrigger(Keys.A))
+                    {
+                        Coo = new Point(Coo.X - 1, Coo.Y);
+                    }
+                    else if (GameKeyboard.GetKeyTrigger(Keys.D))
+                    {
+                        Coo = new Point(Coo.X + 1, Coo.Y);
+                    }
+                }*/
+                base.Update(gameTime);
             }
-            base.Update(gameTime);
         }
 
         /// <summary>
@@ -163,7 +166,7 @@ namespace MouseTrash.Scene.Title.UI
 
         public override void PreDraw(GameTime gameTime)
         {
-            if (!visible)
+            if (!visible && ((Hacking)parent).Start)
             {
                 AfterDraw(gameTime);
             }

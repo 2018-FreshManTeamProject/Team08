@@ -23,7 +23,7 @@ namespace MouseTrash.Scene.Stage
         private string team;
         private SImage mk;
         public Label message;
-        public Label action;
+        //public Label action;
         public GameCamera(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
 
@@ -32,7 +32,7 @@ namespace MouseTrash.Scene.Stage
         public override void PreLoadContent()
         {
             message = new Label(graphicsDevice, this);
-            action = new Label(graphicsDevice, this);
+            //action = new Label(graphicsDevice, this);
             base.PreLoadContent();
         }
 
@@ -42,9 +42,9 @@ namespace MouseTrash.Scene.Stage
             message.BackColor = Color.White * 0.0f;
             message.BDText.ForeColor = System.Drawing.Color.OrangeRed;
             message.TextSize = 24f;
-            action.TextSize = 24f;
+            /*action.TextSize = 24f;
             action.BackColor = Color.White * 0.0f;
-            action.BDText.ForeColor = System.Drawing.Color.Yellow;
+            action.BDText.ForeColor = System.Drawing.Color.Yellow;*/
 
             base.DesignContent();
         }
@@ -55,16 +55,17 @@ namespace MouseTrash.Scene.Stage
             lastTeam = "";
             team = "";
             message.Text = Name;
-            if (FocusStageObj.Team == "mouse")
-                action.Text = "Aボタン加速";
+            /*if (FocusStageObj.Team == "mouse")
+                action.Text = "Aボタン加速\r\n個人情報を\r\n集めよう";
             else if (FocusStageObj.Team == "antivirus")
-                action.Text = "Aボタンダッシュ";
-            action.Location = new Point(size.Width - action.Size.Width - 20, 20);
+                action.Text = "Aボタンダッシュ\r\nBボダン押し続け\r\n縮小する\r\nウィルスマウスを\r\n捕まえよう";
+            action.Location = new Point(size.Width - action.Size.Width - 20, 20);*/
             base.Initialize();
         }
 
         public override void LoadContent()
         {
+            message.Image = ImageManage.GetSImage("panel01.png");
             Image = ImageManage.GetSImage("mousetrash_logo.png");
             mk = ImageManage.GetSImage("yajiru.png");
             base.LoadContent();
@@ -102,7 +103,7 @@ namespace MouseTrash.Scene.Stage
                             }
                             else if (team == "mouse")
                             {
-                                if (Stage.stageObjs[l] is Cheese)
+                                if (Stage.stageObjs[l] is TheData)
                                 {
                                     if (!marks.Contains(l))
                                     {
@@ -124,18 +125,18 @@ namespace MouseTrash.Scene.Stage
                                 marks.Remove(l);
                             }
                         }
-                        message.Text = string.Format($"マウス残り{((GameStage)Stage).mouseNum - ((GameStage)Stage).killedMouse}匹\r\nスキルクールタイム：{((Player)FocusStageObj).TimeDownCount / 60}秒");
+                        message.Text = string.Format($"ウィルスマウス残り{((GameStage)Stage).mouseNum - ((GameStage)Stage).killedMouse}匹\r\nスキルクールタイム：{((Player)FocusStageObj).TimeDownCount / 60}秒");
                     }
                     else if (team == "mouse")
                     {
                         foreach (var l in marks.ToArray())
                         {
-                            if (((Cheese)Stage.stageObjs[l]).eaten)
+                            if (((TheData)Stage.stageObjs[l]).eaten)
                             {
                                 marks.Remove(l);
                             }
                         }
-                        message.Text = string.Format($"チーズ残り{((GameStage)Stage).cheeseNum - ((GameStage)Stage).eatedCheese}個\r\n加速残り：{((Player)FocusStageObj).TimeDownCount / 60}秒\r\nポイント：{((Player)FocusStageObj).Point}");
+                        message.Text = string.Format($"個人情報残り{((GameStage)Stage).thedataNum - ((GameStage)Stage).eatedTheData}個\r\n加速残り：{((Player)FocusStageObj).TimeDownCount / 60}秒\r\nポイント：{((Player)FocusStageObj).Point}");
                     }
                 }
             }

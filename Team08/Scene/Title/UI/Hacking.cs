@@ -12,13 +12,16 @@ using InfinityGame.Device;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
+using InfinityGame.Element;
 
 namespace MouseTrash.Scene.Title.UI
 {
-    public class Hacking : UIWindow, IPlayerCursor
+    public partial class Hacking : UIWindow, IPlayerCursor
     {
         private Label time;
-        private Label message;
+        private Label[] messages = new Label[9];
+        private bool start = false;
+        private AnimeButton ok;
         private Dictionary<string, PlayerCursor> players = new Dictionary<string, PlayerCursor>();
         private Dictionary<string, CharaIcon> charas = new Dictionary<string, CharaIcon>();
         private Dictionary<Point, string> charasDict = new Dictionary<Point, string>();
@@ -26,7 +29,7 @@ namespace MouseTrash.Scene.Title.UI
         public Dictionary<string, PlayerCursor> Players { get { return players; } }
         public Dictionary<string, CharaIcon> Charas { get { return charas; } }
         public Dictionary<Point, string> CharasDict { get { return charasDict; } }
-
+        public bool Start { get { return start; } }
 
         public Hacking(GraphicsDevice aGraphicsDevice, BaseDisplay parent) : base(aGraphicsDevice, parent)
         {
@@ -41,7 +44,23 @@ namespace MouseTrash.Scene.Title.UI
 
         public override void Initialize()
         {
+            start = false;
+            for (int i = 1; i < messages.Length; i++)
+            {
+                messages[i].Visible = true;
+            }
+            messages[0].Visible = false;
             Visible = false;
+            time.Visible = false;
+            ok.Visible = true;
+            foreach (var l in players)
+            {
+                l.Value.Visible = false;
+            }
+            foreach (var l in charas)
+            {
+                l.Value.Visible = false;
+            }
             timedown = 300;
             if (!sounds["hacking"].GetState(SoundState.Stopped))
                 sounds["hacking"].Stop();
@@ -53,10 +72,37 @@ namespace MouseTrash.Scene.Title.UI
             Size = parent.Size / 2;
             Location = ((parent.Size - size) / 2).ToPoint();
             time = new Label(graphicsDevice, this);
-            message = new Label(graphicsDevice, this);
-            message.TextSize = 24f;
-            message.BDText.ForeColor = System.Drawing.Color.Yellow;
-            message.Text = GetText("Help01");
+            for (int i = 0; i < messages.Length; i++)
+            {
+                messages[i] = new Label(graphicsDevice, this);
+            }
+            ok = new AnimeButton(graphicsDevice, this);
+            ok.Text = GetText("OK");
+            ok.Size = new Size(120, 40) * 2;
+            ok.Location = new Point((size.Width - ok.Size.Width) / 2, size.Height - ok.Size.Height - 20);
+            for (int i = 0; i < messages.Length; i++)
+            {
+                switch (i)
+                {
+                    case 1:
+                    case 2:
+                        messages[i].TextSize = 36f;
+                        break;
+                    case 3:
+                    case 4:
+                        messages[i].TextSize = 32f;
+                        break;
+                    default:
+                        messages[i].TextSize = 24f;
+                        break;
+                }
+                messages[i].Text = GetText("Help" + i);
+            }
+            messages[0].BDText.ForeColor = System.Drawing.Color.Yellow;
+            messages[1].BDText.ForeColor = System.Drawing.Color.Red;
+            messages[2].BDText.ForeColor = System.Drawing.Color.FromArgb(220, 220, 80);
+            messages[3].BDText.ForeColor = System.Drawing.Color.LawnGreen;
+            messages[4].BDText.ForeColor = System.Drawing.Color.Yellow;
             time.TextSize = 16f;
             time.BDText.ForeColor = System.Drawing.Color.Yellow;
             for (int i = 1; i < 9; i++)
@@ -67,14 +113,25 @@ namespace MouseTrash.Scene.Title.UI
             {
                 new PlayerCursor("P" + i.ToString(), graphicsDevice, this);
             }
+            EventRegist();
             base.PreLoadContent();
-
         }
 
         public override void LoadContent()
         {
+            ok.Image = ImageManage.GetSImage("button01");
+            messages[0].Location = Alignment.GetMXFAlignment(ContentAlignment.MiddleRight, size, messages[0].Size);
+            messages[1].Location = new Point(0, TitleSize + 50);
+            messages[2].Location = new Point(size.Width - messages[2].Size.Width, TitleSize + 50);
+            messages[3].Location = new Point((size.Width - messages[3].Size.Width) / 2, messages[2].Location.Y + messages[2].Size.Height + 10);
+            messages[5].Location = new Point(0, messages[3].Location.Y + messages[3].Size.Height + 10);
+            messages[6].Location = new Point(size.Width - messages[6].Size.Width, messages[3].Location.Y + messages[3].Size.Height + 10);
+            messages[4].Location = new Point((size.Width - messages[4].Size.Width) / 2, messages[6].Location.Y + messages[6].Size.Height + 10);
+            messages[7].Location = new Point(0, messages[4].Location.Y + messages[4].Size.Height + 10);
+            messages[8].Location = new Point(size.Width - messages[8].Size.Width, messages[4].Location.Y + messages[4].Size.Height + 10);
+
+
             time.Location = new Point(border_Left.Size.Width + 10, border_Top.Size.Height + 10);
-            message.Location = new Point(Size.Width - message.Size.Width, (Size.Height - message.Size.Height) / 2);
             {
                 int i = 0;
                 foreach (var l in charas)
@@ -93,32 +150,57 @@ namespace MouseTrash.Scene.Title.UI
         {
             if (Visible)
             {
-                if (parent.gameWindowsIDs[parent.gameWindowsIDs.Count - 1] != UIID)
+                if (start)
                 {
-                    SetFocus();
-                }
-                if (!sounds["hacking"].GetState(SoundState.Playing))
-                {
-                    sounds["hacking"].Play();
-                }
-                if (timedown > 0)
-                    timedown--;
-                if (timedown <= 0)
-                {
-                    if (GameRun.ActiveScene is TitleScene)
+                    if (parent.gameWindowsIDs[parent.gameWindowsIDs.Count - 1] != UIID)
                     {
-                        foreach (var l in Players)
-                        {
-                            l.Value.SetChara();
-                        }
-                        ((BaseScene)parent).IsRun = false;
-                        ((BaseScene)parent).GameRun.scenes["stagescene"].IsRun = true;
-                        parent.Initialize();
+                        SetFocus();
                     }
+                    if (!sounds["hacking"].GetState(SoundState.Playing))
+                    {
+                        sounds["hacking"].Play();
+                    }
+                    if (timedown > 0)
+                        timedown--;
+                    if (timedown <= 0)
+                    {
+                        if (GameRun.ActiveScene is TitleScene)
+                        {
+                            foreach (var l in Players)
+                            {
+                                l.Value.SetChara();
+                            }
+                            ((BaseScene)parent).IsRun = false;
+                            ((BaseScene)parent).GameRun.scenes["stagescene"].IsRun = true;
+                            parent.Initialize();
+                        }
+                    }
+                    time.Text = GetText("TimeDown") + (timedown / 60f).ToString();
                 }
-                time.Text = GetText("TimeDown") + (timedown / 60f).ToString();
                 base.Update(gameTime);
             }
+
+        }
+
+        private void OnStart(object sender, EventArgs e)
+        {
+            for (int i = 1; i < messages.Length; i++)
+            {
+                messages[i].Visible = false;
+            }
+            messages[0].Visible = true;
+            Visible = true;
+            time.Visible = true;
+            ok.Visible = false;
+            foreach (var l in players)
+            {
+                l.Value.Visible = true;
+            }
+            foreach (var l in charas)
+            {
+                l.Value.Visible = true;
+            }
+            start = true;
         }
     }
 }

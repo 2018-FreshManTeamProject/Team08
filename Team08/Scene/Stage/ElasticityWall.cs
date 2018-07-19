@@ -64,7 +64,7 @@ namespace MouseTrash.Scene.Stage
                         if (tempSO[l].Team == "antivirus")
                             ((Player)tempSO[l]).FlipSpeed(4, fx, fy);
                         else if (tempSO[l].Team == "mouse")
-                            ((Player)tempSO[l]).FlipSpeed(20, fx, fy);
+                            ((Player)tempSO[l]).FlipSpeed(10, fx, fy);
                     }
                 }
             }

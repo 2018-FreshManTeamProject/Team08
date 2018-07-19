@@ -14,11 +14,11 @@ using InfinityGame.Stage.StageObject;
 
 namespace MouseTrash.Scene.Stage
 {
-    public class Cheese : Block
+    public class TheData : Block
     {
         public bool eaten = false;
         Random rnd = new Random();
-        public Cheese(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
+        public TheData(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
             IsCrimp = false;
         }
@@ -27,12 +27,12 @@ namespace MouseTrash.Scene.Stage
         {
             eaten = false;
             Visible = true;
-            Image = ImageManage.GetSImage("cheese.png");
+            Image = ImageManage.GetSImage("thedata.png");
             Size = Size.Parse(Image.Image.Size);
             Coordinate = new Vector2(rnd.Next(Stage.EndOfLeftUp.X, Stage.EndOfRightDown.X - size.Width), rnd.Next(Stage.EndOfLeftUp.Y, Stage.EndOfRightDown.Y - size.Height));
             if (eaten)
             {
-                ((GameStage)Stage).eatedCheese--;
+                ((GameStage)Stage).eatedTheData--;
                 Initialize();
                 return;
             }
@@ -43,7 +43,7 @@ namespace MouseTrash.Scene.Stage
         {
             foreach (var l in tempSO)
             {
-                if (l.Value is Cheese || l.Value is Wall || l.Value is ElasticityWall)
+                if (l.Value is TheData || l.Value is Wall || l.Value is ElasticityWall)
                 {
                     Initialize();
                     break;

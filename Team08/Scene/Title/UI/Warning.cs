@@ -92,7 +92,7 @@ namespace MouseTrash.Scene.Title.UI
                     {
                         sounds["warning02"].Play();
                     }
-                    if (timedown > 0)
+                    if (timedown > 570)
                         timedown--;
                     if (timedown == 590)
                     {
@@ -107,12 +107,13 @@ namespace MouseTrash.Scene.Title.UI
                     }
                     if (timedown == 570)
                     {
-                        Location = new Point(rnd.Next(0, parent.Size.Width - Size.Width), rnd.Next(0, parent.Size.Height - Size.Height));
-                        if (!((TitleScene)parent).Hacking.Visible)
+                        Location = Point.Zero;
                         {
                             ((TitleScene)parent).Hacking.Visible = true;
                         }
                     }
+                    if (timedown <= 570 && ((TitleScene)parent).Hacking.Start)
+                        timedown--;
                     if ((timedown > 300 && timedown % 60 == 0) ||
                         (timedown > 150 && timedown <= 300 && timedown % 30 == 0) ||
                         (timedown > 75 && timedown <= 150 && timedown % 15 == 0) ||
