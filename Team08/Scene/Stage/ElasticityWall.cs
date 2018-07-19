@@ -21,11 +21,15 @@ namespace MouseTrash.Scene.Stage
         protected int vibrationTime = 500;
         public ElasticityWall(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
-            
+
         }
         public override void Initialize()
         {
+            float i = rnd.Next(3, 27) / 10f;
+            float j = 3 - i;
             Size = Size.Parse(Image.Image.Size);
+            Size = new Size((int)(Size.Width * i), (int)(Size.Height * j));
+            Render.Scale = new Vector2(i, j);
             Coordinate = new Vector2(rnd.Next(Stage.EndOfLeftUp.X, Stage.EndOfRightDown.X - size.Width), rnd.Next(Stage.EndOfLeftUp.Y, Stage.EndOfRightDown.Y - size.Height));
             base.Initialize();
         }

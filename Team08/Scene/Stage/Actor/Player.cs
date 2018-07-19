@@ -226,6 +226,7 @@ namespace MouseTrash.Scene.Stage.Actor
                         {
                             Size = Size.Parse(image.Image.Size) / 8;
                             Render.Scale = Vector2.One / 8;
+                            Coordinate += (Size.Parse(image.Image.Size) / 4).ToVector2();
                             actionMaxSpeed = -3;
                         }
                     }
@@ -234,6 +235,7 @@ namespace MouseTrash.Scene.Stage.Actor
                         if (Render.Scale != Vector2.One / 2)
                         {
                             Size = Size.Parse(image.Image.Size) / 2;
+                            Coordinate -= (Size.Parse(image.Image.Size) / 4).ToVector2();
                             Render.Scale = Vector2.One / 2;
                             actionMaxSpeed = 0;
                         }
