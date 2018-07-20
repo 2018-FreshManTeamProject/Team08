@@ -157,8 +157,8 @@ namespace MouseTrash.Scene.Title.UI
         public void SetChara()
         {
             char index = player[1];
-            string name = "player" + index;
-            if (gameStage.stageObjs[name].Team == "mouse")
+            string name = "mouse" + index;
+            if (gameStage.stageObjs.ContainsKey(name) && gameStage.stageObjs[name].Team == "mouse")
             {
                 ((Player)gameStage.stageObjs[name]).Chara = focusChara.Chara;
             }

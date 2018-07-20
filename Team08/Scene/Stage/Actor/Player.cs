@@ -19,7 +19,7 @@ using MouseTrash.Scene.Stage.Stages;
 
 namespace MouseTrash.Scene.Stage.Actor
 {
-    public class Player : Character
+    public abstract class Player : Character
     {
 
         protected bool life = true;
@@ -28,19 +28,19 @@ namespace MouseTrash.Scene.Stage.Actor
         protected int point = 0;
         private int timeDownCount = 0;
         public PlayerIndex player;
-        private float power = 0;//作用力
-        private float mass = 0;//質量
-        private float accel = 0;//加速度
-        private float magnification = 1;//加速度倍率
+        protected float power = 0;//作用力
+        protected float mass = 0;//質量
+        protected float accel = 0;//加速度
+        protected float magnification = 1;//加速度倍率
         protected Vector2 speedv = Vector2.Zero;//速度
         private Vector2 direction = Vector2.Zero;
-        private float frictional = 0.01f;//摩擦力
-        private float maxSpeed = 0;//最大速度
-        private float actionMaxSpeed = 0;
-        private Vector2 actionSpeed = Vector2.Zero;
-        private string chara;
+        protected float frictional = 0.01f;//摩擦力
+        protected float maxSpeed = 0;//最大速度
+        protected float actionMaxSpeed = 0;
+        protected Vector2 actionSpeed = Vector2.Zero;
+        protected string chara;
         private string nowCharaSide;
-        private Dictionary<string, SImage> charaImages = new Dictionary<string, SImage>();
+        protected Dictionary<string, SImage> charaImages = new Dictionary<string, SImage>();
 
 
         /// <summary>
@@ -48,9 +48,10 @@ namespace MouseTrash.Scene.Stage.Actor
         /// </summary>
         public Dictionary<string, int> PlayerState = new Dictionary<string, int>();
         public int TimeDownCount { get { return timeDownCount; } set { timeDownCount = value; if (timeDownCount == 0) TimeDownAction(); } }
-        public bool Life { get { return life; } }
+        public bool Life { get { return life; } set { life = value; } }
         public int Point { get { return point; } }
         public string Chara { get { return chara; } set { chara = value; } }
+        public Vector2 ActionSpeed { get { return actionSpeed; } set { actionSpeed = value; } }
         public Player(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
             DrawOrder = 5;
@@ -68,24 +69,7 @@ namespace MouseTrash.Scene.Stage.Actor
             nowCharaSide = "";
             iTIndex = 0;
             imageTimeCounter = 0;
-            MovePriority = 5;
             CrimpGroup = Team;
-            if (Team == "antivirus")
-            {
-                //変更
-                MovePriority = 4;
-                chara = "gomi";
-                charaImages[chara + "_frontside"] = ImageManage.GetSImage(chara + "_frontside");
-                charaImages[chara + "_backside"] = ImageManage.GetSImage(chara + "_backside");
-                charaImages[chara + "_leftside"] = ImageManage.GetSImage(chara + "_leftside");
-                charaImages[chara + "_rightside"] = ImageManage.GetSImage(chara + "_rightside");
-                SetChara(chara + "_frontside");
-            }
-            else if (Team == "mouse")
-            {
-                Image = ImageManage.GetSImage("nezumi.png");
-                Size = Size.Parse(Image.Image.Size) / 2;
-            }
             Coordinate = new Vector2(rnd.Next(Stage.EndOfLeftUp.X, Stage.EndOfRightDown.X), rnd.Next(Stage.EndOfLeftUp.Y, Stage.EndOfRightDown.Y));
             Color = Color.White;
             IsCrimp = true;
@@ -136,7 +120,7 @@ namespace MouseTrash.Scene.Stage.Actor
             GamePad.SetVibration(player, 0, 0);
         }
 
-        private void SetChara(string charaSide)
+        protected void SetChara(string charaSide)
         {
             if (nowCharaSide != charaSide)
             {
@@ -187,23 +171,7 @@ namespace MouseTrash.Scene.Stage.Actor
             }
         }
 
-        private void SetPlayer()
-        {
-            if (Team == "antivirus")
-            {
-                power = 1;
-                mass = 2;
-                frictional = 0.02f;
-                maxSpeed = 7;
-            }
-            else if (Team == "mouse")
-            {
-                power = 0.2f;
-                mass = 0.1f;
-                frictional = 0.1f;
-                maxSpeed = 5;
-            }
-        }
+        protected abstract void SetPlayer();
 
         public void ClearSpeedv()
         {
@@ -218,29 +186,7 @@ namespace MouseTrash.Scene.Stage.Actor
                 {
                     Action();
                 }
-                if (Team == "antivirus")
-                {
-                    if (IGGamePad.GetKeyState(player, Buttons.B) && PlayerState["paralysis"] <= 0)
-                    {
-                        if (Render.Scale == Vector2.One / 2)
-                        {
-                            Size = Size.Parse(image.Image.Size) / 8;
-                            Render.Scale = Vector2.One / 8;
-                            Coordinate += (Size.Parse(image.Image.Size) / 4).ToVector2();
-                            actionMaxSpeed = -3;
-                        }
-                    }
-                    else
-                    {
-                        if (Render.Scale != Vector2.One / 2)
-                        {
-                            Size = Size.Parse(image.Image.Size) / 2;
-                            Coordinate -= (Size.Parse(image.Image.Size) / 4).ToVector2();
-                            Render.Scale = Vector2.One / 2;
-                            actionMaxSpeed = 0;
-                        }
-                    }
-                }
+                ActionB();
                 if (speedv != Vector2.Zero)
                 {
                     Vector2 t = speedv;
@@ -284,16 +230,7 @@ namespace MouseTrash.Scene.Stage.Actor
                     speedv = Vector2.Zero;
                 if (PlayerState["paralysis"] <= 0)
                 {
-                    if (Team == "antivirus")
-                    {
-                        if ((speedv + actionSpeed).Length() > 7)
-                            imageTimeCounter++;
-                    }
-                    else if (Team == "mouse")
-                    {
-                        if ((speedv + actionSpeed).Length() > 5)
-                            imageTimeCounter++;
-                    }
+                    AccelAnime();
                     if (speedv == Vector2.Zero && actionSpeed == Vector2.Zero)
                     {
                         ImageRunState = 0;
@@ -335,35 +272,22 @@ namespace MouseTrash.Scene.Stage.Actor
                 }
                 base.PreUpdate(gameTime);
             }
-            else
-            {
-                if (Team == "mouse")
-                {
-                    var tempdict = Detector.Circel(this, 500);
-                    foreach (var l in tempdict)
-                    {
-                        if (l.Value.Team == "antivirus")
-                        {
-                            ((GameStage)Stage).startTime++;
-                            Initialize();
-                            break;
-                        }
-                    }
-                }
-            }
         }
+
+        protected abstract void AccelAnime();
+        protected virtual void ActionB() { }
 
         public override void AddVelocity(Vector2 velocity, VeloParam veloParam)
         {
             if (veloParam == VeloParam.Run)
             {
-                if (Team == "antivirus")
+                if (Team == "antivirus")//グラフィックが追加されたらこの分岐条件を削除
                     RunChara(velocity);
             }
             base.AddVelocity(velocity, veloParam);
         }
 
-        private void RunChara(Vector2 ve)
+        protected void RunChara(Vector2 ve)
         {
             if (Math.Abs(ve.Y) >= Math.Abs(ve.X))
             {
@@ -388,93 +312,24 @@ namespace MouseTrash.Scene.Stage.Actor
             {
                 if (tempSO.ContainsKey(l))
                 {
-                    if (Team == "mouse")
+                    if (((GameStage)Stage).startTime <= 0)
                     {
-                        if (tempSO[l] is TheData)
-                        {
-                            Eat(tempSO[l]);
-                        }
+                        Eat(tempSO[l]);
                     }
-                    else if (Team == "antivirus")
+                    else if (tempSO[l] is Wall || tempSO[l] is Player || tempSO[l] is ElasticityWall)
                     {
-                        if (tempSO[l].Team == "mouse")
-                        {
-                            Eat(tempSO[l]);
-                        }
-                    }
-                    if (((GameStage)Stage).startTime > 0)
-                    {
-                        if (tempSO[l] is Wall || tempSO[l] is Player || tempSO[l] is ElasticityWall)
-                        {
-                            Initialize();
-                            ((GameStage)Stage).startTime++;
-                        }
+                        Initialize();
+                        ((GameStage)Stage).startTime++;
                     }
                 }
             }
             base.CalAllColl(tempSO);
         }
 
-        protected void Eat(StageObj stageObj)
-        {
-            if (((GameStage)Stage).startTime <= 0)
-            {
-                if (Team == "mouse" && life)
-                {
-                    if (!((TheData)stageObj).eaten)
-                    {
-                        ((TheData)stageObj).eaten = true;
-                        stageObj.Visible = false;
-                        ((GameStage)Stage).eatedTheData++;
-                        point++;
-                    }
-                }
-                else if (Team == "antivirus")
-                {
-                    if (((Player)stageObj).life)
-                    {
-                        ((Player)stageObj).SetVibration(1, 1, 1000);
-                        ((Player)stageObj).actionSpeed = 10 * (speedv + actionSpeed);
-                        ((Player)stageObj).life = false;
-                        stageObj.Color = Color.Red;
-                        stageObj.CrimpGroup = "";
-                        stageObj.MovePriority = 6;
-                        if (((GameStage)Stage).startTime <= 0)
-                            ((GameStage)Stage).killedMouse++;
-                    }
-                }
-            }
-        }
+        protected abstract void Eat(StageObj stageObj);
 
-        private void TimeDownAction()
-        {
-            if (Team == "mouse")
-            {
-                actionMaxSpeed = 0;
-            }
-        }
+        protected virtual void TimeDownAction() { }
 
-        protected void Action()
-        {
-            if (Team == "mouse")
-            {
-                if (point > 0)
-                {
-                    point--;
-                    actionMaxSpeed = 5;
-                    TimeDownCount = 120;
-                }
-            }
-            else if (Team == "antivirus")
-            {
-                if (timeDownCount == 0)
-                {
-                    TimeDownCount = 300;
-                    Vector2 ve = speedv;
-                    ve.Normalize();
-                    actionSpeed = ve * 25;
-                }
-            }
-        }
+        protected abstract void Action();
     }
 }

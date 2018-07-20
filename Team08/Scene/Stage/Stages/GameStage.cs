@@ -39,13 +39,6 @@ namespace MouseTrash.Scene.Stage.Stages
             killedMouse = 0;
             mouseWin = false;
             catWin = false;
-            for (int i = 0; i < 4; i++)
-            {
-                stageObjs["player" + i.ToString()].Team = "mouse";
-            }
-            int j = rnd.Next(4);
-            stageObjs["player" + j.ToString()].Team = "antivirus";
-
             for (int i = 0; i < thedataNum; i++)
             {
                 if (!stageObjs.ContainsKey("thedata" + i.ToString()))
@@ -55,16 +48,28 @@ namespace MouseTrash.Scene.Stage.Stages
                     stageObjs["thedata" + i.ToString()].LoadContent();
                 }
             }
+            int j = rnd.Next(4);
+            for (int i = 0; i < 3; i++)
+            {
+                if (i != j)
+                    ((Player)stageObjs["mouse" + i.ToString()]).player = (PlayerIndex)i;
+                else
+                    ((Player)stageObjs["mouse" + i.ToString()]).player = (PlayerIndex)3;
+            }
+            ((Player)stageObjs["antivirus"]).player = (PlayerIndex)j;
             base.Initialize();
         }
 
         public override void PreLoadContent()
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
-                new Player(graphicsDevice, this, "player" + i.ToString());
-                ((Player)stageObjs["player" + i.ToString()]).player = (PlayerIndex)i;
+                new Mouse(graphicsDevice, this, "mouse" + i.ToString());
+                stageObjs["mouse" + i.ToString()].Team = "mouse";
+                //((Player)stageObjs["player" + i.ToString()]).player = (PlayerIndex)i;
             }
+            new Antivirus(graphicsDevice, this, "antivirus");
+            stageObjs["antivirus"].Team = "antivirus";
             base.PreLoadContent();
         }
 

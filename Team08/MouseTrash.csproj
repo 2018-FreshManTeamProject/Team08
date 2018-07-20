@@ -60,6 +60,8 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene\Stage\Actor\Antivirus.cs" />
+    <Compile Include="Scene\Stage\Actor\Mouse.cs" />
     <Compile Include="Scene\Stage\Actor\Player.cs" />
     <Compile Include="Scene\Stage\ElasticityWall.cs" />
     <Compile Include="Scene\Stage\ParalysisWall.cs" />

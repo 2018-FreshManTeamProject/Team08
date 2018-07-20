@@ -16,6 +16,7 @@ using InfinityGame.Device.KeyboardManage;
 using InfinityGame.UI.UIContent;
 using MouseTrash.Scene.Stage.Stages;
 using MouseTrash.Scene.Stage.UI;
+using MouseTrash.Scene.Stage.Actor;
 
 namespace MouseTrash.Scene.Stage
 {
@@ -33,6 +34,21 @@ namespace MouseTrash.Scene.Stage
         public override void Initialize()
         {
             start.Visible = true;
+            for (int i = 0; i < 4; i++)
+            {
+                if ((int)((Player)stageCameras["C" + i.ToString()].Stage.stageObjs["antivirus"]).player == i)
+                {
+                    stageCameras["C" + i.ToString()].FocusStageObj = stageCameras["C" + i.ToString()].Stage.stageObjs["antivirus"];
+                    continue;
+                }
+                for (int j = 0; j < 3; j++)
+                {
+                    if ((int)((Player)stageCameras["C" + i.ToString()].Stage.stageObjs["mouse" + j.ToString()]).player == i)
+                    {
+                        stageCameras["C" + i.ToString()].FocusStageObj = stageCameras["C" + i.ToString()].Stage.stageObjs["mouse" + j.ToString()];
+                    }
+                }
+            }
             base.Initialize();
         }
 
@@ -87,10 +103,7 @@ namespace MouseTrash.Scene.Stage
         public override void LoadContent()
         {
             Image = ImageManage.GetSImage("stagescene.png");
-            stageCameras["C0"].FocusStageObj = stageCameras["C0"].Stage.stageObjs["player0"];
-            stageCameras["C1"].FocusStageObj = stageCameras["C1"].Stage.stageObjs["player1"];
-            stageCameras["C2"].FocusStageObj = stageCameras["C2"].Stage.stageObjs["player2"];
-            stageCameras["C3"].FocusStageObj = stageCameras["C3"].Stage.stageObjs["player3"];
+            
             base.LoadContent();
         }
 
