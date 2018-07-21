@@ -23,7 +23,7 @@ namespace MouseTrash.Scene.Stage
         {
             foreach(var l in tempSO)
             {
-                if (l.Value is Player)
+                if (l.Value is Player && ((Player)l.Value).Life)
                 {
                     ((Player)l.Value).PlayerState["paralysis"] = 60;
                 }

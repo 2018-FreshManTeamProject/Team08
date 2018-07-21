@@ -32,6 +32,12 @@ namespace MouseTrash.Scene.Stage.Actor
             base.Initialize();
         }
 
+        public override void LoadContent()
+        {
+            sounds["dush"] = SoundManage.GetSound("dush.wav");
+            base.LoadContent();
+        }
+
         protected override void SetPlayer()
         {
             power = 1;
@@ -73,7 +79,7 @@ namespace MouseTrash.Scene.Stage.Actor
 
         protected override void Eat(StageObj stageObj)
         {
-            if (((Player)stageObj).Life)
+            if (stageObj is Mouse && ((Player)stageObj).Life)
             {
                 ((Player)stageObj).SetVibration(1, 1, 1000);
                 ((Player)stageObj).ActionSpeed = 10 * (speedv + actionSpeed);
@@ -89,6 +95,7 @@ namespace MouseTrash.Scene.Stage.Actor
         {
             if (TimeDownCount == 0)
             {
+                sounds["dush"].Play();
                 TimeDownCount = 300;
                 Vector2 ve = speedv;
                 ve.Normalize();

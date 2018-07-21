@@ -72,6 +72,7 @@ namespace MouseTrash.Scene.Stage.UI
             /*closeButton.BDText.ForeColor = System.Drawing.Color.Yellow;
             closeButton.EnterColor = Color.Blue;
             closeButton.NormalColor = Color.White * 0.0f;*/
+            sounds["button"] = SoundManage.GetSound("button.wav");
             base.LoadContent();
         }
 
@@ -109,11 +110,13 @@ namespace MouseTrash.Scene.Stage.UI
 
         public void Back(object sender, EventArgs e)
         {
+            SoundPlay("button");
             Visible = false;
         }
 
         public void ToTitle(object sender, EventArgs e)
         {
+            SoundPlay("button");
             ((BaseScene)parent).IsRun = false;
             ((BaseScene)parent).GameRun.scenes["title"].IsRun = true;
             parent.Initialize();
@@ -121,13 +124,21 @@ namespace MouseTrash.Scene.Stage.UI
 
         public void ReSet(object sender, EventArgs e)
         {
+            SoundPlay("button");
             parent.Initialize();
         }
 
         public void Exit(object sender, EventArgs e)
         {
+            SoundPlay("button");
             ToTitle(sender, e);
             ((TitleScene)((BaseScene)parent).GameRun.scenes["title"]).Shutdown();
+        }
+
+        private void SoundPlay(string sdnm)
+        {
+            sounds[sdnm].Stop();
+            sounds[sdnm].Play();
         }
     }
 }

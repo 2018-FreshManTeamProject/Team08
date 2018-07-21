@@ -5,3 +5,8 @@
 <logout.wav:0>
 <warning01.wav:0>
 <warning02.wav:0>
+<antiviruswin.wav:0>
+<button.wav:0>
+<dush.wav:0>
+<elasticitywall.wav:0>
+<viruswin.wav:0>

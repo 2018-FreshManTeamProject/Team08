@@ -208,9 +208,13 @@ namespace MouseTrash.Scene.Stage.Actor
                 if (life)
                 {
                     direction = IGGamePad.GetLeftVelocity(player);
-                    /*if (Name == "player0")
+                    /*if (Name == "antivirus")
                     {
                         direction = GameKeyboard.GetVelocity(IGConfig.PlayerKeys);
+                    }
+                    if (Name == "mouse1")
+                    {
+                        direction = GameKeyboard.GetVelocity(IGConfig.CameraKeys);
                     }*/
                     if (direction != Vector2.Zero)
                     {

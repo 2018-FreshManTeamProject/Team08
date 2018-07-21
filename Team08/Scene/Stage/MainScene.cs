@@ -103,7 +103,8 @@ namespace MouseTrash.Scene.Stage
         public override void LoadContent()
         {
             Image = ImageManage.GetSImage("stagescene.png");
-            
+            sounds["antiviruswin"] = SoundManage.GetSound("antiviruswin.wav");
+            sounds["viruswin"] = SoundManage.GetSound("viruswin.wav");
             base.LoadContent();
         }
 
@@ -135,10 +136,12 @@ namespace MouseTrash.Scene.Stage
                 }
                 else if (runStage.mouseWin)
                 {
+                    sounds["viruswin"].Play();
                     result["winer"] = "個人情報大量漏出";
                 }
                 else if (runStage.catWin)
                 {
+                    sounds["antiviruswin"].Play();
                     result["winer"] = "ウィルス全滅";
                 }
                 result["mouse"] = string.Format($"ウィルス残り：{runStage.mouseNum - runStage.killedMouse}/{runStage.mouseNum}");

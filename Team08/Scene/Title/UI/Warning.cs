@@ -74,6 +74,7 @@ namespace MouseTrash.Scene.Title.UI
             sounds["warning01"] = SoundManage.GetSound("warning01.wav");
             sounds["warning02"] = SoundManage.GetSound("warning02.wav");
             sounds["warning02"].SetSELoopPlay(true);
+            sounds["button"] = SoundManage.GetSound("button.wav");
             base.LoadContent();
         }
 
@@ -129,11 +130,13 @@ namespace MouseTrash.Scene.Title.UI
 
         private void OK(object sender, EventArgs e)
         {
+            SoundPlay("button");
             onHacking = true;
         }
 
         private void Cancel(object sender, EventArgs e)
         {
+            SoundPlay("button");
             Close();
         }
 
@@ -148,6 +151,12 @@ namespace MouseTrash.Scene.Title.UI
         {
             if (!onHacking)
                 base.SetFocus();
+        }
+
+        private void SoundPlay(string sdnm)
+        {
+            sounds[sdnm].Stop();
+            sounds[sdnm].Play();
         }
     }
 }

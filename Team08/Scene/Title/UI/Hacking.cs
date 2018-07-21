@@ -37,7 +37,7 @@ namespace MouseTrash.Scene.Title.UI
             Text = GetText("Hacking");
             BDText.ForeColor = System.Drawing.Color.Yellow;
             BorderColor = Color.DarkRed;
-            backColor = Color.PaleVioletRed;
+            backColor = new Color(255, 150, 150);
             CanClose = false;
             CanMove = false;
         }
@@ -143,6 +143,7 @@ namespace MouseTrash.Scene.Title.UI
             }
             sounds["hacking"] = SoundManage.GetSound("hacking.wav");
             sounds["hacking"].SetSELoopPlay(true);
+            sounds["button"] = SoundManage.GetSound("button.wav");
             base.LoadContent();
         }
 
@@ -184,6 +185,7 @@ namespace MouseTrash.Scene.Title.UI
 
         private void OnStart(object sender, EventArgs e)
         {
+            SoundPlay("button");
             for (int i = 1; i < messages.Length; i++)
             {
                 messages[i].Visible = false;
@@ -201,6 +203,12 @@ namespace MouseTrash.Scene.Title.UI
                 l.Value.Visible = true;
             }
             start = true;
+        }
+
+        private void SoundPlay(string sdnm)
+        {
+            sounds[sdnm].Stop();
+            sounds[sdnm].Play();
         }
     }
 }

@@ -10,6 +10,7 @@ using InfinityGame.Stage.StageObject.Block;
 using InfinityGame.Element;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 using MouseTrash.Scene.Stage.Actor;
 
@@ -37,6 +38,7 @@ namespace MouseTrash.Scene.Stage
         public override void LoadContent()
         {
             Image = ImageManage.GetSImage("elasticitywall.png");
+            sounds["elasticitywall"] = SoundManage.GetSound("elasticitywall.wav");
             base.LoadContent();
         }
 
@@ -52,8 +54,10 @@ namespace MouseTrash.Scene.Stage
             {
                 if (tempSO.ContainsKey(l))
                 {
-                    if (tempSO[l] is Player)
+                    if (tempSO[l] is Player && ((Player)tempSO[l]).Life)
                     {
+                        sounds["elasticitywall"].Stop();
+                        sounds["elasticitywall"].Play();
                         bool fx = false;
                         bool fy = false;
                         if (tempSO[l].NewSpace.Center.X < Coordinate.X || tempSO[l].NewSpace.Center.X > Coordinate.X + size.Width)
