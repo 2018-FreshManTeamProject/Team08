@@ -23,6 +23,7 @@ namespace MouseTrash.Scene.Stage.Actor
 
         public override void Initialize()
         {
+            isDamage = false;
             MovePriority = 5;
             if (playerControl != null && playerControl.Chara != null)
             {
