@@ -36,14 +36,14 @@ namespace MouseTrash.Scene.Stage
             start.Visible = true;
             for (int i = 0; i < 4; i++)
             {
-                if ((int)((Player)stageCameras["C" + i.ToString()].Stage.stageObjs["antivirus"]).player == i)
+                if ((int)((Player)stageCameras["C" + i.ToString()].Stage.stageObjs["antivirus"]).playerControl.Player == i)
                 {
                     stageCameras["C" + i.ToString()].FocusStageObj = stageCameras["C" + i.ToString()].Stage.stageObjs["antivirus"];
                     continue;
                 }
                 for (int j = 0; j < 3; j++)
                 {
-                    if ((int)((Player)stageCameras["C" + i.ToString()].Stage.stageObjs["mouse" + j.ToString()]).player == i)
+                    if ((int)((Player)stageCameras["C" + i.ToString()].Stage.stageObjs["mouse" + j.ToString()]).playerControl.Player == i)
                     {
                         stageCameras["C" + i.ToString()].FocusStageObj = stageCameras["C" + i.ToString()].Stage.stageObjs["mouse" + j.ToString()];
                     }
@@ -144,8 +144,8 @@ namespace MouseTrash.Scene.Stage
                     sounds["antiviruswin"].Play();
                     result["winer"] = "ウィルス全滅";
                 }
-                result["mouse"] = string.Format($"ウィルス残り：{runStage.mouseNum - runStage.killedMouse}/{runStage.mouseNum}");
-                result["thedata"] = string.Format($"個人情報残り：{runStage.thedataNum - runStage.eatedTheData}/{runStage.thedataNum}");
+                result["thedatafind"] = string.Format($"取り戻せた情報量：{runStage.antivirusPoint}");
+                result["thedatalost"] = string.Format($"盗まれた情報量：{runStage.mousePoint}");
                 gameOver.ShowResult(result);
             }
             if (!backMenu.Visible && !gameOver.Visible)

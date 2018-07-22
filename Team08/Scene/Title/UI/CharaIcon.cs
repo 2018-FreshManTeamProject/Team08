@@ -9,6 +9,7 @@ using InfinityGame.UI.UIContent;
 using InfinityGame.Element;
 using InfinityGame.Device;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace MouseTrash.Scene.Title.UI
 {
@@ -18,19 +19,21 @@ namespace MouseTrash.Scene.Title.UI
         public string Chara { get { return chara; } }
         public CharaIcon(string chara, GraphicsDevice aGraphicsDevice, BaseDisplay aParent) : base(aGraphicsDevice, aParent)
         {
+            BackColor = Color.White * 0.5f;
             this.chara = chara;
             ((IPlayerCursor)parent).Charas.Add(chara, this);
         }
 
         public override void PreLoadContent()
         {
-            Size = new Size(128, 128);
+            //Size = new Size(128, 128);
             base.PreLoadContent();
         }
 
         public override void LoadContent()
         {
-            Image = ImageManage.GetSImage(chara +/*"_frontside"*/ ".png");//調整必要
+            Image = ImageManage.GetSImage(chara + ".png");
+            Size = Size.Parse(Image.Image.Size);
             base.LoadContent();
         }
 

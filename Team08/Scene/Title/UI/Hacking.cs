@@ -69,7 +69,7 @@ namespace MouseTrash.Scene.Title.UI
 
         public override void PreLoadContent()
         {
-            Size = parent.Size / 2;
+            Size = parent.Size * 2 / 3;
             Location = ((parent.Size - size) / 2).ToPoint();
             time = new Label(graphicsDevice, this);
             for (int i = 0; i < messages.Length; i++)
@@ -105,9 +105,9 @@ namespace MouseTrash.Scene.Title.UI
             messages[4].BDText.ForeColor = System.Drawing.Color.Yellow;
             time.TextSize = 16f;
             time.BDText.ForeColor = System.Drawing.Color.Yellow;
-            for (int i = 1; i < 9; i++)
+            for (int i = 0; i < 18; i++)
             {
-                new CharaIcon(i.ToString(), graphicsDevice, this);
+                new CharaIcon("cursor" + i.ToString(), graphicsDevice, this);
             }
             for (int i = 0; i < 4; i++)
             {
@@ -133,12 +133,10 @@ namespace MouseTrash.Scene.Title.UI
 
             time.Location = new Point(border_Left.Size.Width + 10, border_Top.Size.Height + 10);
             {
-                int i = 0;
-                foreach (var l in charas)
+                for (int i = 0; i < Charas.Count; i++)
                 {
-                    l.Value.Location = new Point(50 + 150 * (i % 4), border_Top.Size.Height + time.Size.Height + 50 + 180 * (i / 4));
-                    charasDict.Add(new Point(i % 4, i / 4), l.Key);
-                    i++;
+                    Charas["cursor" + i.ToString()].Location = new Point(50 + 150 * (i % 6), border_Top.Size.Height + time.Size.Height + 50 + 180 * (i / 6));
+                    charasDict.Add(new Point(i % 6, i / 6), "cursor" + i.ToString());
                 }
             }
             sounds["hacking"] = SoundManage.GetSound("hacking.wav");
@@ -173,6 +171,7 @@ namespace MouseTrash.Scene.Title.UI
                             }
                             ((BaseScene)parent).IsRun = false;
                             ((BaseScene)parent).GameRun.scenes["stagescene"].IsRun = true;
+                            ((BaseScene)parent).GameRun.scenes["stagescene"].Initialize();
                             parent.Initialize();
                         }
                     }

@@ -1086,6 +1086,12 @@
             移動優先順位１０
             </summary>
         </member>
+        <member name="T:InfinityGame.Stage.StageObject.StageLabel">
+            <summary>
+            ステージラベル
+            カメラモードではImageは無効とする
+            </summary>
+        </member>
         <member name="T:InfinityGame.Stage.StageObject.StageObj">
             <summary>
             ステージオブジェクトでベースとなるクラス

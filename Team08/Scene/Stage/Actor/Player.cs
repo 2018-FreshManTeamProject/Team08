@@ -27,7 +27,6 @@ namespace MouseTrash.Scene.Stage.Actor
 
         protected int point = 0;
         private int timeDownCount = 0;
-        public PlayerIndex player;
         protected float power = 0;//作用力
         protected float mass = 0;//質量
         protected float accel = 0;//加速度
@@ -38,11 +37,10 @@ namespace MouseTrash.Scene.Stage.Actor
         protected float maxSpeed = 0;//最大速度
         protected float actionMaxSpeed = 0;
         protected Vector2 actionSpeed = Vector2.Zero;
-        protected string chara;
         private string nowCharaSide;
         protected Dictionary<string, SImage> charaImages = new Dictionary<string, SImage>();
 
-
+        public PlayerControl playerControl;
         /// <summary>
         /// 状態
         /// </summary>
@@ -50,11 +48,10 @@ namespace MouseTrash.Scene.Stage.Actor
         public int TimeDownCount { get { return timeDownCount; } set { timeDownCount = value; if (timeDownCount == 0) TimeDownAction(); } }
         public bool Life { get { return life; } set { life = value; } }
         public int Point { get { return point; } }
-        public string Chara { get { return chara; } set { chara = value; } }
         public Vector2 ActionSpeed { get { return actionSpeed; } set { actionSpeed = value; } }
         public Player(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
-            DrawOrder = 5;
+            DrawOrder = 8;
             IsCrimp = true;
             PassIndex_0 = true;
             ImageRunState = 0;
@@ -81,6 +78,11 @@ namespace MouseTrash.Scene.Stage.Actor
             point = 0;
             SetPlayer();
             base.Initialize();
+        }
+
+        public void SetControl(PlayerControl playerControl)
+        {
+            this.playerControl = playerControl;
         }
 
         public void SpeedVibration(int time)
@@ -115,9 +117,9 @@ namespace MouseTrash.Scene.Stage.Actor
 
         private void Vibration(float l, float r, int time)
         {
-            GamePad.SetVibration(player, l, r);
+            GamePad.SetVibration(playerControl.Player, l, r);
             Thread.Sleep(time);
-            GamePad.SetVibration(player, 0, 0);
+            GamePad.SetVibration(playerControl.Player, 0, 0);
         }
 
         protected void SetChara(string charaSide)
@@ -139,7 +141,7 @@ namespace MouseTrash.Scene.Stage.Actor
                 }
                 nowCharaSide = charaSide;
                 Image = charaImages[charaSide];
-                if (!IGGamePad.GetKeyState(player, Buttons.B))
+                if (playerControl != null && !IGGamePad.GetKeyState(playerControl.Player, Buttons.B))
                     Size = Size.Parse(Image.Image.Size) / 2;
             }
         }
@@ -182,7 +184,7 @@ namespace MouseTrash.Scene.Stage.Actor
         {
             if (((GameStage)Stage).startTime <= 0)
             {
-                if (IGGamePad.GetKeyTrigger(player, Buttons.A) && PlayerState["paralysis"] <= 0)
+                if (IGGamePad.GetKeyTrigger(playerControl.Player, Buttons.A) && PlayerState["paralysis"] <= 0)
                 {
                     Action();
                 }
@@ -207,7 +209,7 @@ namespace MouseTrash.Scene.Stage.Actor
                 }
                 if (life)
                 {
-                    direction = IGGamePad.GetLeftVelocity(player);
+                    direction = IGGamePad.GetLeftVelocity(playerControl.Player);
                     /*if (Name == "antivirus")
                     {
                         direction = GameKeyboard.GetVelocity(IGConfig.PlayerKeys);
@@ -278,35 +280,32 @@ namespace MouseTrash.Scene.Stage.Actor
             }
         }
 
+        public override void RunImageT()
+        {
+            if (image != null &&
+                image.ImageFreams.Count > 0 &&
+                image.ImageFreams[iTIndex] <= 1 &&
+                imageTimeCounter > image.ImageFreams[iTIndex])
+            {
+                if (iTIndex + 1 < image.ImageT.Count)
+                    iTIndex++;
+                else
+                {
+                    if (PassIndex_0 && image.ImageT.Count > 1)
+                        iTIndex = 1;
+                    else
+                        iTIndex = 0;
+                }
+            }
+            base.RunImageT();
+        }
+
         protected abstract void AccelAnime();
         protected virtual void ActionB() { }
 
-        public override void AddVelocity(Vector2 velocity, VeloParam veloParam)
+        protected virtual void RunChara(Vector2 ve)
         {
-            if (veloParam == VeloParam.Run)
-            {
-                if (Team == "antivirus")//グラフィックが追加されたらこの分岐条件を削除
-                    RunChara(velocity);
-            }
-            base.AddVelocity(velocity, veloParam);
-        }
 
-        protected void RunChara(Vector2 ve)
-        {
-            if (Math.Abs(ve.Y) >= Math.Abs(ve.X))
-            {
-                if (ve.Y >= 0)
-                    SetChara(chara + "_frontside");
-                else
-                    SetChara(chara + "_backside");
-            }
-            else
-            {
-                if (ve.X >= 0)
-                    SetChara(chara + "_rightside");
-                else
-                    SetChara(chara + "_leftside");
-            }
         }
 
         public override void CalAllColl(Dictionary<string, StageObj> tempSO)

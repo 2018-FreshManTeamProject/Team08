@@ -21,6 +21,7 @@ namespace MouseTrash.Scene.Stage
         public TheData(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
             IsCrimp = false;
+            DrawOrder = 7;
         }
 
         public override void Initialize()
@@ -43,7 +44,7 @@ namespace MouseTrash.Scene.Stage
         {
             foreach (var l in tempSO)
             {
-                if (l.Value is TheData || l.Value is Wall || l.Value is ElasticityWall)
+                if (l.Value is TheData || l.Value is ElasticityWall)
                 {
                     Initialize();
                     break;

@@ -47,6 +47,22 @@ namespace MouseTrash.Scene.Title.UI
                 if (focusChara != null)
                 {
                     Location = focusChara.Location;
+                    Size = focusChara.Size;
+                    switch (player)
+                    {
+                        case "P0":
+                            lable.Location = new Point(0, -lable.Size.Height);
+                            break;
+                        case "P1":
+                            lable.Location = new Point(size.Width - lable.Size.Width, -lable.Size.Height);
+                            break;
+                        case "P2":
+                            lable.Location = new Point(0, size.Height);
+                            break;
+                        case "P3":
+                            lable.Location = new Point(size.Width - lable.Size.Width, size.Height);
+                            break;
+                    }
                 }
             }
         }
@@ -157,11 +173,7 @@ namespace MouseTrash.Scene.Title.UI
         public void SetChara()
         {
             char index = player[1];
-            string name = "mouse" + index;
-            if (gameStage.stageObjs.ContainsKey(name) && gameStage.stageObjs[name].Team == "mouse")
-            {
-                ((Player)gameStage.stageObjs[name]).Chara = focusChara.Chara;
-            }
+            gameStage.players[int.Parse(index.ToString())].Chara = focusChara.Chara;
         }
 
         public override void PreDraw(GameTime gameTime)

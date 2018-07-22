@@ -22,11 +22,14 @@ namespace MouseTrash.Scene.Stage.Stages
         public int eatedTheData = 0;
         public int mouseNum = 3;
         public int killedMouse = 0;
-        public int mouseWinNum = 18;
+        public int mouseWinNum = 19;
         public int catWinNum = 3;
+        public int mousePoint = 0;
+        public int antivirusPoint = 0;
         public bool mouseWin = false;
         public bool catWin = false;
         public int startTime = 180;
+        public PlayerControl[] players = new PlayerControl[4];
         public GameStage(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
 
@@ -34,6 +37,8 @@ namespace MouseTrash.Scene.Stage.Stages
 
         public override void Initialize()
         {
+            mousePoint = 0;
+            antivirusPoint = 0;
             startTime = 180;
             eatedTheData = 0;
             killedMouse = 0;
@@ -52,21 +57,24 @@ namespace MouseTrash.Scene.Stage.Stages
             for (int i = 0; i < 3; i++)
             {
                 if (i != j)
-                    ((Player)stageObjs["mouse" + i.ToString()]).player = (PlayerIndex)i;
+                    ((Player)stageObjs["mouse" + i.ToString()]).playerControl = players[i];
                 else
-                    ((Player)stageObjs["mouse" + i.ToString()]).player = (PlayerIndex)3;
+                    ((Player)stageObjs["mouse" + i.ToString()]).playerControl = players[3];
             }
-            ((Player)stageObjs["antivirus"]).player = (PlayerIndex)j;
+            ((Player)stageObjs["antivirus"]).playerControl = players[j];
             base.Initialize();
         }
 
         public override void PreLoadContent()
         {
+            for (int i = 0; i < 4; i++)
+            {
+                players[i] = new PlayerControl((PlayerIndex)i);
+            }
             for (int i = 0; i < 3; i++)
             {
                 new Mouse(graphicsDevice, this, "mouse" + i.ToString());
                 stageObjs["mouse" + i.ToString()].Team = "mouse";
-                //((Player)stageObjs["player" + i.ToString()]).player = (PlayerIndex)i;
             }
             new Antivirus(graphicsDevice, this, "antivirus");
             stageObjs["antivirus"].Team = "antivirus";

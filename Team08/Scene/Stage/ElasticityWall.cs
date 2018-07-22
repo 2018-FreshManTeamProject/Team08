@@ -22,10 +22,11 @@ namespace MouseTrash.Scene.Stage
         protected int vibrationTime = 500;
         public ElasticityWall(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
-
+            DrawOrder = 6;
         }
         public override void Initialize()
         {
+            Visible = true;
             float i = rnd.Next(3, 27) / 10f;
             float j = 3 - i;
             Size = Size.Parse(Image.Image.Size);
@@ -44,6 +45,11 @@ namespace MouseTrash.Scene.Stage
 
         public override void Update(GameTime gameTime)
         {
+            if (Visible)
+            {
+                if (Size.Width < 5 || Size.Height < 5)
+                    Visible = false;
+            }
             base.Update(gameTime);
         }
 
@@ -78,7 +84,7 @@ namespace MouseTrash.Scene.Stage
             }
             foreach (var l in tempSO)
             {
-                if (l.Value is Wall || l.Value is ElasticityWall)
+                if (l.Value is Wall || l.Value is ElasticityWall || l.Value is CircelWall)
                 {
                     Initialize();
                     break;

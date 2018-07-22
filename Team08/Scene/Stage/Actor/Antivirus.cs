@@ -11,11 +11,13 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MouseTrash.Scene.Stage.Stages;
 using InfinityGame.Stage.StageObject;
+using InfinityGame.Stage;
 
 namespace MouseTrash.Scene.Stage.Actor
 {
     public class Antivirus : Player
     {
+        private string chara;
         public Antivirus(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
         }
@@ -38,6 +40,31 @@ namespace MouseTrash.Scene.Stage.Actor
             base.LoadContent();
         }
 
+        public override void AddVelocity(Vector2 velocity, VeloParam veloParam)
+        {
+            if (veloParam == VeloParam.Run)
+                RunChara(velocity);
+            base.AddVelocity(velocity, veloParam);
+        }
+
+        protected override void RunChara(Vector2 ve)
+        {
+            if (Math.Abs(ve.Y) >= Math.Abs(ve.X))
+            {
+                if (ve.Y >= 0)
+                    SetChara(chara + "_frontside");
+                else
+                    SetChara(chara + "_backside");
+            }
+            else
+            {
+                if (ve.X >= 0)
+                    SetChara(chara + "_rightside");
+                else
+                    SetChara(chara + "_leftside");
+            }
+        }
+
         protected override void SetPlayer()
         {
             power = 1;
@@ -48,7 +75,7 @@ namespace MouseTrash.Scene.Stage.Actor
 
         protected override void ActionB()
         {
-            if (IGGamePad.GetKeyState(player, Buttons.B) && PlayerState["paralysis"] <= 0)
+            if (IGGamePad.GetKeyState(playerControl.Player, Buttons.B) && PlayerState["paralysis"] <= 0)
             {
                 if (Render.Scale == Vector2.One / 2)
                 {
@@ -83,6 +110,8 @@ namespace MouseTrash.Scene.Stage.Actor
             {
                 ((Player)stageObj).SetVibration(1, 1, 1000);
                 ((Player)stageObj).ActionSpeed = 10 * (speedv + actionSpeed);
+                ((GameStage)Stage).antivirusPoint += ((Player)stageObj).Point;
+                ((GameStage)Stage).mousePoint -= ((Player)stageObj).Point;
                 ((Player)stageObj).Life = false;
                 stageObj.Color = Color.Red;
                 stageObj.CrimpGroup = "";
