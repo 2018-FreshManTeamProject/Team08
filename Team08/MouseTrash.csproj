@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Scene\Title\UI\IPlayerCursor.cs" />
     <Compile Include="Scene\Title\UI\PlayerCursor.cs" />
+    <Compile Include="Scene\Title\UI\Readme.cs" />
     <Compile Include="Scene\Title\UI\StartMenu.cs" />
     <Compile Include="Scene\Title\UI\StartMenu.Designer.cs">
       <DependentUpon>StartMenu.cs</DependentUpon>
@@ -129,6 +130,9 @@
     <Content Include="InfinityGame\InfinityGame.dll" />
     <Content Include="InfinityGame\InfinityGame.xml" />
     <Content Include="Lang\ja_JP.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Sound\antiviruswin.wav">

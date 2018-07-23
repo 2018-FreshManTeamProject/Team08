@@ -24,12 +24,14 @@ namespace MouseTrash.Scene.Title
         private StartMenu startMenu;
         private Warning warning;
         private Hacking hacking;
+        private Readme readme;
         private bool isShutdown = false;
         private int warningCountDown = 30;
 
         public TaskBar TaskBar { get { return taskBar; } }
         public StartMenu StartMenu { get { return startMenu; } }
         public Hacking Hacking { get { return hacking; } }
+        public Readme Readme { get { return readme; } }
         public TitleScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
             
@@ -48,6 +50,7 @@ namespace MouseTrash.Scene.Title
             startMenu = new StartMenu(graphicsDevice, this);
             warning = new Warning(graphicsDevice, this);
             hacking = new Hacking(graphicsDevice, this);
+            readme = new Readme(graphicsDevice, this);
             new WarningMessage(graphicsDevice, this, antivirus);
             EventRegist();
             base.PreLoadContent();
@@ -101,6 +104,7 @@ namespace MouseTrash.Scene.Title
         {
             if (!warning.Visible)
                 warning.Visible = true;
+            warning.SetFocus();
         }
 
         public void Shutdown()

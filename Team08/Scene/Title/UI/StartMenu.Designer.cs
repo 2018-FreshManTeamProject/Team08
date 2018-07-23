@@ -12,7 +12,10 @@ namespace MouseTrash.Scene.Title.UI
         {
             #region AnimeButton
             shutdown.Click += ExitGame;
-            antivirus.Click += ((TitleScene)parent).OpenWarning;
+            antivirus.Click += OpenWarning;
+            #endregion
+            #region Button
+            readme.Click += ReadmeBT;
             #endregion
         }
     }
