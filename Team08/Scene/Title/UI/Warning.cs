@@ -109,11 +109,11 @@ namespace MouseTrash.Scene.Title.UI
                     if (timedown == 570)
                     {
                         Location = Point.Zero;
-                        {
-                            ((TitleScene)parent).Hacking.Visible = true;
-                        }
+                        ((TitleScene)parent).Hacking.Visible = true;
+                        ((TitleScene)parent).Hacking.SetFocus();
+                        timedown--;
                     }
-                    if (timedown <= 570 && ((TitleScene)parent).Hacking.Start)
+                    if (timedown < 570 && ((TitleScene)parent).Hacking.Start)
                         timedown--;
                     if ((timedown > 300 && timedown % 60 == 0) ||
                         (timedown > 150 && timedown <= 300 && timedown % 30 == 0) ||
