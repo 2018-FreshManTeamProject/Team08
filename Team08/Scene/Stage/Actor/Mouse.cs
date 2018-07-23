@@ -17,6 +17,9 @@ namespace MouseTrash.Scene.Stage.Actor
     public class Mouse : Player
     {
         private bool isDamage = false;
+        private int selfDamage = 0;
+
+        public int SelfDamage { get { return selfDamage; } }
         public Mouse(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
         }
@@ -24,6 +27,7 @@ namespace MouseTrash.Scene.Stage.Actor
         public override void Initialize()
         {
             isDamage = false;
+            selfDamage = 0;
             MovePriority = 5;
             if (playerControl != null && playerControl.Chara != null)
             {
@@ -89,13 +93,23 @@ namespace MouseTrash.Scene.Stage.Actor
             {
                 point -= 200;
                 actionMaxSpeed = 5;
-                TimeDownCount = 120;
+                TimeDownCount += 120;
             }
         }
 
         protected override void ActionB()
         {
             isDamage = (IGGamePad.GetKeyState(playerControl.Player, Buttons.B) && PlayerState["paralysis"] <= 0);
+            if (isDamage)
+                selfDamage++;
+            else if (selfDamage > 0)
+                selfDamage--;
+
+            if (selfDamage > 500)
+            {
+                PlayerState["paralysis"] = selfDamage;
+                selfDamage--;
+            }
             base.ActionB();
         }
 

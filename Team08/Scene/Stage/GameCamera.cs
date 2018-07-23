@@ -136,7 +136,7 @@ namespace MouseTrash.Scene.Stage
                                 marks.Remove(l);
                             }
                         }
-                        message.Text = string.Format($"個人情報残り{((GameStage)Stage).thedataNum - ((GameStage)Stage).eatedTheData}個\r\n加速残り：{((Player)FocusStageObj).TimeDownCount / 60}秒\r\nポイント：{((Player)FocusStageObj).Point}");
+                        message.Text = string.Format($"個人情報残り{((GameStage)Stage).thedataNum - ((GameStage)Stage).eatedTheData}個\r\n加速残り：{((Player)FocusStageObj).TimeDownCount / 60}秒\r\nポイント：{((Player)FocusStageObj).Point}\r\n情報麻痺：{((Mouse)FocusStageObj).SelfDamage}/500");
                     }
                 }
             }
