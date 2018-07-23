@@ -18,18 +18,32 @@ namespace MouseTrash.Scene.Stage.Stages
     public class GameStage : BaseStage
     {
         protected Random rnd = new Random();
-        public int thedataNum = 20;
-        public int eatedTheData = 0;
-        public int mouseNum = 3;
-        public int killedMouse = 0;
-        public int mouseWinNum = 19;
-        public int catWinNum = 3;
-        public int mousePoint = 0;
-        public int antivirusPoint = 0;
-        public bool mouseWin = false;
-        public bool catWin = false;
-        public int startTime = 180;
-        public PlayerControl[] players = new PlayerControl[4];
+        private int theDataNum = 20;
+        private int eatedTheData = 0;
+        private int mouseNum = 3;
+        private int killedMouse = 0;
+        private int mouseWinNum = 19;
+        private int catWinNum = 3;
+        private int mousePoint = 0;
+        private int antivirusPoint = 0;
+        private bool mouseWin = false;
+        private bool catWin = false;
+        private int startTime = 180;
+        private PlayerControl[] players = new PlayerControl[4];
+
+        public int TheDataNum { get => theDataNum; set => theDataNum = value; }
+        public int EatedTheData { get => eatedTheData; set => eatedTheData = value; }
+        public int MouseNum { get => mouseNum; set => mouseNum = value; }
+        public int KilledMouse { get => killedMouse; set => killedMouse = value; }
+        public int MouseWinNum { get => mouseWinNum; set => mouseWinNum = value; }
+        public int CatWinNum { get => catWinNum; set => catWinNum = value; }
+        public int MousePoint { get => mousePoint; set => mousePoint = value; }
+        public int AntivirusPoint { get => antivirusPoint; set => antivirusPoint = value; }
+        public bool MouseWin { get => mouseWin; set => mouseWin = value; }
+        public bool CatWin { get => catWin; set => catWin = value; }
+        public int StartTime { get => startTime; set => startTime = value; }
+        public PlayerControl[] Players { get => players; set => players = value; }
+
         public GameStage(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
 
@@ -37,14 +51,14 @@ namespace MouseTrash.Scene.Stage.Stages
 
         public override void Initialize()
         {
-            mousePoint = 0;
-            antivirusPoint = 0;
-            startTime = 180;
-            eatedTheData = 0;
-            killedMouse = 0;
-            mouseWin = false;
-            catWin = false;
-            for (int i = 0; i < thedataNum; i++)
+            MousePoint = 0;
+            AntivirusPoint = 0;
+            StartTime = 180;
+            EatedTheData = 0;
+            KilledMouse = 0;
+            MouseWin = false;
+            CatWin = false;
+            for (int i = 0; i < TheDataNum; i++)
             {
                 if (!stageObjs.ContainsKey("thedata" + i.ToString()))
                 {
@@ -57,11 +71,11 @@ namespace MouseTrash.Scene.Stage.Stages
             for (int i = 0; i < 3; i++)
             {
                 if (i != j)
-                    ((Player)stageObjs["mouse" + i.ToString()]).playerControl = players[i];
+                    ((Player)stageObjs["mouse" + i.ToString()]).PlayerControl = Players[i];
                 else
-                    ((Player)stageObjs["mouse" + i.ToString()]).playerControl = players[3];
+                    ((Player)stageObjs["mouse" + i.ToString()]).PlayerControl = Players[3];
             }
-            ((Player)stageObjs["antivirus"]).playerControl = players[j];
+            ((Player)stageObjs["antivirus"]).PlayerControl = Players[j];
             base.Initialize();
         }
 
@@ -69,7 +83,7 @@ namespace MouseTrash.Scene.Stage.Stages
         {
             for (int i = 0; i < 4; i++)
             {
-                players[i] = new PlayerControl((PlayerIndex)i);
+                Players[i] = new PlayerControl((PlayerIndex)i);
             }
             for (int i = 0; i < 3; i++)
             {
@@ -88,19 +102,19 @@ namespace MouseTrash.Scene.Stage.Stages
 
         public override void Update(GameTime gameTime)
         {
-            if (startTime > 0)
+            if (StartTime > 0)
             {
-                startTime--;
+                StartTime--;
             }
             else
             {
-                if (eatedTheData >= mouseWinNum)
+                if (EatedTheData >= MouseWinNum)
                 {
-                    mouseWin = true;
+                    MouseWin = true;
                 }
-                if (killedMouse >= catWinNum)
+                if (KilledMouse >= CatWinNum)
                 {
-                    catWin = true;
+                    CatWin = true;
                 }
             }
             base.Update(gameTime);

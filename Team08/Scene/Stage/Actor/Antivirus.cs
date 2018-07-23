@@ -110,13 +110,13 @@ namespace MouseTrash.Scene.Stage.Actor
             {
                 ((Player)stageObj).SetVibration(1, 1, 1000);
                 ((Player)stageObj).ActionSpeed = 10 * (speedv + actionSpeed);
-                ((GameStage)Stage).antivirusPoint += ((Player)stageObj).Point;
-                ((GameStage)Stage).mousePoint -= ((Player)stageObj).Point;
+                ((GameStage)Stage).AntivirusPoint += ((Player)stageObj).Point;
+                ((GameStage)Stage).MousePoint -= ((Player)stageObj).Point;
                 ((Player)stageObj).Life = false;
                 stageObj.Color = Color.Red;
                 stageObj.CrimpGroup = "";
                 stageObj.MovePriority = 6;
-                ((GameStage)Stage).killedMouse++;
+                ((GameStage)Stage).KilledMouse++;
             }
         }
 

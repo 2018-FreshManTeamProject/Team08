@@ -7,9 +7,7 @@ using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using InfinityGame.Def;
 using InfinityGame.Device;
-using InfinityGame.Device.KeyboardManage;
 using InfinityGame.GameGraphics;
 using InfinityGame.Stage;
 using InfinityGame.Stage.StageObject;
@@ -39,16 +37,16 @@ namespace MouseTrash.Scene.Stage.Actor
         protected Vector2 actionSpeed = Vector2.Zero;
         private string nowCharaSide;
         protected Dictionary<string, SImage> charaImages = new Dictionary<string, SImage>();
-
-        public PlayerControl playerControl;
-        /// <summary>
-        /// 状態
-        /// </summary>
-        public Dictionary<string, int> PlayerState = new Dictionary<string, int>();
+        protected PlayerControl playerControl;
+        private Dictionary<string, int> playerState = new Dictionary<string, int>();
         public int TimeDownCount { get { return timeDownCount; } set { timeDownCount = value; if (timeDownCount == 0) TimeDownAction(); } }
         public bool Life { get { return life; } set { life = value; } }
         public int Point { get { return point; } }
         public Vector2 ActionSpeed { get { return actionSpeed; } set { actionSpeed = value; } }
+        public PlayerControl PlayerControl { get { return playerControl; } set { playerControl = value; } }
+
+        public Dictionary<string, int> PlayerState { get => playerState; set => playerState = value; }
+
         public Player(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
             DrawOrder = 8;
@@ -182,7 +180,7 @@ namespace MouseTrash.Scene.Stage.Actor
 
         public override void PreUpdate(GameTime gameTime)
         {
-            if (((GameStage)Stage).startTime <= 0)
+            if (((GameStage)Stage).StartTime <= 0)
             {
                 if (IGGamePad.GetKeyTrigger(playerControl.Player, Buttons.A) && PlayerState["paralysis"] <= 0)
                 {
@@ -303,10 +301,7 @@ namespace MouseTrash.Scene.Stage.Actor
         protected abstract void AccelAnime();
         protected virtual void ActionB() { }
 
-        protected virtual void RunChara(Vector2 ve)
-        {
-
-        }
+        protected virtual void RunChara(Vector2 ve) { }
 
         public override void CalAllColl(Dictionary<string, StageObj> tempSO)
         {
@@ -315,14 +310,14 @@ namespace MouseTrash.Scene.Stage.Actor
             {
                 if (tempSO.ContainsKey(l))
                 {
-                    if (((GameStage)Stage).startTime <= 0)
+                    if (((GameStage)Stage).StartTime <= 0)
                     {
                         Eat(tempSO[l]);
                     }
                     else if (tempSO[l] is Wall || tempSO[l] is Player || tempSO[l] is ElasticityWall)
                     {
                         Initialize();
-                        ((GameStage)Stage).startTime++;
+                        ((GameStage)Stage).StartTime++;
                     }
                 }
             }

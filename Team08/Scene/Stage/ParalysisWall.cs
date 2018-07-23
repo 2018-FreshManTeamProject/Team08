@@ -24,7 +24,7 @@ namespace MouseTrash.Scene.Stage
         {
             foreach(var l in tempSO)
             {
-                if (((GameStage)Stage).startTime > 0)
+                if (((GameStage)Stage).StartTime > 0)
                     break;
                 if (l.Value is Player && ((Player)l.Value).Life)
                 {

@@ -17,10 +17,10 @@ namespace MouseTrash.Scene.Stage.UI
 {
     public partial class BackMenu : UIWindow
     {
-        public AnimeButton back;
-        public AnimeButton title;
-        public AnimeButton reset;
-        public AnimeButton exit;
+        private AnimeButton backAB;
+        private AnimeButton title;
+        private AnimeButton reset;
+        private AnimeButton exitAB;
 
         public BackMenu(GraphicsDevice aGraphicsDevice, BaseDisplay parent) : base(aGraphicsDevice, parent)
         {
@@ -41,18 +41,18 @@ namespace MouseTrash.Scene.Stage.UI
             Text = GetText("BackMenu");
             Size = new Size(400, 420);
             Visible = false;
-            back = new AnimeButton(graphicsDevice, this);
+            backAB = new AnimeButton(graphicsDevice, this);
             title = new AnimeButton(graphicsDevice, this);
             reset = new AnimeButton(graphicsDevice, this);
-            exit = new AnimeButton(graphicsDevice, this);
-            /*back.BDText.ForeColor = System.Drawing.Color.Yellow;
+            exitAB = new AnimeButton(graphicsDevice, this);
+            /*backAB.BDText.ForeColor = System.Drawing.Color.Yellow;
             title.BDText.ForeColor = System.Drawing.Color.Yellow;
             reset.BDText.ForeColor = System.Drawing.Color.Yellow;
-            exit.BDText.ForeColor = System.Drawing.Color.Yellow;
-            back.ImageColor = Color.Blue;
+            exitAB.BDText.ForeColor = System.Drawing.Color.Yellow;
+            backAB.ImageColor = Color.Blue;
             title.ImageColor = Color.Blue;
             reset.ImageColor = Color.Blue;
-            exit.ImageColor = Color.Blue;*/
+            exitAB.ImageColor = Color.Blue;*/
             EventRegist();
             base.PreLoadContent();
         }
@@ -78,34 +78,34 @@ namespace MouseTrash.Scene.Stage.UI
 
         private void SetContentSize(Size tempsize)
         {
-            back.Size = tempsize;
+            backAB.Size = tempsize;
             title.Size = tempsize;
             reset.Size = tempsize;
-            exit.Size = tempsize;
+            exitAB.Size = tempsize;
 
         }
         private void SetContentLocation(Size tempsize)
         {
-            back.Location = new Point((Size.Width - tempsize.Width) / 2, TitleSize + 10);
+            backAB.Location = new Point((Size.Width - tempsize.Width) / 2, TitleSize + 10);
             title.Location = new Point((Size.Width - tempsize.Width) / 2, TitleSize + tempsize.Height + 20);
             reset.Location = new Point((Size.Width - tempsize.Width) / 2, TitleSize + 2 * tempsize.Height + 30);
-            exit.Location = new Point((Size.Width - tempsize.Width) / 2, TitleSize + 3 * tempsize.Height + 40);
+            exitAB.Location = new Point((Size.Width - tempsize.Width) / 2, TitleSize + 3 * tempsize.Height + 40);
         }
 
         private void SetContentText()
         {
-            back.Text = GetText("Back");
+            backAB.Text = GetText("Back");
             title.Text = GetText("ToTitle");
             reset.Text = GetText("ReSet");
-            exit.Text = GetText("ShutDown");
+            exitAB.Text = GetText("ShutDown");
         }
 
         private void SetContentImage()
         {
-            back.Image = ImageManage.GetSImage("button01");
+            backAB.Image = ImageManage.GetSImage("button01");
             title.Image = ImageManage.GetSImage("button01");
             reset.Image = ImageManage.GetSImage("button01");
-            exit.Image = ImageManage.GetSImage("button01");
+            exitAB.Image = ImageManage.GetSImage("button01");
         }
 
         public void Back(object sender, EventArgs e)

@@ -16,8 +16,11 @@ namespace MouseTrash.Scene.Stage
 {
     public class TheData : Block
     {
-        public bool eaten = false;
-        Random rnd = new Random();
+        private bool eaten = false;
+        private Random rnd = new Random();
+
+        public bool Eaten { get => eaten; set => eaten = value; }
+
         public TheData(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
             IsCrimp = false;
@@ -26,14 +29,14 @@ namespace MouseTrash.Scene.Stage
 
         public override void Initialize()
         {
-            eaten = false;
+            Eaten = false;
             Visible = true;
             Image = ImageManage.GetSImage("thedata.png");
             Size = Size.Parse(Image.Image.Size);
             Coordinate = new Vector2(rnd.Next(Stage.EndOfLeftUp.X, Stage.EndOfRightDown.X - size.Width), rnd.Next(Stage.EndOfLeftUp.Y, Stage.EndOfRightDown.Y - size.Height));
-            if (eaten)
+            if (Eaten)
             {
-                ((GameStage)Stage).eatedTheData--;
+                ((GameStage)Stage).EatedTheData--;
                 Initialize();
                 return;
             }

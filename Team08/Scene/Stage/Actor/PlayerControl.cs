@@ -9,8 +9,11 @@ namespace MouseTrash.Scene.Stage.Actor
 {
     public class PlayerControl
     {
-        public string Chara;
-        public PlayerIndex Player;
+        private string chara;
+        private PlayerIndex player;
+
+        public string Chara { get => chara; set => chara = value; }
+        public PlayerIndex Player { get => player; set => player = value; }
 
         public PlayerControl(PlayerIndex player)
         {

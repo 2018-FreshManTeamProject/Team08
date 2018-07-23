@@ -16,8 +16,8 @@ namespace MouseTrash.Scene.Stage
 {
     public class Wall : Crimp
     {
-        string[] wall = new string[] { "wall0.png", "wall1.png", "wall2.png", "wall3.png", "wall4.png" };
-        Random rnd = new Random();
+        private string[] wall = new string[] { "wall0.png", "wall1.png", "wall2.png", "wall3.png", "wall4.png" };
+        private Random rnd = new Random();
         public Wall(GraphicsDevice aGraphicsDevice, BaseDisplay aParent) : this(aGraphicsDevice, aParent, "Null") { }
 
         public Wall(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)

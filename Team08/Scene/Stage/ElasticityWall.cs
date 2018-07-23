@@ -59,7 +59,7 @@ namespace MouseTrash.Scene.Stage
             string[] nm = tempSO.Keys.ToArray();
             foreach (var l in nm)
             {
-                if (((GameStage)Stage).startTime > 0)
+                if (((GameStage)Stage).StartTime > 0)
                     break;
                 if (tempSO.ContainsKey(l))
                 {

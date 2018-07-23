@@ -36,14 +36,14 @@ namespace MouseTrash.Scene.Stage
             start.Visible = true;
             for (int i = 0; i < 4; i++)
             {
-                if ((int)((Player)stageCameras["C" + i.ToString()].Stage.stageObjs["antivirus"]).playerControl.Player == i)
+                if ((int)((Player)stageCameras["C" + i.ToString()].Stage.stageObjs["antivirus"]).PlayerControl.Player == i)
                 {
                     stageCameras["C" + i.ToString()].FocusStageObj = stageCameras["C" + i.ToString()].Stage.stageObjs["antivirus"];
                     continue;
                 }
                 for (int j = 0; j < 3; j++)
                 {
-                    if ((int)((Player)stageCameras["C" + i.ToString()].Stage.stageObjs["mouse" + j.ToString()]).playerControl.Player == i)
+                    if ((int)((Player)stageCameras["C" + i.ToString()].Stage.stageObjs["mouse" + j.ToString()]).PlayerControl.Player == i)
                     {
                         stageCameras["C" + i.ToString()].FocusStageObj = stageCameras["C" + i.ToString()].Stage.stageObjs["mouse" + j.ToString()];
                     }
@@ -71,7 +71,7 @@ namespace MouseTrash.Scene.Stage
             start.TextSize = 256f;
             start.BackColor = Color.White * 0.0f;
             start.BDText.ForeColor = System.Drawing.Color.Yellow;
-            start.Text = (((GameStage)stages["Stage01"]).startTime / 60).ToString();
+            start.Text = (((GameStage)stages["Stage01"]).StartTime / 60).ToString();
             DesignGameOver();
             stageCameras["C0"].Location = Point.Zero;
             stageCameras["C1"].Location = new Point(size.Width / 2, 0);
@@ -120,32 +120,32 @@ namespace MouseTrash.Scene.Stage
             }
             if (start.Visible)
             {
-                start.Text = (((GameStage)stages["Stage01"]).startTime / 60).ToString();
+                start.Text = (((GameStage)stages["Stage01"]).StartTime / 60).ToString();
                 start.Location = ((size - start.Size) / 2).ToPoint();
-                if (((GameStage)stages["Stage01"]).startTime == 0)
+                if (((GameStage)stages["Stage01"]).StartTime == 0)
                 {
                     start.Visible = false;
                 }
             }
-            if ((runStage.mouseWin || runStage.catWin) && !gameOver.Visible)
+            if ((runStage.MouseWin || runStage.CatWin) && !gameOver.Visible)
             {
                 Dictionary<string, string> result = new Dictionary<string, string>();
-                if (runStage.mouseWin && runStage.catWin)
+                if (runStage.MouseWin && runStage.CatWin)
                 {
                     result["winer"] = "引き分け";
                 }
-                else if (runStage.mouseWin)
+                else if (runStage.MouseWin)
                 {
                     sounds["viruswin"].Play();
                     result["winer"] = "個人情報大量漏出";
                 }
-                else if (runStage.catWin)
+                else if (runStage.CatWin)
                 {
                     sounds["antiviruswin"].Play();
                     result["winer"] = "ウィルス全滅";
                 }
-                result["thedatafind"] = string.Format($"取り戻せた情報量：{runStage.antivirusPoint}");
-                result["thedatalost"] = string.Format($"盗まれた情報量：{runStage.mousePoint}");
+                result["thedatafind"] = string.Format($"取り戻せた情報量：{runStage.AntivirusPoint}");
+                result["thedatalost"] = string.Format($"盗まれた情報量：{runStage.MousePoint}");
                 gameOver.ShowResult(result);
             }
             if (!backMenu.Visible && !gameOver.Visible)

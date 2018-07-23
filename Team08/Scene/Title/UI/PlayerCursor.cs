@@ -173,7 +173,7 @@ namespace MouseTrash.Scene.Title.UI
         public void SetChara()
         {
             char index = player[1];
-            gameStage.players[int.Parse(index.ToString())].Chara = focusChara.Chara;
+            gameStage.Players[int.Parse(index.ToString())].Chara = focusChara.Chara;
         }
 
         public override void PreDraw(GameTime gameTime)

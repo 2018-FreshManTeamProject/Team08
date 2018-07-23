@@ -11,10 +11,10 @@ namespace MouseTrash.Scene.Stage.UI
         private void EventRegist()
         {
             #region AnimeButton
-            this.back.Click += Back;
+            this.backAB.Click += Back;
             this.title.Click += ToTitle;
             this.reset.Click += ReSet;
-            this.exit.Click += Exit;
+            this.exitAB.Click += Exit;
             #endregion
         }
     }

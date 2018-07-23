@@ -22,7 +22,10 @@ namespace MouseTrash.Scene.Stage
         private string lastTeam;
         private string team;
         private SImage mk;
-        public Label message;
+        private Label message;
+
+        public Label Message { get => message; set => message = value; }
+
         //public Label action;
         public GameCamera(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
@@ -31,17 +34,17 @@ namespace MouseTrash.Scene.Stage
 
         public override void PreLoadContent()
         {
-            message = new Label(graphicsDevice, this);
+            Message = new Label(graphicsDevice, this);
             //action = new Label(graphicsDevice, this);
             base.PreLoadContent();
         }
 
         protected override void DesignContent()
         {
-            message.Location = new Point(20, 20);
-            message.BackColor = Color.White * 0.0f;
-            message.BDText.ForeColor = System.Drawing.Color.OrangeRed;
-            message.TextSize = 24f;
+            Message.Location = new Point(20, 20);
+            Message.BackColor = Color.White * 0.0f;
+            Message.BDText.ForeColor = System.Drawing.Color.OrangeRed;
+            Message.TextSize = 24f;
             /*action.TextSize = 24f;
             action.BackColor = Color.White * 0.0f;
             action.BDText.ForeColor = System.Drawing.Color.Yellow;*/
@@ -54,7 +57,7 @@ namespace MouseTrash.Scene.Stage
             marks.Clear();
             lastTeam = "";
             team = "";
-            message.Text = Name;
+            Message.Text = Name;
             /*if (FocusStageObj.Team == "mouse")
                 action.Text = "Aボタン加速\r\n個人情報を\r\n集めよう";
             else if (FocusStageObj.Team == "antivirus")
@@ -65,7 +68,7 @@ namespace MouseTrash.Scene.Stage
 
         public override void LoadContent()
         {
-            message.Image = ImageManage.GetSImage("panel01.png");
+            Message.Image = ImageManage.GetSImage("panel01.png");
             Image = ImageManage.GetSImage("mousetrash_logo.png");
             mk = ImageManage.GetSImage("yajiru.png");
             base.LoadContent();
@@ -125,18 +128,18 @@ namespace MouseTrash.Scene.Stage
                                 marks.Remove(l);
                             }
                         }
-                        message.Text = string.Format($"ウィルスマウス残り{((GameStage)Stage).mouseNum - ((GameStage)Stage).killedMouse}匹\r\nスキルクールタイム：{((Player)FocusStageObj).TimeDownCount / 60}秒");
+                        Message.Text = string.Format($"ウィルスマウス残り{((GameStage)Stage).MouseNum - ((GameStage)Stage).KilledMouse}匹\r\nスキルクールタイム：{((Player)FocusStageObj).TimeDownCount / 60}秒");
                     }
                     else if (team == "mouse")
                     {
                         foreach (var l in marks.ToArray())
                         {
-                            if (((TheData)Stage.stageObjs[l]).eaten)
+                            if (((TheData)Stage.stageObjs[l]).Eaten)
                             {
                                 marks.Remove(l);
                             }
                         }
-                        message.Text = string.Format($"個人情報残り{((GameStage)Stage).thedataNum - ((GameStage)Stage).eatedTheData}個\r\n加速残り：{((Player)FocusStageObj).TimeDownCount / 60}秒\r\nポイント：{((Player)FocusStageObj).Point}\r\n情報麻痺：{((Mouse)FocusStageObj).SelfDamage}/500");
+                        Message.Text = string.Format($"個人情報残り{((GameStage)Stage).TheDataNum - ((GameStage)Stage).EatedTheData}個\r\n加速残り：{((Player)FocusStageObj).TimeDownCount / 60}秒\r\nポイント：{((Player)FocusStageObj).Point}\r\n情報麻痺：{((Mouse)FocusStageObj).SelfDamage}/500");
                     }
                 }
             }

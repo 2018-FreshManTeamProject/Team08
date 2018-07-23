@@ -47,14 +47,14 @@ namespace MouseTrash.Scene.Stage.Actor
 
         public override void PreUpdate(GameTime gameTime)
         {
-            if (((GameStage)Stage).startTime > 0)
+            if (((GameStage)Stage).StartTime > 0)
             {
                 var tempdict = Detector.Circel(this, 500);
                 foreach (var l in tempdict)
                 {
                     if (l.Value.Team == "antivirus")
                     {
-                        ((GameStage)Stage).startTime++;
+                        ((GameStage)Stage).StartTime++;
                         Initialize();
                         break;
                     }
@@ -71,13 +71,13 @@ namespace MouseTrash.Scene.Stage.Actor
 
         protected override void Eat(StageObj stageObj)
         {
-            if (stageObj is TheData && life && !((TheData)stageObj).eaten && isDamage)
+            if (stageObj is TheData && life && !((TheData)stageObj).Eaten && isDamage)
             {
-                ((TheData)stageObj).eaten = true;
+                ((TheData)stageObj).Eaten = true;
                 stageObj.Visible = false;
-                ((GameStage)Stage).eatedTheData++;
+                ((GameStage)Stage).EatedTheData++;
                 point += 10;
-                ((GameStage)Stage).mousePoint += 20;
+                ((GameStage)Stage).MousePoint += 20;
             }
         }
 
@@ -127,7 +127,7 @@ namespace MouseTrash.Scene.Stage.Actor
                         if (l.Value is ICircle)
                             ((ICircle)l.Value).Circle.Radius -= 0.5f;
                         point++;
-                        ((GameStage)Stage).mousePoint++;
+                        ((GameStage)Stage).MousePoint++;
                     }
                 }
             }
