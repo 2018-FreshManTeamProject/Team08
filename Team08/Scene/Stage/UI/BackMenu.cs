@@ -12,6 +12,7 @@ using InfinityGame.UI.UIContent;
 using InfinityGame.Device;
 using InfinityGame.Scene;
 using MouseTrash.Scene.Title;
+using Microsoft.Xna.Framework.Input;
 
 namespace MouseTrash.Scene.Stage.UI
 {
@@ -39,7 +40,7 @@ namespace MouseTrash.Scene.Stage.UI
         public override void PreLoadContent()
         {
             Text = GetText("BackMenu");
-            Size = new Size(400, 420);
+            Size = new Size(450, 420);
             Visible = false;
             backAB = new AnimeButton(graphicsDevice, this);
             title = new AnimeButton(graphicsDevice, this);
@@ -59,7 +60,7 @@ namespace MouseTrash.Scene.Stage.UI
 
         protected override void DesignContent()
         {
-            Size tempsize = new Size(360, 80);
+            Size tempsize = new Size(400, 80);
             SetContentSize(tempsize);
             SetContentLocation(tempsize);
             SetContentText();
@@ -139,6 +140,20 @@ namespace MouseTrash.Scene.Stage.UI
         {
             sounds[sdnm].Stop();
             sounds[sdnm].Play();
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (Visible)
+            {
+                if (IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.Start))
+                    ReSet(null, null);
+                else if (IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.B))
+                    Back(null, null);
+                else if (IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.Back))
+                    ToTitle(null, null);
+            }
+            base.Update(gameTime);
         }
     }
 }

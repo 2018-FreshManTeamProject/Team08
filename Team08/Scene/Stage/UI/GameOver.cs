@@ -56,7 +56,7 @@ namespace MouseTrash.Scene.Stage.UI
             thedatafind.TextSize = 72f;
             thedatalost.TextSize = 72f;
             message.TextSize = 48f;
-            message.Text = "Escボタンで戻る";
+            message.Text = "Escキーでメニューを開く\r\nStartボタンでリセット\r\nBackボタンでタイトルへ戻る";
             base.DesignContent();
         }
 

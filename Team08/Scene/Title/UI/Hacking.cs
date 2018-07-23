@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 using InfinityGame.Element;
+using Microsoft.Xna.Framework.Input;
 
 namespace MouseTrash.Scene.Title.UI
 {
@@ -177,6 +178,8 @@ namespace MouseTrash.Scene.Title.UI
                     }
                     time.Text = GetText("TimeDown") + (timedown / 60f).ToString();
                 }
+                else if (IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.A))
+                    OnStart(null, null);
                 base.Update(gameTime);
             }
 

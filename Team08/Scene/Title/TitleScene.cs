@@ -14,6 +14,7 @@ using InfinityGame.Element;
 using InfinityGame.Device;
 using InfinityGame.Device.MouseManage;
 using MouseTrash.Scene.Title.UI;
+using Microsoft.Xna.Framework.Input;
 
 namespace MouseTrash.Scene.Title
 {
@@ -25,6 +26,7 @@ namespace MouseTrash.Scene.Title
         private Warning warning;
         private Hacking hacking;
         private Readme readme;
+        private Label message;
         private bool isShutdown = false;
         private int warningCountDown = 30;
 
@@ -34,7 +36,7 @@ namespace MouseTrash.Scene.Title
         public Readme Readme { get { return readme; } }
         public TitleScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
-            
+
         }
 
         public override void Initialize()
@@ -51,6 +53,10 @@ namespace MouseTrash.Scene.Title
             warning = new Warning(graphicsDevice, this);
             hacking = new Hacking(graphicsDevice, this);
             readme = new Readme(graphicsDevice, this);
+            message = new Label(graphicsDevice, this);
+            message.TextSize = 24f;
+            message.Text = "Startボタンでスキャン\r\nBackボタンでシャットダウン\r\nAボタンで確認\r\nBボタンでキャンセル";
+            message.Location = new Point(Size.Width - message.Size.Width, 0);
             new WarningMessage(graphicsDevice, this, antivirus);
             EventRegist();
             base.PreLoadContent();
@@ -97,10 +103,21 @@ namespace MouseTrash.Scene.Title
                     OnShutdown();
                 }
             }
+
+            if (IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.Start) && !warning.Visible)
+                Start();
+            else if (IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.Back) && !warning.Visible)
+                Shutdown();
+
             base.Update(gameTime);
         }
 
         public void OpenWarning(object sender, EventArgs e)
+        {
+            Start();
+        }
+
+        private void Start()
         {
             if (!warning.Visible)
                 warning.Visible = true;

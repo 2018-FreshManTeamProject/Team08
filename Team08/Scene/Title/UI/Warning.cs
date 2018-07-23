@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using InfinityGame.Device.MouseManage;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Input;
 
 namespace MouseTrash.Scene.Title.UI
 {
@@ -124,11 +125,20 @@ namespace MouseTrash.Scene.Title.UI
                         Location = new Point(rnd.Next(0, parent.Size.Width - Size.Width), rnd.Next(0, parent.Size.Height - Size.Height));
                     }
                 }
+                if (IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.A) && !onHacking)
+                    OK();
+                else if (IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.B) && !onHacking)
+                    Cancel(null, null);
             }
             base.Update(gameTime);
         }
 
         private void OK(object sender, EventArgs e)
+        {
+            OK();
+        }
+
+        private void OK()
         {
             SoundPlay("button");
             onHacking = true;

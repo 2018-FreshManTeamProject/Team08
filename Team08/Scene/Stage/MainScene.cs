@@ -111,13 +111,7 @@ namespace MouseTrash.Scene.Stage
         public override void Update(GameTime gameTime)
         {
             if (GameKeyboard.GetKeyUpTrigger(Keys.Escape))
-            {
-                backMenu.Visible = !backMenu.Visible;
-                if (backMenu.Visible)
-                {
-                    backMenu.SetFocus();
-                }
-            }
+                OpenBackMenu();
             if (start.Visible)
             {
                 start.Text = (((GameStage)stages["Stage01"]).StartTime / 60).ToString();
@@ -156,6 +150,28 @@ namespace MouseTrash.Scene.Stage
                     backMenu.Update(gameTime);
                 if (gameOver.Visible)
                     gameOver.Update(gameTime);
+            }
+            if (IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.Start) && gameOver.Visible)
+                Initialize();
+            else if (IGGamePad.GetKeyTrigger(PlayerIndex.One,Buttons.Back))
+            {
+                if (gameOver.Visible)
+                {
+                    IsRun = false;
+                    GameRun.scenes["title"].IsRun = true;
+                    Initialize();
+                }
+                else if (!backMenu.Visible)
+                    OpenBackMenu();
+            }
+        }
+
+        private void OpenBackMenu()
+        {
+            backMenu.Visible = !backMenu.Visible;
+            if (backMenu.Visible)
+            {
+                backMenu.SetFocus();
             }
         }
     }

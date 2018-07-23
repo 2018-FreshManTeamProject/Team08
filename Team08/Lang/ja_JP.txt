@@ -5,11 +5,11 @@
 <Loading:読み込み中>
 <GameTitle:マウストラッシュ>
 <BackMenu:メニュー>
-<Back:ゲームに戻る>
-<ToTitle:タイトルへ戻る>
+<Back:ゲームに戻る（B）>
+<ToTitle:タイトルへ戻る（Back）>
 <Exit:終了>
 <GameOver:ゲームオーバー>
-<ReSet:リセット>
+<ReSet:リセット（Start）>
 <OK:確認>
 <Cancel:取消>
 <StartText:ようこそ>
