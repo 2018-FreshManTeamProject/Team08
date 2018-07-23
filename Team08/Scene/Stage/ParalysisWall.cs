@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using InfinityGame.Stage.StageObject;
 using MouseTrash.Scene.Stage.Actor;
+using MouseTrash.Scene.Stage.Stages;
 
 namespace MouseTrash.Scene.Stage
 {
@@ -23,9 +24,16 @@ namespace MouseTrash.Scene.Stage
         {
             foreach(var l in tempSO)
             {
+                if (((GameStage)Stage).startTime > 0)
+                    break;
                 if (l.Value is Player && ((Player)l.Value).Life)
                 {
-                    ((Player)l.Value).PlayerState["paralysis"] = 60;
+                    int tm = 0;
+                    if (l.Value is Mouse)
+                        tm = 60;
+                    else if (l.Value is Antivirus)
+                        tm = 20;
+                    ((Player)l.Value).PlayerState["paralysis"] = tm;
                 }
             }
             base.CalAllColl(tempSO);

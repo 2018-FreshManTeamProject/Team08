@@ -37,7 +37,14 @@ namespace MouseTrash.Scene.Stage
 
         public override void CalAllColl(Dictionary<string, StageObj> tempSO)
         {
-
+            foreach (var l in tempSO)
+            {
+                if (l.Value is Wall)
+                {
+                    Initialize();
+                    break;
+                }
+            }
             base.CalAllColl(tempSO);
         }
 

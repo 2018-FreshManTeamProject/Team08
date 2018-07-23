@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 
 using MouseTrash.Scene.Stage.Actor;
+using MouseTrash.Scene.Stage.Stages;
 
 namespace MouseTrash.Scene.Stage
 {
@@ -58,6 +59,8 @@ namespace MouseTrash.Scene.Stage
             string[] nm = tempSO.Keys.ToArray();
             foreach (var l in nm)
             {
+                if (((GameStage)Stage).startTime > 0)
+                    break;
                 if (tempSO.ContainsKey(l))
                 {
                     if (tempSO[l] is Player && ((Player)tempSO[l]).Life)

@@ -47,6 +47,17 @@ namespace MouseTrash.Scene.Stage
             base.Update(gameTime);
         }
 
-        
+        public override void CalAllColl(Dictionary<string, StageObj> tempSO)
+        {
+            foreach (var l in tempSO)
+            {
+                if (l.Value is Wall || l.Value is CircelWall)
+                {
+                    Initialize();
+                    break;
+                }
+            }
+            base.CalAllColl(tempSO);
+        }
     }
 }
