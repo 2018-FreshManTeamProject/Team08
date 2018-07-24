@@ -46,6 +46,7 @@ namespace MouseTrash.Scene.Title.UI
                            "                    XIE SHAOJIE（UI関係）\r\n" +
                            "サンド編集：XIE SHAOJIE\r\n" +
                            "            吉村（暫定名字表示）\r\n" +
+                           "\r\n" +
                            "「InfinityGame」について：\r\n" +
                            "バージョン：1.0.1.4\r\n" +
                            "バージョン作成年月日：2018-7-22\r\n" +
