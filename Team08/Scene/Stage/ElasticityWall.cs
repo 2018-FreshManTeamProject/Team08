@@ -89,6 +89,7 @@ namespace MouseTrash.Scene.Stage
             {
                 if (l.Value is Wall || l.Value is ElasticityWall || l.Value is CircelWall)
                 {
+                    ((GameStage)Stage).StartTime++;
                     Initialize();
                     break;
                 }

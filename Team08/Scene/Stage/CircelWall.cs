@@ -10,6 +10,7 @@ using InfinityGame.Device;
 using InfinityGame.Stage.StageObject;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using MouseTrash.Scene.Stage.Stages;
 
 namespace MouseTrash.Scene.Stage
 {
@@ -53,6 +54,7 @@ namespace MouseTrash.Scene.Stage
             {
                 if (l.Value is Wall || l.Value is CircelWall)
                 {
+                    ((GameStage)Stage).StartTime++;
                     Initialize();
                     break;
                 }

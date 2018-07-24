@@ -44,7 +44,8 @@ namespace MouseTrash.Scene.Title.UI
                            "グラフィック著作者：吉村（主人公関係、暫定名字表示）\r\n" +
                            "                    爪橋（マウス関係、暫定名字表示）\r\n" +
                            "                    XIE SHAOJIE（UI関係）\r\n" +
-                           "\r\n" +
+                           "サンド編集：XIE SHAOJIE\r\n" +
+                           "            吉村（暫定名字表示）\r\n" +
                            "「InfinityGame」について：\r\n" +
                            "バージョン：1.0.1.4\r\n" +
                            "バージョン作成年月日：2018-7-22\r\n" +

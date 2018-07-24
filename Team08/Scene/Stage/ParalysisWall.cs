@@ -32,7 +32,7 @@ namespace MouseTrash.Scene.Stage
                     if (l.Value is Mouse)
                         tm = 60;
                     else if (l.Value is Antivirus)
-                        tm = 20;
+                        tm = 60;
                     ((Player)l.Value).PlayerState["paralysis"] = tm;
                 }
             }

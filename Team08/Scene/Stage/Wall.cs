@@ -11,6 +11,7 @@ using InfinityGame.Stage.StageObject.Block;
 using InfinityGame.Device;
 using InfinityGame.Element;
 using MouseTrash.Scene.Stage.Actor;
+using MouseTrash.Scene.Stage.Stages;
 
 namespace MouseTrash.Scene.Stage
 {
@@ -41,6 +42,7 @@ namespace MouseTrash.Scene.Stage
             {
                 if (l.Value is Wall)
                 {
+                    ((GameStage)Stage).StartTime++;
                     Initialize();
                     break;
                 }

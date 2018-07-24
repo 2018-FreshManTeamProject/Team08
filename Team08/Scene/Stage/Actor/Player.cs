@@ -35,7 +35,7 @@ namespace MouseTrash.Scene.Stage.Actor
         protected float maxSpeed = 0;//最大速度
         protected float actionMaxSpeed = 0;
         protected Vector2 actionSpeed = Vector2.Zero;
-        private string nowCharaSide;
+        protected string nowCharaSide;
         protected Dictionary<string, SImage> charaImages = new Dictionary<string, SImage>();
         protected PlayerControl playerControl;
         private Dictionary<string, int> playerState = new Dictionary<string, int>();
@@ -53,7 +53,7 @@ namespace MouseTrash.Scene.Stage.Actor
             IsCrimp = true;
             PassIndex_0 = true;
             ImageRunState = 0;
-            Render.Scale = Vector2.One / 2;
+
             PlayerState["paralysis"] = 0;
         }
 
@@ -120,29 +120,7 @@ namespace MouseTrash.Scene.Stage.Actor
             GamePad.SetVibration(playerControl.Player, 0, 0);
         }
 
-        protected void SetChara(string charaSide)
-        {
-            if (nowCharaSide != charaSide)
-            {
-                if (image != null)
-                {
-                    if (iTIndex > Image.ImageT.Count - 1)
-                    {
-                        iTIndex = 1;
-                        imageTimeCounter = 0;
-                    }
-                }
-                else
-                {
-                    iTIndex = 0;
-                    imageTimeCounter = 0;
-                }
-                nowCharaSide = charaSide;
-                Image = charaImages[charaSide];
-                if (playerControl != null && !IGGamePad.GetKeyState(playerControl.Player, Buttons.B))
-                    Size = Size.Parse(Image.Image.Size) / 2;
-            }
-        }
+
 
         public void FlipSpeed(float magn, bool fx, bool fy)
         {
@@ -182,11 +160,12 @@ namespace MouseTrash.Scene.Stage.Actor
         {
             if (((GameStage)Stage).StartTime <= 0)
             {
-                if (IGGamePad.GetKeyTrigger(playerControl.Player, Buttons.A) && PlayerState["paralysis"] <= 0)
+                if (IGGamePad.GetKeyTrigger(playerControl.Player, Buttons.A) && life && PlayerState["paralysis"] <= 0)
                 {
                     Action();
                 }
-                ActionB();
+                if (life)
+                    ActionB();
                 if (speedv != Vector2.Zero)
                 {
                     Vector2 t = speedv;

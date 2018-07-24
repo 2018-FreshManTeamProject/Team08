@@ -22,6 +22,7 @@ namespace MouseTrash.Scene.Stage.Actor
         public int SelfDamage { get { return selfDamage; } }
         public Mouse(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
+            Render.Scale = Vector2.One / 2;
         }
 
         public override void Initialize()
@@ -49,7 +50,7 @@ namespace MouseTrash.Scene.Stage.Actor
         {
             if (((GameStage)Stage).StartTime > 0)
             {
-                var tempdict = Detector.Circel(this, 500);
+                var tempdict = Detector.Circel(this, 1000);
                 foreach (var l in tempdict)
                 {
                     if (l.Value.Team == "antivirus")
@@ -71,13 +72,13 @@ namespace MouseTrash.Scene.Stage.Actor
 
         protected override void Eat(StageObj stageObj)
         {
-            if (stageObj is TheData && life && !((TheData)stageObj).Eaten && isDamage)
+            if (stageObj is TheData && life && !((TheData)stageObj).Eaten && ((GameStage)Stage).StartTime <= 0)
             {
                 ((TheData)stageObj).Eaten = true;
                 stageObj.Visible = false;
                 ((GameStage)Stage).EatedTheData++;
-                point += 10;
-                ((GameStage)Stage).MousePoint += 20;
+                point += 40;
+                ((GameStage)Stage).MousePoint += 40;
             }
         }
 
@@ -89,9 +90,9 @@ namespace MouseTrash.Scene.Stage.Actor
 
         protected override void Action()
         {
-            if (point >= 200)
+            if (point >= 100)
             {
-                point -= 200;
+                point -= 100;
                 actionMaxSpeed = 5;
                 TimeDownCount += 120;
             }
@@ -107,7 +108,8 @@ namespace MouseTrash.Scene.Stage.Actor
 
             if (selfDamage > 500)
             {
-                PlayerState["paralysis"] = selfDamage;
+                PlayerState["paralysis"] = selfDamage / 5;
+                SetVibration(0.5f, 0.5f, 800);
                 selfDamage--;
             }
             base.ActionB();

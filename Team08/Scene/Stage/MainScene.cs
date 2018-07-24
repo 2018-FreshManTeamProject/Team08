@@ -26,6 +26,7 @@ namespace MouseTrash.Scene.Stage
         private GameOver gameOver;
         private GameStage runStage;
         private Label start;
+        private Label message;
         public MainScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
 
@@ -34,6 +35,7 @@ namespace MouseTrash.Scene.Stage
         public override void Initialize()
         {
             start.Visible = true;
+            message.Visible = false;
             for (int i = 0; i < 4; i++)
             {
                 if ((int)((Player)stageCameras["C" + i.ToString()].Stage.stageObjs["antivirus"]).PlayerControl.Player == i)
@@ -57,6 +59,7 @@ namespace MouseTrash.Scene.Stage
             backMenu = new BackMenu(graphicsDevice, this);
             gameOver = new GameOver(graphicsDevice, this);
             start = new Label(graphicsDevice, this);
+            message = new Label(graphicsDevice, this);
             new GameCamera(graphicsDevice, this, "C0");
             new GameCamera(graphicsDevice, this, "C1");
             new GameCamera(graphicsDevice, this, "C2");
@@ -72,6 +75,11 @@ namespace MouseTrash.Scene.Stage
             start.BackColor = Color.White * 0.0f;
             start.BDText.ForeColor = System.Drawing.Color.Yellow;
             start.Text = (((GameStage)stages["Stage01"]).StartTime / 60).ToString();
+            message.TextSize = 72f;
+            message.BackColor = Color.White * 0.0f;
+            message.BDText.ForeColor = System.Drawing.Color.OrangeRed;
+            message.Text = GetText("StageLoad");
+            message.Location = ((size - message.Size) / 2).ToPoint();
             DesignGameOver();
             stageCameras["C0"].Location = Point.Zero;
             stageCameras["C1"].Location = new Point(size.Width / 2, 0);
@@ -102,7 +110,7 @@ namespace MouseTrash.Scene.Stage
 
         public override void LoadContent()
         {
-            Image = ImageManage.GetSImage("stagescene.png");
+            Image = ImageManage.GetSImage("stagefield.png");
             sounds["antiviruswin"] = SoundManage.GetSound("antiviruswin.wav");
             sounds["viruswin"] = SoundManage.GetSound("viruswin.wav");
             base.LoadContent();
@@ -173,6 +181,18 @@ namespace MouseTrash.Scene.Stage
             {
                 backMenu.SetFocus();
             }
+        }
+
+        public override void AfterDraw(GameTime gameTime)
+        {
+            if (((GameStage)stages["Stage01"]).StartTime > 180)
+            {
+                message.Visible = true;
+                message.PreDraw(gameTime);
+                return;
+            }
+            message.Visible = false;
+            base.AfterDraw(gameTime);
         }
     }
 }

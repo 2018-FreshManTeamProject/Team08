@@ -22,10 +22,10 @@
 <button01:1>
 <shutdown:1>
 <antivirus_icon:1>
-<gomi_backside:1>
-<gomi_frontside:1>
-<gomi_leftside:1>
-<gomi_rightside:1>
+<gomi_back_run:1>
+<gomi_front_run:1>
+<gomi_left_run:1>
+<gomi_right_run:1>
 
 カーソル
 <cursor0.png:0>

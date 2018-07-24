@@ -148,6 +148,8 @@ namespace MouseTrash.Scene.Stage
         public override void Draw2(GameTime gameTime)
         {
             base.Draw2(gameTime);
+            if (team == "antivirus" && !((Antivirus)FocusStageObj).Small)
+                return;
             foreach (var l in marks.ToArray())
             {
                 if (Stage.stageObjs.ContainsKey(l))

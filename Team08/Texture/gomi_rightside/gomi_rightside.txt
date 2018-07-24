@@ -1,3 +1,0 @@
-﻿<Count:5>
-<Freams:10>
-<Type:png>

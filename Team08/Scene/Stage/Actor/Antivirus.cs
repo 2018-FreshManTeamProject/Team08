@@ -18,19 +18,25 @@ namespace MouseTrash.Scene.Stage.Actor
     public class Antivirus : Player
     {
         private string chara;
+        private bool small = false;
+
+        public bool Small { get => small; set => small = value; }
+
         public Antivirus(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
         {
+            Render.Scale = Vector2.One / 10;
         }
 
         public override void Initialize()
         {
+            small = false;
             MovePriority = 4;
             chara = "gomi";
-            charaImages[chara + "_frontside"] = ImageManage.GetSImage(chara + "_frontside");
-            charaImages[chara + "_backside"] = ImageManage.GetSImage(chara + "_backside");
-            charaImages[chara + "_leftside"] = ImageManage.GetSImage(chara + "_leftside");
-            charaImages[chara + "_rightside"] = ImageManage.GetSImage(chara + "_rightside");
-            SetChara(chara + "_frontside");
+            charaImages[chara + "_front_run"] = ImageManage.GetSImage(chara + "_front_run");
+            charaImages[chara + "_back_run"] = ImageManage.GetSImage(chara + "_back_run");
+            charaImages[chara + "_left_run"] = ImageManage.GetSImage(chara + "_left_run");
+            charaImages[chara + "_right_run"] = ImageManage.GetSImage(chara + "_right_run");
+            SetChara(chara + "_front_run");
             base.Initialize();
         }
 
@@ -52,16 +58,40 @@ namespace MouseTrash.Scene.Stage.Actor
             if (Math.Abs(ve.Y) >= Math.Abs(ve.X))
             {
                 if (ve.Y >= 0)
-                    SetChara(chara + "_frontside");
+                    SetChara(chara + "_front_run");
                 else
-                    SetChara(chara + "_backside");
+                    SetChara(chara + "_back_run");
             }
             else
             {
                 if (ve.X >= 0)
-                    SetChara(chara + "_rightside");
+                    SetChara(chara + "_right_run");
                 else
-                    SetChara(chara + "_leftside");
+                    SetChara(chara + "_left_run");
+            }
+        }
+
+        protected void SetChara(string charaSide)
+        {
+            if (nowCharaSide != charaSide)
+            {
+                if (image != null)
+                {
+                    if (iTIndex > Image.ImageT.Count - 1)
+                    {
+                        iTIndex = 1;
+                        imageTimeCounter = 0;
+                    }
+                }
+                else
+                {
+                    iTIndex = 0;
+                    imageTimeCounter = 0;
+                }
+                nowCharaSide = charaSide;
+                Image = charaImages[charaSide];
+                if (playerControl != null && !IGGamePad.GetKeyState(playerControl.Player, Buttons.B))
+                    Size = Size.Parse(Image.Image.Size) / 10;
             }
         }
 
@@ -77,21 +107,23 @@ namespace MouseTrash.Scene.Stage.Actor
         {
             if (IGGamePad.GetKeyState(playerControl.Player, Buttons.B) && PlayerState["paralysis"] <= 0)
             {
-                if (Render.Scale == Vector2.One / 2)
+                small = true;
+                if (Render.Scale == Vector2.One / 10)
                 {
-                    Size = Size.Parse(image.Image.Size) / 8;
-                    Render.Scale = Vector2.One / 8;
-                    Coordinate += (Size.Parse(image.Image.Size) / 4).ToVector2();
+                    Size = Size.Parse(image.Image.Size) / 40;
+                    Render.Scale = Vector2.One / 40;
+                    Coordinate += (Size.Parse(image.Image.Size) / 20).ToVector2();
                     actionMaxSpeed = -3;
                 }
             }
             else
             {
-                if (Render.Scale != Vector2.One / 2)
+                small = false;
+                if (Render.Scale != Vector2.One / 10)
                 {
-                    Size = Size.Parse(image.Image.Size) / 2;
-                    Coordinate -= (Size.Parse(image.Image.Size) / 4).ToVector2();
-                    Render.Scale = Vector2.One / 2;
+                    Size = Size.Parse(image.Image.Size) / 10;
+                    Coordinate -= (Size.Parse(image.Image.Size) / 20).ToVector2();
+                    Render.Scale = Vector2.One / 10;
                     actionMaxSpeed = 0;
                 }
             }
@@ -128,7 +160,7 @@ namespace MouseTrash.Scene.Stage.Actor
                 TimeDownCount = 300;
                 Vector2 ve = speedv;
                 ve.Normalize();
-                actionSpeed = ve * 25;
+                actionSpeed = (small) ? ve * 12 : ve * 24;
             }
         }
     }

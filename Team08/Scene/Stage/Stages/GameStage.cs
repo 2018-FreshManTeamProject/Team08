@@ -12,6 +12,7 @@ using InfinityGame.Stage.StageObject;
 using InfinityGame.Device;
 using InfinityGame.Element;
 using MouseTrash.Scene.Stage.Actor;
+using Microsoft.Xna.Framework.Audio;
 
 namespace MouseTrash.Scene.Stage.Stages
 {
@@ -28,7 +29,8 @@ namespace MouseTrash.Scene.Stage.Stages
         private int antivirusPoint = 0;
         private bool mouseWin = false;
         private bool catWin = false;
-        private int startTime = 180;
+        private readonly int StartTimeRe = 240;
+        private int startTime = 0;
         private PlayerControl[] players = new PlayerControl[4];
 
         public int TheDataNum { get => theDataNum; set => theDataNum = value; }
@@ -41,7 +43,7 @@ namespace MouseTrash.Scene.Stage.Stages
         public int AntivirusPoint { get => antivirusPoint; set => antivirusPoint = value; }
         public bool MouseWin { get => mouseWin; set => mouseWin = value; }
         public bool CatWin { get => catWin; set => catWin = value; }
-        public int StartTime { get => startTime; set => startTime = value; }
+        public int StartTime { get => startTime; set { startTime = value; SetStartTime(); } }
         public PlayerControl[] Players { get => players; set => players = value; }
 
         public GameStage(GraphicsDevice aGraphicsDevice, BaseDisplay aParent, string aName) : base(aGraphicsDevice, aParent, aName)
@@ -51,9 +53,10 @@ namespace MouseTrash.Scene.Stage.Stages
 
         public override void Initialize()
         {
+            sounds["mainscene"].Stop();
             MousePoint = 0;
             AntivirusPoint = 0;
-            StartTime = 180;
+            StartTime = StartTimeRe;
             EatedTheData = 0;
             KilledMouse = 0;
             MouseWin = false;
@@ -79,6 +82,12 @@ namespace MouseTrash.Scene.Stage.Stages
             base.Initialize();
         }
 
+        private void SetStartTime()
+        {
+            if (startTime > StartTimeRe)
+                startTime = StartTimeRe;
+        }
+
         public override void PreLoadContent()
         {
             for (int i = 0; i < 4; i++)
@@ -97,6 +106,8 @@ namespace MouseTrash.Scene.Stage.Stages
 
         public override void LoadContent()
         {
+            sounds["mainscene"] = SoundManage.GetSound("mainscene.wav");
+            sounds["mainscene"].SetSELoopPlay(true);
             base.LoadContent();
         }
 
@@ -108,6 +119,8 @@ namespace MouseTrash.Scene.Stage.Stages
             }
             else
             {
+                if (!sounds["mainscene"].GetState(SoundState.Playing))
+                    sounds["mainscene"].Play();
                 if (EatedTheData >= MouseWinNum)
                 {
                     MouseWin = true;

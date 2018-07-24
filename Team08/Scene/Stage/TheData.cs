@@ -11,6 +11,7 @@ using InfinityGame.Device;
 using InfinityGame.Element;
 using MouseTrash.Scene.Stage.Stages;
 using InfinityGame.Stage.StageObject;
+using MouseTrash.Scene.Stage.Actor;
 
 namespace MouseTrash.Scene.Stage
 {
@@ -34,12 +35,6 @@ namespace MouseTrash.Scene.Stage
             Image = ImageManage.GetSImage("thedata.png");
             Size = Size.Parse(Image.Image.Size);
             Coordinate = new Vector2(rnd.Next(Stage.EndOfLeftUp.X, Stage.EndOfRightDown.X - size.Width), rnd.Next(Stage.EndOfLeftUp.Y, Stage.EndOfRightDown.Y - size.Height));
-            if (Eaten)
-            {
-                ((GameStage)Stage).EatedTheData--;
-                Initialize();
-                return;
-            }
             base.Initialize();
         }
 
@@ -47,8 +42,9 @@ namespace MouseTrash.Scene.Stage
         {
             foreach (var l in tempSO)
             {
-                if (l.Value is TheData || l.Value is ElasticityWall)
+                if (l.Value is TheData || l.Value is ElasticityWall || (l.Value is Mouse && ((GameStage)Stage).StartTime > 0))
                 {
+                    ((GameStage)Stage).StartTime++;
                     Initialize();
                     break;
                 }
