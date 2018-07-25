@@ -36,6 +36,7 @@ namespace MouseTrash.Scene.Stage
         {
             start.Visible = true;
             message.Visible = false;
+            base.Initialize();
             for (int i = 0; i < 4; i++)
             {
                 if ((int)((Player)stageCameras["C" + i.ToString()].Stage.stageObjs["antivirus"]).PlayerControl.Player == i)
@@ -51,7 +52,6 @@ namespace MouseTrash.Scene.Stage
                     }
                 }
             }
-            base.Initialize();
         }
 
         public override void PreLoadContent()

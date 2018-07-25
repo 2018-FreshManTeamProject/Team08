@@ -120,13 +120,13 @@ namespace MouseTrash.Scene.Stage.UI
             SoundPlay("button");
             ((BaseScene)parent).IsRun = false;
             ((BaseScene)parent).GameRun.scenes["title"].IsRun = true;
-            parent.Initialize();
+            ((BaseScene)parent).GameRun.scenes["stagescene"].Initialize();
         }
 
         public void ReSet(object sender, EventArgs e)
         {
             SoundPlay("button");
-            parent.Initialize();
+            ((BaseScene)parent).GameRun.scenes["stagescene"].Initialize();
         }
 
         public void Exit(object sender, EventArgs e)
