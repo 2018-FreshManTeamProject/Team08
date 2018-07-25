@@ -161,7 +161,7 @@ namespace MouseTrash.Scene.Stage
             }
             if (IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.Start) && gameOver.Visible)
                 Initialize();
-            else if (IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.Back))
+            else if (IGGamePad.GetKeyTrigger(PlayerIndex.One,Buttons.Back))
             {
                 if (gameOver.Visible)
                 {
@@ -176,8 +176,6 @@ namespace MouseTrash.Scene.Stage
 
         private void OpenBackMenu()
         {
-            if (((GameStage)stages["Stage01"]).StartTime > 179)
-                return;
             backMenu.Visible = !backMenu.Visible;
             if (backMenu.Visible)
             {
