@@ -1,0 +1,1 @@
+AMP Font Viewer shortcut in the Start Menu, right-click it and select Properties from the popup menu. Then go to the compatibility tab and check "Run this program as an administrator" (you may be asked to enter an administrator password). 
