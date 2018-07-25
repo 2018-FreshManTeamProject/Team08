@@ -339,6 +339,9 @@
     <Content Include="Texture\cursor9.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\gamecamera.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\gomi_back_run\gomi_back_run_0000.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -613,6 +616,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\gomi_right_run\gomi_right_run_0022.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\help.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\panel01.png">

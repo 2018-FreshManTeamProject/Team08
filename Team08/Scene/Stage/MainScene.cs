@@ -77,7 +77,7 @@ namespace MouseTrash.Scene.Stage
             start.Text = (((GameStage)stages["Stage01"]).StartTime / 60).ToString();
             message.TextSize = 72f;
             message.BackColor = Color.White * 0.0f;
-            message.BDText.ForeColor = System.Drawing.Color.OrangeRed;
+            message.BDText.ForeColor = System.Drawing.Color.Yellow;
             message.Text = GetText("StageLoad");
             message.Location = ((size - message.Size) / 2).ToPoint();
             DesignGameOver();

@@ -20,7 +20,7 @@ namespace MouseTrash.Scene.Title.UI
     public partial class Hacking : UIWindow, IPlayerCursor
     {
         private Label time;
-        private Label[] messages = new Label[9];
+        private Label[] messages = new Label[1/*9*/];
         private bool start = false;
         private AnimeButton ok;
         private Dictionary<string, PlayerCursor> players = new Dictionary<string, PlayerCursor>();
@@ -45,11 +45,12 @@ namespace MouseTrash.Scene.Title.UI
 
         public override void Initialize()
         {
+            ImageColor = Color.White;
             start = false;
-            for (int i = 1; i < messages.Length; i++)
+            /*for (int i = 1; i < messages.Length; i++)
             {
                 messages[i].Visible = true;
-            }
+            }*/
             messages[0].Visible = false;
             Visible = false;
             time.Visible = false;
@@ -100,10 +101,10 @@ namespace MouseTrash.Scene.Title.UI
                 messages[i].Text = GetText("Help" + i);
             }
             messages[0].BDText.ForeColor = System.Drawing.Color.Yellow;
-            messages[1].BDText.ForeColor = System.Drawing.Color.Red;
+            /*messages[1].BDText.ForeColor = System.Drawing.Color.Red;
             messages[2].BDText.ForeColor = System.Drawing.Color.FromArgb(220, 220, 80);
             messages[3].BDText.ForeColor = System.Drawing.Color.LawnGreen;
-            messages[4].BDText.ForeColor = System.Drawing.Color.Yellow;
+            messages[4].BDText.ForeColor = System.Drawing.Color.Yellow;*/
             time.TextSize = 16f;
             time.BDText.ForeColor = System.Drawing.Color.Yellow;
             for (int i = 0; i < 18; i++)
@@ -120,9 +121,10 @@ namespace MouseTrash.Scene.Title.UI
 
         public override void LoadContent()
         {
+            Image = ImageManage.GetSImage("help.png");
             ok.Image = ImageManage.GetSImage("button01");
             messages[0].Location = Alignment.GetMXFAlignment(ContentAlignment.MiddleRight, size, messages[0].Size);
-            messages[1].Location = new Point(0, TitleSize + 50);
+            /*messages[1].Location = new Point(0, TitleSize + 50);
             messages[2].Location = new Point(size.Width - messages[2].Size.Width, TitleSize + 50);
             messages[3].Location = new Point((size.Width - messages[3].Size.Width) / 2, messages[2].Location.Y + messages[2].Size.Height + 10);
             messages[5].Location = new Point(0, messages[3].Location.Y + messages[3].Size.Height + 10);
@@ -130,7 +132,7 @@ namespace MouseTrash.Scene.Title.UI
             messages[4].Location = new Point((size.Width - messages[4].Size.Width) / 2, messages[6].Location.Y + messages[6].Size.Height + 10);
             messages[7].Location = new Point(0, messages[4].Location.Y + messages[4].Size.Height + 10);
             messages[8].Location = new Point(size.Width - messages[8].Size.Width, messages[4].Location.Y + messages[4].Size.Height + 10);
-
+            */
 
             time.Location = new Point(border_Left.Size.Width + 10, border_Top.Size.Height + 10);
             {
@@ -187,11 +189,12 @@ namespace MouseTrash.Scene.Title.UI
 
         private void OnStart(object sender, EventArgs e)
         {
+            ImageColor = Color.Transparent;
             SoundPlay("button");
-            for (int i = 1; i < messages.Length; i++)
+            /*for (int i = 1; i < messages.Length; i++)
             {
                 messages[i].Visible = false;
-            }
+            }*/
             messages[0].Visible = true;
             Visible = true;
             time.Visible = true;

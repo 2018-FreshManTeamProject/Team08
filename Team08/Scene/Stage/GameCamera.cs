@@ -36,6 +36,7 @@ namespace MouseTrash.Scene.Stage
         {
             Message = new Label(graphicsDevice, this);
             //action = new Label(graphicsDevice, this);
+            
             base.PreLoadContent();
         }
 
@@ -69,7 +70,7 @@ namespace MouseTrash.Scene.Stage
         public override void LoadContent()
         {
             Message.Image = ImageManage.GetSImage("panel01.png");
-            Image = ImageManage.GetSImage("mousetrash_logo.png");
+            Image = ImageManage.GetSImage("gamecamera.png");
             mk = ImageManage.GetSImage("yajiru.png");
             base.LoadContent();
         }

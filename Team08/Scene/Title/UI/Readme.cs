@@ -36,21 +36,21 @@ namespace MouseTrash.Scene.Title.UI
             message.Text = "「MouseTrash」は「InfinityGame」サブエンジンを使用\r\n" +
                            "\r\n" +
                            "「MouseTrash」について：\r\n" +
-                           "ゲーム起案：爪橋（暫定名字表示）\r\n" +
-                           "ゲーム検討：爪橋（暫定名字表示）\r\n" +
-                           "　　　　　　吉村（暫定名字表示）\r\n" +
-                           "　　　　　　XIE SHAOJIE\r\n" +
-                           "プログラム著作者：XIE SHAOJIE\r\n" +
-                           "グラフィック著作者：吉村（主人公関係、暫定名字表示）\r\n" +
-                           "                    爪橋（マウス関係、暫定名字表示）\r\n" +
-                           "                    XIE SHAOJIE（UI関係）\r\n" +
-                           "サンド編集：XIE SHAOJIE\r\n" +
-                           "            吉村（暫定名字表示）\r\n" +
+                           "ゲーム起案：橋爪\r\n" +
+                           "ゲーム検討：橋爪\r\n" +
+                           "　　　　　　吉村 梨菜\r\n" +
+                           "　　　　　　謝 少杰\r\n" +
+                           "プログラム著作者：謝 少杰\r\n" +
+                           "グラフィック著作者：吉村 梨菜（主人公関係、操作ヘルプ）\r\n" +
+                           "                    橋爪（マウス関係）\r\n" +
+                           "                    謝 少杰（UI関係）\r\n" +
+                           "サンド編集：謝 少杰\r\n" +
+                           "            吉村 梨菜\r\n" +
                            "\r\n" +
                            "「InfinityGame」について：\r\n" +
                            "バージョン：1.0.1.4\r\n" +
                            "バージョン作成年月日：2018-7-22\r\n" +
-                           "著作者：XIE SHAOJIE\r\n" +
+                           "著作者：XIE SHAOJIE（謝 少杰）\r\n" +
                            "\r\n" +
                            "もし「MouseTrash」と「InfinityGame」について疑問などがあったら、\r\n" +
                            "本人たちに連絡してください。";
